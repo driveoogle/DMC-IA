@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DMC IA Catalogue — Pre-built AI agents for every business role.">
+<title>Catalogue — DMC IA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+main{flex:1;display:flex;flex-direction:column;}
+
+/* PAGE HERO */
+.page-hero{
+  padding:7rem 4rem 5rem;border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 0%,rgba(124,92,252,0.1) 0%,transparent 55%);
+  pointer-events:none;
+}
+.page-hero-inner{position:relative;z-index:1;}
+.page-hero .tag{margin-bottom:2rem;}
+.page-hero h1{
+  font-size:clamp(2.8rem,5vw,5rem);font-weight:300;
+  letter-spacing:-0.03em;line-height:1.08;max-width:750px;margin-bottom:1.5rem;
+}
+.page-hero h1 .grad{
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-weight:500;display:block;
+}
+.page-hero .sub{font-size:1.05rem;color:var(--text-dim);font-weight:300;max-width:580px;}
+
+/* CATEGORY SECTION */
+.cat-section{
+  padding:4rem 4rem 3rem;
+  border-bottom:1px solid var(--border);
+}
+
+.cat-section-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;
+}
+
+.cat-section-left{}
+
+.cat-section-num{
+  font-family:'DM Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.5rem;
+}
+
+.cat-section-title{
+  font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;
+  letter-spacing:-0.02em;margin-bottom:0.5rem;
+}
+
+.cat-section-sub{
+  font-size:0.85rem;color:var(--text-dim);font-weight:300;
+  max-width:480px;line-height:1.6;
+}
+
+/* Color accents per category */
+.cat-section.finance .cat-section-num{color:#00e5a0;}
+.cat-section.finance .cat-nav-indicator{background:#00e5a0;}
+.cat-section.admin .cat-section-num{color:#7c5cfc;}
+.cat-section.hr .cat-section-num{color:#00c8ff;}
+.cat-section.ops .cat-section-num{color:#f59e0b;}
+
+/* GRID */
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:14px;
+}
+
+/* CARD */
+.catcard{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.75rem;transition:border-color .25s,box-shadow .25s,transform .25s;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:1rem;
+}
+.catcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  opacity:0;transition:opacity .3s;border-radius:var(--radius) var(--radius) 0 0;
+}
+.cat-section.finance .catcard::before{background:linear-gradient(90deg,#00e5a0,#00c8ff);}
+.cat-section.admin .catcard::before{background:linear-gradient(90deg,#7c5cfc,#00e5a0);}
+.cat-section.hr .catcard::before{background:linear-gradient(90deg,#00c8ff,#7c5cfc);}
+.cat-section.ops .catcard::before{background:linear-gradient(90deg,#f59e0b,#00e5a0);}
+
+.catcard:hover{transform:translateY(-5px);}
+.catcard:hover::before{opacity:1;}
+
+.cat-section.finance .catcard:hover{border-color:rgba(0,229,160,0.3);box-shadow:0 8px 40px rgba(0,229,160,0.07),0 20px 60px rgba(0,0,0,0.35);}
+.cat-section.admin .catcard:hover{border-color:rgba(124,92,252,0.3);box-shadow:0 8px 40px rgba(124,92,252,0.07),0 20px 60px rgba(0,0,0,0.35);}
+.cat-section.hr .catcard:hover{border-color:rgba(0,200,255,0.3);box-shadow:0 8px 40px rgba(0,200,255,0.07),0 20px 60px rgba(0,0,0,0.35);}
+.cat-section.ops .catcard:hover{border-color:rgba(245,158,11,0.3);box-shadow:0 8px 40px rgba(245,158,11,0.07),0 20px 60px rgba(0,0,0,0.35);}
+
+.catcard-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'DM Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:100px;padding:3px 10px;width:fit-content;
+}
+.cat-section.finance .catcard-badge{color:#00e5a0;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.2);}
+.cat-section.admin .catcard-badge{color:#7c5cfc;background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2);}
+.cat-section.hr .catcard-badge{color:#00c8ff;background:rgba(0,200,255,0.1);border:1px solid rgba(0,200,255,0.2);}
+.cat-section.ops .catcard-badge{color:#f59e0b;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);}
+.catcard-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+.catcard-icon{
+  width:46px;height:46px;border-radius:12px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s;
+}
+.cat-section.finance .catcard-icon{background:rgba(0,229,160,0.08);}
+.cat-section.admin .catcard-icon{background:rgba(124,92,252,0.08);}
+.cat-section.hr .catcard-icon{background:rgba(0,200,255,0.08);}
+.cat-section.ops .catcard-icon{background:rgba(245,158,11,0.08);}
+
+.catcard-icon svg{width:22px;height:22px;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.cat-section.finance .catcard-icon svg{stroke:#00e5a0;}
+.cat-section.admin .catcard-icon svg{stroke:#7c5cfc;}
+.cat-section.hr .catcard-icon svg{stroke:#00c8ff;}
+.cat-section.ops .catcard-icon svg{stroke:#f59e0b;}
+
+.catcard h3{font-size:1rem;font-weight:500;letter-spacing:-0.01em;}
+.catcard p{font-size:0.83rem;color:var(--text-dim);line-height:1.7;font-weight:300;flex:1;}
+
+.catcard-features{display:flex;flex-direction:column;gap:6px;}
+.catcard-feat{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.73rem;color:var(--text-faint);
+  font-family:'DM Mono',monospace;letter-spacing:0.02em;
+}
+.catcard-feat::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0;}
+.cat-section.finance .catcard-feat::before{background:#00e5a0;}
+.cat-section.admin .catcard-feat::before{background:#7c5cfc;}
+.cat-section.hr .catcard-feat::before{background:#00c8ff;}
+.cat-section.ops .catcard-feat::before{background:#f59e0b;}
+
+.catcard-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:1rem;border-top:1px solid var(--border);margin-top:auto;
+}
+.catcard-link{
+  font-size:0.75rem;font-family:'DM Mono',monospace;letter-spacing:0.06em;
+  display:flex;align-items:center;gap:5px;transition:gap .2s;
+}
+.cat-section.finance .catcard-link{color:#00e5a0;}
+.cat-section.admin .catcard-link{color:#7c5cfc;}
+.cat-section.hr .catcard-link{color:#00c8ff;}
+.cat-section.ops .catcard-link{color:#f59e0b;}
+.catcard:hover .catcard-link{gap:9px;}
+
+/* CTA */
+.cta-banner{
+  padding:7rem 2rem;display:flex;flex-direction:column;align-items:center;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,229,160,0.07) 0%,transparent 60%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-banner h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.025em;margin-bottom:1rem;max-width:600px;line-height:1.15;}
+.cta-banner p{color:var(--text-dim);font-weight:300;font-size:1rem;max-width:460px;margin:0 auto 2.5rem;}
+
+@media(max-width:900px){
+  .page-hero,.cat-section,.cta-banner{padding:4rem 2rem;}
+}
+@media(max-width:640px){
+  .page-hero,.cat-section,.cta-banner{padding:3rem 1.25rem;}
+  .cat-grid{grid-template-columns:1fr;}
+  .cat-section-header{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="tag">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span data-i18n="cat_tag">AI Employee Catalogue</span>
+      </div>
+      <h1>
+        <span data-i18n="cat_h1a">Your AI workforce,</span><br>
+        <span class="grad" data-i18n="cat_h1b">ready to deploy.</span>
+      </h1>
+      <p class="sub" data-i18n="cat_sub">Pre-built AI agents designed for specific business roles. Each one operates autonomously within its domain, integrates with your existing tools, and is ready to go from day one.</p>
+    </div>
+  </section>
+
+  <!-- ── FINANCE ── -->
+  <section class="cat-section finance" id="finance">
+    <div class="cat-section-header">
+      <div class="cat-section-left">
+        <div class="cat-section-num">01 — <span data-i18n="cat_cat_finance">Finance</span></div>
+        <h2 class="cat-section-title" data-i18n="cat_cat_finance">Finance</h2>
+        <p class="cat-section-sub" data-i18n="cat_cat_finance_sub">Agents that manage your financial operations — invoicing, accounting, and payment recovery.</p>
+      </div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Accounting -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_finance">Finance</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 data-i18n="cat_3_title">Accounting Assistant</h3>
+        <p data-i18n="cat_3_desc">Automates accounting workflows — reconciling transactions, categorising expenses, preparing reports, and flagging anomalies. Keeps your books accurate.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_3_f1">Transaction reconciliation</div>
+          <div class="catcard-feat" data-i18n="cat_3_f2">Expense categorisation</div>
+          <div class="catcard-feat" data-i18n="cat_3_f3">Financial report generation</div>
+          <div class="catcard-feat" data-i18n="cat_3_f4">Anomaly detection & alerts</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+      <!-- Billing -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_finance">Finance</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h3 data-i18n="cat_4_title">Billing Assistant</h3>
+        <p data-i18n="cat_4_desc">Generates, sends, and tracks invoices automatically. Monitors payment status and sends reminders at the right moment, keeping your billing cycle on track.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_4_f1">Automated invoice generation</div>
+          <div class="catcard-feat" data-i18n="cat_4_f2">Payment status tracking</div>
+          <div class="catcard-feat" data-i18n="cat_4_f3">Client billing history</div>
+          <div class="catcard-feat" data-i18n="cat_4_f4">Multi-currency support</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+      <!-- Payment follow-up -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_finance">Finance</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 data-i18n="cat_5_title">Payment Follow-up Agent</h3>
+        <p data-i18n="cat_5_desc">Proactively monitors outstanding payments and manages the entire follow-up sequence — from gentle reminders to escalation — while staying professional.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_5_f1">Automated reminder sequences</div>
+          <div class="catcard-feat" data-i18n="cat_5_f2">Escalation management</div>
+          <div class="catcard-feat" data-i18n="cat_5_f3">Payment dispute handling</div>
+          <div class="catcard-feat" data-i18n="cat_5_f4">Recovery reporting</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ADMINISTRATION ── -->
+  <section class="cat-section admin" id="admin">
+    <div class="cat-section-header">
+      <div class="cat-section-left">
+        <div class="cat-section-num">02 — <span data-i18n="cat_cat_admin">Administration</span></div>
+        <h2 class="cat-section-title" data-i18n="cat_cat_admin">Administration</h2>
+        <p class="cat-section-sub" data-i18n="cat_cat_admin_sub">Agents that handle day-to-day administrative and personal coordination tasks.</p>
+      </div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Administrative -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_admin">Administration</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3 data-i18n="cat_1_title">Administrative Assistant</h3>
+        <p data-i18n="cat_1_desc">Handles day-to-day administrative tasks autonomously — managing emails, drafting documents, scheduling, and coordinating communications.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_1_f1">Email management & drafting</div>
+          <div class="catcard-feat" data-i18n="cat_1_f2">Document creation & formatting</div>
+          <div class="catcard-feat" data-i18n="cat_1_f3">Internal coordination</div>
+          <div class="catcard-feat" data-i18n="cat_1_f4">Meeting preparation</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+      <!-- Personal -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_admin">Administration</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 data-i18n="cat_2_title">Personal Assistant</h3>
+        <p data-i18n="cat_2_desc">Your intelligent personal agent — managing your agenda, filtering priorities, preparing briefings, and keeping your day organised.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_2_f1">Agenda & calendar management</div>
+          <div class="catcard-feat" data-i18n="cat_2_f2">Priority filtering & reminders</div>
+          <div class="catcard-feat" data-i18n="cat_2_f3">Daily briefings & summaries</div>
+          <div class="catcard-feat" data-i18n="cat_2_f4">Research & information gathering</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── HUMAN RESOURCES ── -->
+  <section class="cat-section hr" id="hr">
+    <div class="cat-section-header">
+      <div class="cat-section-left">
+        <div class="cat-section-num">03 — <span data-i18n="cat_cat_hr">Human Resources</span></div>
+        <h2 class="cat-section-title" data-i18n="cat_cat_hr">Human Resources</h2>
+        <p class="cat-section-sub" data-i18n="cat_cat_hr_sub">Agents that support your people operations — from hiring to scheduling.</p>
+      </div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Recruitment -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_hr">Human Resources</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 data-i18n="cat_7_title">HR Recruitment Assistant</h3>
+        <p data-i18n="cat_7_desc">Accelerates your hiring process from job posting to interview scheduling. Screens applications, ranks candidates, and keeps every applicant informed at each stage.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_7_f1">Job posting & distribution</div>
+          <div class="catcard-feat" data-i18n="cat_7_f2">Application screening & scoring</div>
+          <div class="catcard-feat" data-i18n="cat_7_f3">Interview scheduling</div>
+          <div class="catcard-feat" data-i18n="cat_7_f4">Candidate communication</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+      <!-- Scheduling -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_hr">Human Resources</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3 data-i18n="cat_6_title">Scheduling & Appointments Agent</h3>
+        <p data-i18n="cat_6_desc">Manages your team's schedule and client appointments end-to-end — handling booking requests, availability, confirmations, and rescheduling without back-and-forth.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_6_f1">Smart availability management</div>
+          <div class="catcard-feat" data-i18n="cat_6_f2">Automated booking & confirmation</div>
+          <div class="catcard-feat" data-i18n="cat_6_f3">Rescheduling & cancellations</div>
+          <div class="catcard-feat" data-i18n="cat_6_f4">Calendar sync across tools</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── OPERATIONS ── -->
+  <section class="cat-section ops" id="ops">
+    <div class="cat-section-header">
+      <div class="cat-section-left">
+        <div class="cat-section-num">04 — <span data-i18n="cat_cat_ops">Operations</span></div>
+        <h2 class="cat-section-title" data-i18n="cat_cat_ops">Operations</h2>
+        <p class="cat-section-sub" data-i18n="cat_cat_ops_sub">Agents that keep your supply chain and inventory running without manual intervention.</p>
+      </div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Inventory -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_ops">Operations</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <h3 data-i18n="cat_8_title">Inventory Management Agent</h3>
+        <p data-i18n="cat_8_desc">Monitors stock levels in real time, anticipates shortfalls, and triggers restocking before you run out. Keeps your inventory accurate and operations uninterrupted.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_8_f1">Real-time stock monitoring</div>
+          <div class="catcard-feat" data-i18n="cat_8_f2">Low-stock alerts & auto-reorder</div>
+          <div class="catcard-feat" data-i18n="cat_8_f3">Inventory reporting</div>
+          <div class="catcard-feat" data-i18n="cat_8_f4">Multi-location support</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+      <!-- Purchasing -->
+      <div class="catcard">
+        <div class="catcard-badge" data-i18n="cat_cat_ops">Operations</div>
+        <div class="catcard-icon">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3 data-i18n="cat_9_title">Supplier Purchasing Agent</h3>
+        <p data-i18n="cat_9_desc">Manages the full purchasing cycle — from generating purchase orders to tracking delivery and reconciling receipts. Reduces delays and keeps costs under control.</p>
+        <div class="catcard-features">
+          <div class="catcard-feat" data-i18n="cat_9_f1">Purchase order generation</div>
+          <div class="catcard-feat" data-i18n="cat_9_f2">Supplier communication</div>
+          <div class="catcard-feat" data-i18n="cat_9_f3">Delivery tracking</div>
+          <div class="catcard-feat" data-i18n="cat_9_f4">Cost & spend analysis</div>
+        </div>
+        <div class="catcard-footer"><a class="catcard-link" href="contact.html" data-i18n="cat_learn">Learn more →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center;" data-i18n="cat_cta_label">Ready to hire?</div>
+      <h2 data-i18n="cat_cta_h2">Deploy your AI team today.</h2>
+      <p data-i18n="cat_cta_sub">Each agent is customised to your tools, data, and processes before going live.</p>
+      <a class="btn btn-accent" href="contact.html" data-i18n="cat_cta_btn">Contact us</a>
+    </div>
+  </section>
+
+</main>
+<div id="footer-placeholder"></div>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('catalogue');
+</script>
+</body>
+</html>

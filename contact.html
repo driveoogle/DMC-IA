@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — DMC IA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+main{flex:1;display:flex;flex-direction:column;}
+
+.contact-layout{display:grid;grid-template-columns:1fr 380px;flex:1;border-bottom:1px solid var(--border);}
+
+.contact-form-wrap{padding:6rem 4rem;border-right:1px solid var(--border);}
+.contact-form-wrap .tag{margin-bottom:2rem;}
+.contact-form-wrap h1{font-size:clamp(2.5rem,4vw,4rem);font-weight:300;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem;white-space:pre-line;}
+.contact-form-wrap h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500;display:block;}
+.contact-form-wrap .sub{color:var(--text-dim);font-weight:300;font-size:0.95rem;margin-bottom:3rem;}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+
+.form-submit{margin-top:8px;display:flex;align-items:center;gap:14px;}
+.btn-submit{background:var(--accent);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:500;padding:11px 26px;border-radius:100px;cursor:pointer;transition:all .2s;}
+.btn-submit:hover{background:#00ffb3;box-shadow:0 0 20px rgba(0,229,160,0.3);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+.form-note{font-size:0.78rem;color:var(--text-faint);}
+
+.contact-info{padding:6rem 3rem;background:var(--bg2);display:flex;flex-direction:column;gap:2rem;}
+.info-label{font-size:0.68rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.5rem;}
+.info-item{display:flex;flex-direction:column;gap:4px;}
+.info-item-label{font-size:0.72rem;font-family:'DM Mono',monospace;color:var(--text-faint);letter-spacing:0.08em;text-transform:uppercase;}
+.info-item-value{font-size:0.95rem;color:var(--text);}
+.info-item-value a{color:var(--accent);}
+.info-item-value a:hover{color:#00ffb3;}
+.info-divider{height:1px;background:var(--border);}
+.info-box{background:var(--bg3);border:1px solid var(--border);border-top:2px solid rgba(0,229,160,0.3);border-radius:var(--radius);padding:1.5rem;}
+.info-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7;font-weight:300;}
+
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr;}.contact-form-wrap{padding:4rem 2rem;border-right:none;border-bottom:1px solid var(--border);}.contact-info{padding:3rem 2rem;}}
+@media(max-width:640px){.contact-form-wrap{padding:3rem 1.25rem;}.contact-info{padding:2.5rem 1.25rem;}.form-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+  <div class="contact-layout">
+    <div class="contact-form-wrap">
+      <div class="tag">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span data-i18n="contact_tag">Get in touch</span>
+      </div>
+      <h1><span data-i18n="contact_h1a">Let's talk about</span><span class="grad" data-i18n="contact_h1b">your project.</span></h1>
+      <p class="sub" data-i18n="contact_sub">Whether you have a clear brief or just an idea — we'd love to hear from you.</p>
+
+      <div class="form-grid">
+        <div class="form-field"><label for="f-name" data-i18n="contact_f_name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" required></div>
+        <div class="form-field"><label for="f-email" data-i18n="contact_f_email">Email address</label><input type="email" id="f-email" name="email" autocomplete="email" required></div>
+        <div class="form-field"><label for="f-company" data-i18n="contact_f_company">Company (optional)</label><input type="text" id="f-company" name="company" autocomplete="organization"></div>
+        <div class="form-field"><label for="f-subject" data-i18n="contact_f_subject">Subject</label><input type="text" id="f-subject" name="subject"></div>
+        <div class="form-field full"><label for="f-msg" data-i18n="contact_f_msg">Message</label><textarea id="f-msg" name="message" required data-i18n-placeholder="contact_f_msg" placeholder="Tell us about your project…"></textarea></div>
+      </div>
+      <div class="form-submit">
+        <button class="btn-submit" id="submit-btn" type="button" onclick="submitContact()" data-i18n="contact_f_btn">Send message</button>
+        <span class="form-note">We reply within 24h.</span>
+      </div>
+      <div class="form-msg" id="form-success" data-i18n="contact_success"></div>
+      <div class="form-msg" id="form-error" data-i18n="contact_error"></div>
+    </div>
+
+    <div class="contact-info">
+      <div>
+        <div class="info-label" data-i18n="contact_info_label">Or reach us directly</div>
+        <div class="info-item"><span class="info-item-label" data-i18n="contact_email_lbl">Email</span><span class="info-item-value"><a href="mailto:contact@dmc-ia.com">contact@dmc-ia.com</a></span></div>
+      </div>
+      <div class="info-divider"></div>
+      <div class="info-item"><span class="info-item-label" data-i18n="contact_hours_lbl">Response time</span><span class="info-item-value" data-i18n="contact_hours_val">Within 24 hours</span></div>
+      <div class="info-divider"></div>
+      <div class="info-box"><p>DMC IA is open for new projects. We work with organisations of all sizes to design and deploy custom AI solutions.</p></div>
+    </div>
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('contact');
+  // Split h1
+  const tc = translations[currentLang];
+  const cp = (tc.contact_h1||'').split('\n');
+  if(cp[0]) document.querySelector('[data-i18n="contact_h1a"]').textContent = cp[0];
+  if(cp[1]) document.querySelector('[data-i18n="contact_h1b"]').textContent = cp[1];
+
+  function submitContact() {
+    const name=document.getElementById('f-name').value.trim(), email=document.getElementById('f-email').value.trim(),
+          company=document.getElementById('f-company').value.trim(), subject=document.getElementById('f-subject').value.trim(),
+          message=document.getElementById('f-msg').value.trim(), t=translations[currentLang];
+    const sEl=document.getElementById('form-success'), eEl=document.getElementById('form-error'), btn=document.getElementById('submit-btn');
+    sEl.className='form-msg'; eEl.className='form-msg';
+    if(!name||!email||!message){eEl.textContent=currentLang==='pt'?'Por favor preencha os campos obrigatórios.':'Please fill in all required fields.';eEl.className='form-msg error';return;}
+    if(!email.includes('@')){eEl.textContent=currentLang==='pt'?'Por favor insira um email válido.':'Please enter a valid email address.';eEl.className='form-msg error';return;}
+    btn.disabled=true;btn.textContent=t.contact_sending;
+    fetch('php/contact.php',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({name,email,company,subject,message,lang:currentLang}).toString()})
+    .then(r=>r.json()).then(data=>{if(data.success){sEl.textContent=t.contact_success;sEl.className='form-msg success';['f-name','f-email','f-company','f-subject','f-msg'].forEach(id=>{document.getElementById(id).value='';});}else{throw new Error();}})
+    .catch(()=>{eEl.textContent=t.contact_error;eEl.className='form-msg error';})
+    .finally(()=>{btn.disabled=false;btn.textContent=t.contact_f_btn;});
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /php/
+Disallow: /data/
+
+Sitemap: https://dmc-ia.com/sitemap.xml

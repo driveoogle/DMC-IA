@@ -1,0 +1,259 @@
+/* ── DMC IA — i18n ── */
+const translations = {
+  en: {
+    nav_home:"Home", nav_services:"Services", nav_catalogue:"Catalogue", nav_contact:"Contact", nav_cta:"Get in touch",
+    footer_copy:"© 2026 DMC IA. All rights reserved.", footer_privacy:"Privacy Policy", footer_terms:"Terms of Use",
+
+    /* HOME */
+    home_tag:"AI Services & Solutions",
+    home_h1a:"AI that works",
+    home_h1b:"for your business.",
+    home_sub:"DMC IA delivers a full range of artificial intelligence services — from autonomous agents and workflow automation to custom AI solutions, consulting, and integration.",
+    home_cta1:"Explore services", home_cta2:"View catalogue",
+    home_caps_label:"Our services",
+    home_c1t:"Autonomous AI Agents", home_c1p:"Agents that act, decide, and execute tasks continuously — no supervision needed.",
+    home_c2t:"Workflow Automation",  home_c2p:"Streamline repetitive operations with agents that learn and adapt to your processes.",
+    home_c3t:"System Integration",   home_c3p:"Connect your stack end-to-end. Agents coordinate across your APIs, apps, and data.",
+    home_c4t:"Custom AI Solutions",  home_c4p:"Bespoke AI models, tools, and deployments tailored to your specific business goals.",
+    home_c5t:"AI Consulting",        home_c5p:"Strategic guidance to identify, design, and implement the right AI approach for your organisation.",
+    home_c6t:"Data & Analytics",     home_c6p:"Turn your data into actionable insights with AI-powered analysis and reporting pipelines.",
+    home_why_label:"Why DMC IA", home_why_h2:"One partner. Full AI coverage.",
+    home_why_sub:"From strategy to deployment, we cover the full AI lifecycle. Whether you need a single agent or an end-to-end intelligent system, we design and deliver it.",
+    home_w1t:"No-code deployment",   home_w1p:"Agents go live without engineering overhead on your side.",
+    home_w2t:"Secure by design",     home_w2p:"Your data stays yours. Every agent runs within defined permission boundaries.",
+    home_w3t:"Always-on monitoring", home_w3p:"Real-time observability on every task your agents perform.",
+    home_cta_label:"Work with us", home_cta_h2:"Let's build your AI solution.",
+    home_cta_sub:"Tell us about your project — whether it's an agent, a custom model, or a full AI strategy — and we'll design the right solution.",
+    home_cta_btn:"Contact us",
+
+    /* SERVICES */
+    svc_tag:"What we offer", svc_h1:"Full-spectrum AI services\nfor your operations.",
+    svc_h1a:"Full-spectrum AI services", svc_h1b:"for your operations.",
+    svc_sub:"From autonomous agents to custom AI models, consulting, and system integration — we deliver the full range of AI capabilities your business needs.",
+    svc_s1_label:"Core Service", svc_s1_h2:"Autonomous AI Agents",
+    svc_s1_p:"We design agents that operate independently within your business environment. They monitor inputs, make decisions based on defined logic, and execute actions — continuously, without manual oversight.",
+    svc_s1_f1:"Multi-step task execution", svc_s1_f2:"Real-time decision making", svc_s1_f3:"Configurable permission scopes", svc_s1_f4:"Human escalation triggers",
+    svc_s2_label:"Core Service", svc_s2_h2:"Workflow Automation",
+    svc_s2_p:"Map your existing processes and let agents run them. We analyse your workflows, identify automation opportunities, and deploy agents that execute tasks with precision — freeing your team for higher-value work.",
+    svc_s2_f1:"Process mapping & analysis", svc_s2_f2:"Agent-based task execution", svc_s2_f3:"Error handling & retries", svc_s2_f4:"Audit logs & reporting",
+    svc_s3_label:"Core Service", svc_s3_h2:"System Integration",
+    svc_s3_p:"Your tools shouldn't work in silos. We connect your APIs, databases, SaaS platforms, and internal systems through intelligent agents that route, transform, and synchronise data in real time.",
+    svc_s3_f1:"REST & GraphQL API connectors", svc_s3_f2:"Database synchronisation", svc_s3_f3:"Event-driven architecture", svc_s3_f4:"Custom webhook handlers",
+    svc_s4_label:"Core Service", svc_s4_h2:"Custom AI Deployments",
+    svc_s4_p:"Every organisation is different. We work with you from requirements gathering through to deployment — delivering AI solutions trained on your data and aligned to your goals.",
+    svc_s4_f1:"Requirements & scoping workshop", svc_s4_f2:"Custom model fine-tuning", svc_s4_f3:"On-premise or cloud deployment", svc_s4_f4:"Ongoing support & iteration",
+    svc_s5_label:"Core Service", svc_s5_h2:"AI Consulting",
+    svc_s5_p:"Not sure where to start? We help you identify the highest-impact AI opportunities, design the right architecture, and build a realistic roadmap — before writing a single line of code.",
+    svc_s5_f1:"AI opportunity assessment", svc_s5_f2:"Architecture & tool selection", svc_s5_f3:"Roadmap & prioritisation", svc_s5_f4:"Team enablement & training",
+    svc_s6_label:"Core Service", svc_s6_h2:"Data & Analytics",
+    svc_s6_p:"AI is only as good as the data behind it. We design and build data pipelines, dashboards, and AI-powered analytics that turn raw information into clear, actionable business intelligence.",
+    svc_s6_f1:"Data pipeline design & build", svc_s6_f2:"AI-powered reporting", svc_s6_f3:"Dashboard & visualisation", svc_s6_f4:"Predictive analytics",
+    svc_process_label:"How it works", svc_process_h2:"From brief to deployment.",
+    svc_p1t:"Discovery", svc_p1p:"We analyse your workflows, pain points, and objectives.",
+    svc_p2t:"Design",    svc_p2p:"We architect the agent logic, integrations, and guardrails.",
+    svc_p3t:"Build",     svc_p3p:"We develop, test, and validate in a staging environment.",
+    svc_p4t:"Deploy",    svc_p4p:"We go live, monitor performance, and iterate with your team.",
+    svc_cta_h2:"Ready to get started?", svc_cta_sub:"Tell us about your project and we'll come back with a tailored proposal.", svc_cta_btn:"Contact us",
+
+    /* CATALOGUE */
+    cat_tag:"AI Employee Catalogue", cat_h1:"Your AI workforce,\nready to deploy.",
+    cat_h1a:"Your AI workforce,", cat_h1b:"ready to deploy.",
+    cat_cat_finance:"Finance",
+    cat_cat_finance_sub:"Agents that manage your financial operations — invoicing, accounting, and payment recovery.",
+    cat_cat_admin:"Administration",
+    cat_cat_admin_sub:"Agents that handle day-to-day administrative and personal coordination tasks.",
+    cat_cat_hr:"Human Resources",
+    cat_cat_hr_sub:"Agents that support your people operations — from hiring to scheduling.",
+    cat_cat_ops:"Operations",
+    cat_cat_ops_sub:"Agents that keep your supply chain and inventory running without manual intervention.",
+    cat_sub:"Pre-built AI agents designed for specific business roles. Each one operates autonomously within its domain, integrates with your existing tools, and is ready to go from day one.",
+    cat_badge:"AI Employee",
+    cat_cta_label:"Ready to hire?", cat_cta_h2:"Deploy your AI team today.", cat_cta_sub:"Each agent is customised to your tools, data, and processes before going live.", cat_cta_btn:"Contact us",
+    cat_learn:"Learn more →",
+
+    cat_1_title:"Administrative Assistant",
+    cat_1_desc:"Handles day-to-day administrative tasks autonomously — managing emails, drafting documents, scheduling, and coordinating communications. Your office runs smoothly without lifting a finger.",
+    cat_1_f1:"Email management & drafting", cat_1_f2:"Document creation & formatting", cat_1_f3:"Internal coordination", cat_1_f4:"Meeting preparation",
+
+    cat_2_title:"Personal Assistant",
+    cat_2_desc:"Your intelligent personal agent — managing your agenda, filtering priorities, preparing briefings, and keeping your day organised so you can focus on what matters most.",
+    cat_2_f1:"Agenda & calendar management", cat_2_f2:"Priority filtering & reminders", cat_2_f3:"Daily briefings & summaries", cat_2_f4:"Research & information gathering",
+
+    cat_3_title:"Accounting Assistant",
+    cat_3_desc:"Automates accounting workflows — reconciling transactions, categorising expenses, preparing reports, and flagging anomalies. Keeps your books accurate without manual entry.",
+    cat_3_f1:"Transaction reconciliation", cat_3_f2:"Expense categorisation", cat_3_f3:"Financial report generation", cat_3_f4:"Anomaly detection & alerts",
+
+    cat_4_title:"Billing Assistant",
+    cat_4_desc:"Generates, sends, and tracks invoices automatically. Monitors payment status, sends reminders at the right moment, and keeps your billing cycle running without manual intervention.",
+    cat_4_f1:"Automated invoice generation", cat_4_f2:"Payment status tracking", cat_4_f3:"Client billing history", cat_4_f4:"Multi-currency support",
+
+    cat_5_title:"Payment Follow-up Agent",
+    cat_5_desc:"Proactively monitors outstanding payments and manages the entire follow-up sequence — from gentle reminders to escalation — while maintaining a professional tone with your clients.",
+    cat_5_f1:"Automated reminder sequences", cat_5_f2:"Escalation management", cat_5_f3:"Payment dispute handling", cat_5_f4:"Recovery reporting",
+
+    cat_6_title:"Scheduling & Appointments Agent",
+    cat_6_desc:"Manages your team's schedule and client appointments end-to-end — handling booking requests, availability checks, confirmations, and rescheduling without any back-and-forth.",
+    cat_6_f1:"Smart availability management", cat_6_f2:"Automated booking & confirmation", cat_6_f3:"Rescheduling & cancellations", cat_6_f4:"Calendar sync across tools",
+
+    cat_7_title:"HR Recruitment Assistant",
+    cat_7_desc:"Accelerates your hiring process from job posting to interview scheduling. Screens applications, ranks candidates against your criteria, and keeps every applicant informed at each stage.",
+    cat_7_f1:"Job posting & distribution", cat_7_f2:"Application screening & scoring", cat_7_f3:"Interview scheduling", cat_7_f4:"Candidate communication",
+
+    cat_8_title:"Inventory Management Agent",
+    cat_8_desc:"Monitors stock levels in real time, anticipates shortfalls, and triggers restocking actions before you run out. Keeps your inventory accurate and your operations uninterrupted.",
+    cat_8_f1:"Real-time stock monitoring", cat_8_f2:"Low-stock alerts & auto-reorder", cat_8_f3:"Inventory reporting", cat_8_f4:"Multi-location support",
+
+    cat_9_title:"Supplier Purchasing Agent",
+    cat_9_desc:"Manages the full purchasing cycle with your suppliers — from generating purchase orders to tracking delivery and reconciling receipts. Reduces delays and keeps costs under control.",
+    cat_9_f1:"Purchase order generation", cat_9_f2:"Supplier communication", cat_9_f3:"Delivery tracking", cat_9_f4:"Cost & spend analysis",
+
+    /* CONTACT */
+    contact_tag:"Get in touch", contact_h1:"Let's talk about\nyour project.",
+    contact_h1a:"Let's talk about", contact_h1b:"your project.",
+    contact_sub:"Whether you have a clear brief or just an idea — we'd love to hear from you.",
+    contact_f_name:"Full name", contact_f_email:"Email address", contact_f_company:"Company (optional)", contact_f_subject:"Subject",
+    contact_f_msg:"Tell us about your project or question…", contact_f_btn:"Send message",
+    contact_info_label:"Or reach us directly", contact_email_lbl:"Email", contact_hours_lbl:"Response time", contact_hours_val:"Within 24 hours",
+    contact_success:"Message sent. We'll be in touch within 24 hours.",
+    contact_error:"Something went wrong. Please try again or email us directly.",
+    contact_sending:"Sending…",
+  },
+
+  pt: {
+    nav_home:"Início", nav_services:"Serviços", nav_catalogue:"Catálogo", nav_contact:"Contacto", nav_cta:"Fale connosco",
+    footer_copy:"© 2026 DMC IA. Todos os direitos reservados.", footer_privacy:"Política de Privacidade", footer_terms:"Termos de Utilização",
+
+    /* HOME */
+    home_tag:"Serviços e Soluções de IA",
+    home_h1a:"IA que trabalha",
+    home_h1b:"para o seu negócio.",
+    home_sub:"A DMC IA oferece uma gama completa de serviços de inteligência artificial — de agentes autónomos e automação de processos a soluções IA personalizadas, consultoria e integração.",
+    home_cta1:"Ver serviços", home_cta2:"Ver catálogo",
+    home_caps_label:"Os nossos serviços",
+    home_c1t:"Agentes de IA Autónomos", home_c1p:"Agentes que agem, decidem e executam tarefas continuamente — sem necessidade de supervisão.",
+    home_c2t:"Automação de Processos",  home_c2p:"Elimine operações repetitivas com agentes que aprendem e se adaptam aos seus processos.",
+    home_c3t:"Integração de Sistemas",  home_c3p:"Ligue todo o seu stack de ponta a ponta. Os agentes coordenam APIs, aplicações e dados.",
+    home_c4t:"Soluções IA Personalizadas", home_c4p:"Modelos, ferramentas e deployments de IA à medida dos seus objetivos de negócio.",
+    home_c5t:"Consultoria em IA",       home_c5p:"Orientação estratégica para identificar, desenhar e implementar a abordagem de IA certa para a sua organização.",
+    home_c6t:"Dados & Analytics",       home_c6p:"Transforme os seus dados em insights acionáveis com pipelines de análise e reporting potenciados por IA.",
+    home_why_label:"Porquê a DMC IA", home_why_h2:"Um parceiro. Cobertura total de IA.",
+    home_why_sub:"Da estratégia ao deployment, cobrimos todo o ciclo de vida da IA. Seja um único agente ou um sistema inteligente completo, desenhamos e entregamos.",
+    home_w1t:"Implementação sem código",  home_w1p:"Os agentes entram em produção sem sobrecarga de engenharia da sua parte.",
+    home_w2t:"Seguro por definição",      home_w2p:"Os seus dados são seus. Cada agente opera dentro de permissões definidas.",
+    home_w3t:"Monitorização contínua",    home_w3p:"Observabilidade em tempo real de cada tarefa executada pelos seus agentes.",
+    home_cta_label:"Trabalhe connosco", home_cta_h2:"Vamos construir a sua solução de IA.",
+    home_cta_sub:"Fale-nos do seu projeto — seja um agente, um modelo personalizado ou uma estratégia de IA completa — e desenharemos a solução certa.",
+    home_cta_btn:"Contacte-nos",
+
+    /* SERVICES */
+    svc_tag:"O que oferecemos", svc_h1:"Serviços de IA completos\npara as suas operações.",
+    svc_h1a:"Serviços de IA completos", svc_h1b:"para as suas operações.",
+    svc_sub:"De agentes autónomos a modelos IA personalizados, consultoria e integração de sistemas — entregamos toda a gama de capacidades de IA que o seu negócio necessita.",
+    svc_s1_label:"Serviço Principal", svc_s1_h2:"Agentes de IA Autónomos",
+    svc_s1_p:"Desenvolvemos agentes que operam de forma independente no seu ambiente de negócio. Monitorizam entradas, tomam decisões com base em lógica definida e executam ações — continuamente, sem supervisão manual.",
+    svc_s1_f1:"Execução de tarefas em múltiplas etapas", svc_s1_f2:"Tomada de decisão em tempo real", svc_s1_f3:"Escopos de permissão configuráveis", svc_s1_f4:"Escalamento para humanos",
+    svc_s2_label:"Serviço Principal", svc_s2_h2:"Automação de Fluxos de Trabalho",
+    svc_s2_p:"Mapeie os seus processos e deixe os agentes executá-los. Analisamos os seus workflows, identificamos oportunidades de automação e implementamos agentes que executam tarefas com precisão.",
+    svc_s2_f1:"Mapeamento e análise de processos", svc_s2_f2:"Execução de tarefas por agentes", svc_s2_f3:"Gestão de erros e tentativas", svc_s2_f4:"Logs de auditoria e relatórios",
+    svc_s3_label:"Serviço Principal", svc_s3_h2:"Integração de Sistemas",
+    svc_s3_p:"As suas ferramentas não devem trabalhar em silos. Ligamos as suas APIs, bases de dados, plataformas SaaS e sistemas internos através de agentes inteligentes que sincronizam dados em tempo real.",
+    svc_s3_f1:"Conectores REST e GraphQL", svc_s3_f2:"Sincronização de bases de dados", svc_s3_f3:"Arquitetura orientada a eventos", svc_s3_f4:"Webhooks personalizados",
+    svc_s4_label:"Serviço Principal", svc_s4_h2:"Implementações IA Personalizadas",
+    svc_s4_p:"Cada organização é diferente. Trabalhamos consigo desde o levantamento de requisitos até à implementação — entregando soluções de IA treinadas nos seus dados e alinhadas com os seus objetivos.",
+    svc_s4_f1:"Workshop de requisitos e âmbito", svc_s4_f2:"Fine-tuning de modelos personalizados", svc_s4_f3:"Implementação on-premise ou cloud", svc_s4_f4:"Suporte contínuo e iteração",
+    svc_s5_label:"Serviço Principal", svc_s5_h2:"Consultoria em IA",
+    svc_s5_p:"Não sabe por onde começar? Ajudamos a identificar as oportunidades de IA de maior impacto, a desenhar a arquitetura certa e a construir um roadmap realista — antes de escrever uma linha de código.",
+    svc_s5_f1:"Avaliação de oportunidades de IA", svc_s5_f2:"Arquitetura e seleção de ferramentas", svc_s5_f3:"Roadmap e priorização", svc_s5_f4:"Capacitação e formação de equipas",
+    svc_s6_label:"Serviço Principal", svc_s6_h2:"Dados & Analytics",
+    svc_s6_p:"A IA é tão boa quanto os dados que a sustentam. Desenhamos e construímos pipelines de dados, dashboards e analytics potenciados por IA que transformam informação bruta em inteligência de negócio acionável.",
+    svc_s6_f1:"Design e construção de pipelines de dados", svc_s6_f2:"Reporting potenciado por IA", svc_s6_f3:"Dashboard e visualização", svc_s6_f4:"Analytics preditiva",
+    svc_process_label:"Como funciona", svc_process_h2:"Do briefing ao deployment.",
+    svc_p1t:"Descoberta",      svc_p1p:"Analisamos os seus workflows, pontos de dor e objetivos.",
+    svc_p2t:"Desenho",        svc_p2p:"Arquitetamos a lógica do agente, integrações e limites de segurança.",
+    svc_p3t:"Desenvolvimento", svc_p3p:"Desenvolvemos, testamos e validamos em ambiente de staging.",
+    svc_p4t:"Implementação",   svc_p4p:"Entramos em produção, monitorizamos e iteramos com a sua equipa.",
+    svc_cta_h2:"Pronto para começar?", svc_cta_sub:"Fale-nos do seu projeto e responderemos com uma proposta à medida.", svc_cta_btn:"Contacte-nos",
+
+    /* CATALOGUE */
+    cat_tag:"Catálogo de Funcionários IA", cat_h1:"A sua equipa de IA,\npronta a implementar.",
+    cat_h1a:"A sua equipa de IA,", cat_h1b:"pronta a implementar.",
+    cat_cat_finance:"Finanças",
+    cat_cat_finance_sub:"Agentes que gerem as suas operações financeiras — faturação, contabilidade e recuperação de pagamentos.",
+    cat_cat_admin:"Administração",
+    cat_cat_admin_sub:"Agentes que tratam das tarefas administrativas e de coordenação pessoal do dia-a-dia.",
+    cat_cat_hr:"Recursos Humanos",
+    cat_cat_hr_sub:"Agentes que apoiam as suas operações de pessoas — do recrutamento ao planeamento.",
+    cat_cat_ops:"Operações",
+    cat_cat_ops_sub:"Agentes que mantêm a sua cadeia de abastecimento e inventário a funcionar sem intervenção manual.",
+    cat_sub:"Agentes de IA pré-construídos para funções empresariais específicas. Cada um opera de forma autónoma no seu domínio, integra com as suas ferramentas existentes, e está pronto desde o primeiro dia.",
+    cat_badge:"Funcionário IA",
+    cat_cta_label:"Pronto para contratar?", cat_cta_h2:"Implemente a sua equipa de IA hoje.", cat_cta_sub:"Cada agente é personalizado com as suas ferramentas, dados e processos antes de entrar em produção.", cat_cta_btn:"Contacte-nos",
+    cat_learn:"Saber mais →",
+
+    cat_1_title:"Assistente Administrativo",
+    cat_1_desc:"Gere tarefas administrativas do dia-a-dia de forma autónoma — gestão de emails, criação de documentos, agendamento e coordenação de comunicações. O seu escritório funciona sem esforço.",
+    cat_1_f1:"Gestão e redação de emails", cat_1_f2:"Criação e formatação de documentos", cat_1_f3:"Coordenação interna", cat_1_f4:"Preparação de reuniões",
+
+    cat_2_title:"Assistente Pessoal",
+    cat_2_desc:"O seu agente pessoal inteligente — gere a sua agenda, filtra prioridades, prepara briefings e mantém o seu dia organizado para que se possa focar no que realmente importa.",
+    cat_2_f1:"Gestão de agenda e calendário", cat_2_f2:"Filtragem de prioridades e lembretes", cat_2_f3:"Briefings e resumos diários", cat_2_f4:"Pesquisa e recolha de informação",
+
+    cat_3_title:"Assistente de Contabilidade",
+    cat_3_desc:"Automatiza fluxos de trabalho contabilísticos — reconciliação de transações, categorização de despesas, preparação de relatórios e deteção de anomalias. Mantém as contas precisas sem entrada manual.",
+    cat_3_f1:"Reconciliação de transações", cat_3_f2:"Categorização de despesas", cat_3_f3:"Geração de relatórios financeiros", cat_3_f4:"Deteção de anomalias e alertas",
+
+    cat_4_title:"Assistente de Faturação",
+    cat_4_desc:"Gera, envia e monitoriza faturas automaticamente. Acompanha o estado dos pagamentos, envia lembretes no momento certo e mantém o ciclo de faturação a funcionar sem intervenção manual.",
+    cat_4_f1:"Geração automática de faturas", cat_4_f2:"Monitorização do estado de pagamentos", cat_4_f3:"Histórico de faturação por cliente", cat_4_f4:"Suporte multi-moeda",
+
+    cat_5_title:"Agente de Seguimento de Pagamentos",
+    cat_5_desc:"Monitoriza proativamente os pagamentos em atraso e gere toda a sequência de seguimento — de lembretes gentis à escalada — mantendo sempre um tom profissional com os seus clientes.",
+    cat_5_f1:"Sequências automáticas de lembretes", cat_5_f2:"Gestão de escalada", cat_5_f3:"Tratamento de disputas de pagamento", cat_5_f4:"Relatórios de recuperação",
+
+    cat_6_title:"Agente de Planeamento & Consultas",
+    cat_6_desc:"Gere o horário da sua equipa e as consultas dos clientes de ponta a ponta — tratando pedidos de marcação, verificações de disponibilidade, confirmações e reagendamentos sem troca de emails.",
+    cat_6_f1:"Gestão inteligente de disponibilidade", cat_6_f2:"Marcação e confirmação automática", cat_6_f3:"Reagendamentos e cancelamentos", cat_6_f4:"Sincronização de calendário",
+
+    cat_7_title:"Assistente de Recrutamento RH",
+    cat_7_desc:"Acelera o processo de contratação desde a publicação da vaga até ao agendamento de entrevistas. Filtra candidaturas, classifica candidatos segundo os seus critérios e mantém todos informados em cada etapa.",
+    cat_7_f1:"Publicação e distribuição de vagas", cat_7_f2:"Triagem e pontuação de candidaturas", cat_7_f3:"Agendamento de entrevistas", cat_7_f4:"Comunicação com candidatos",
+
+    cat_8_title:"Agente de Gestão de Stock",
+    cat_8_desc:"Monitoriza os níveis de stock em tempo real, antecipa faltas e desencadeia ações de reabastecimento antes de esgotar. Mantém o inventário preciso e as operações sem interrupções.",
+    cat_8_f1:"Monitorização de stock em tempo real", cat_8_f2:"Alertas e reordenação automática", cat_8_f3:"Relatórios de inventário", cat_8_f4:"Suporte multi-localização",
+
+    cat_9_title:"Agente de Compras a Fornecedores",
+    cat_9_desc:"Gere o ciclo completo de compras com os seus fornecedores — desde a geração de ordens de compra até ao acompanhamento de entrega e reconciliação de recibos. Reduz atrasos e mantém os custos controlados.",
+    cat_9_f1:"Geração de ordens de compra", cat_9_f2:"Comunicação com fornecedores", cat_9_f3:"Acompanhamento de entrega", cat_9_f4:"Análise de custos e despesas",
+
+    /* CONTACT */
+    contact_tag:"Entre em contacto", contact_h1:"Vamos falar sobre\no seu projeto.",
+    contact_h1a:"Vamos falar sobre", contact_h1b:"o seu projeto.",
+    contact_sub:"Seja com um briefing definido ou apenas uma ideia — adoraríamos ouvi-lo.",
+    contact_f_name:"Nome completo", contact_f_email:"Endereço de email", contact_f_company:"Empresa (opcional)", contact_f_subject:"Assunto",
+    contact_f_msg:"Fale-nos do seu projeto ou questão…", contact_f_btn:"Enviar mensagem",
+    contact_info_label:"Ou contacte-nos diretamente", contact_email_lbl:"Email", contact_hours_lbl:"Tempo de resposta", contact_hours_val:"Dentro de 24 horas",
+    contact_success:"Mensagem enviada. Entraremos em contacto em 24 horas.",
+    contact_error:"Algo correu mal. Tente novamente ou envie-nos um email diretamente.",
+    contact_sending:"A enviar…",
+  }
+};
+
+let currentLang = localStorage.getItem('dmcia_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('dmcia_lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  const t = translations[lang];
+  const els = document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-placeholder]');
+  els.forEach(el => el.classList.add('fade'));
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => { const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.textContent=t[k]; });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { const k=el.getAttribute('data-i18n-html'); if(t[k]!==undefined) el.innerHTML=t[k].replace(/\n/g,'<br>'); });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const k=el.getAttribute('data-i18n-placeholder'); if(t[k]!==undefined) el.placeholder=t[k]; });
+    els.forEach(el => el.classList.remove('fade'));
+  }, 140);
+}
+function initLang() { setLang(currentLang); }

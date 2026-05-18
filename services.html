@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — DMC IA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+main{flex:1;display:flex;flex-direction:column;}
+
+.page-hero{padding:7rem 4rem 5rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,rgba(0,229,160,0.08) 0%,transparent 55%);pointer-events:none;}
+.page-hero-inner{position:relative;z-index:1;}
+.page-hero .tag{margin-bottom:2rem;}
+.page-hero h1{font-size:clamp(2.8rem,5vw,5rem);font-weight:300;letter-spacing:-0.03em;line-height:1.08;max-width:700px;margin-bottom:1.5rem;white-space:pre-line;}
+.page-hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500;display:block;}
+.page-hero .sub{font-size:1.05rem;color:var(--text-dim);font-weight:300;max-width:540px;}
+
+.process-section{padding:5rem 4rem;border-bottom:1px solid var(--border);}
+.process-section h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:3rem;text-align:center;}
+
+.cta-section{padding:6rem 4rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(124,92,252,0.09) 0%,transparent 60%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-section h2{font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:1rem;max-width:500px;line-height:1.15;}
+.cta-section p{color:var(--text-dim);font-weight:300;font-size:1rem;max-width:400px;margin:0 auto 2.5rem;}
+
+@media(max-width:900px){.page-hero,.process-section,.cta-section{padding:4rem 2rem;}}
+@media(max-width:640px){.page-hero,.process-section,.cta-section{padding:3rem 1.25rem;}.svc-content{padding:2rem 1.25rem;}}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="tag">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span data-i18n="svc_tag">What we offer</span>
+      </div>
+      <h1><span data-i18n="svc_h1a">Full-spectrum AI services</span><span class="grad" data-i18n="svc_h1b">for your operations.</span></h1>
+      <p class="sub" data-i18n="svc_sub">From autonomous agents to custom AI models, consulting, and system integration — we deliver the full range of AI capabilities your business needs.</p>
+    </div>
+  </section>
+
+  <div class="service-block">
+    <div class="svc-content"><div class="svc-label" data-i18n="svc_s1_label">Core Service</div><h2 data-i18n="svc_s1_h2">Autonomous AI Agents</h2><p data-i18n="svc_s1_p">We design agents that operate independently within your business environment. They monitor inputs, make decisions based on defined logic, and execute actions — continuously, without manual oversight.</p><div class="svc-features"><div class="svc-feature" data-i18n="svc_s1_f1">Multi-step task execution</div><div class="svc-feature" data-i18n="svc_s1_f2">Real-time decision making</div><div class="svc-feature" data-i18n="svc_s1_f3">Configurable permission scopes</div><div class="svc-feature" data-i18n="svc_s1_f4">Human escalation triggers</div></div></div>
+    <div class="svc-aside"><div class="svc-icon-large"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><p class="svc-aside-text">Autonomous. Continuous. Reliable.</p></div>
+  </div>
+
+  <div class="service-block">
+    <div class="svc-content"><div class="svc-label" data-i18n="svc_s2_label">Core Service</div><h2 data-i18n="svc_s2_h2">Workflow Automation</h2><p data-i18n="svc_s2_p">Map your existing processes and let agents run them. We analyse your workflows, identify automation opportunities, and deploy agents that execute tasks with precision — freeing your team for higher-value work.</p><div class="svc-features"><div class="svc-feature" data-i18n="svc_s2_f1">Process mapping & analysis</div><div class="svc-feature" data-i18n="svc_s2_f2">Agent-based task execution</div><div class="svc-feature" data-i18n="svc_s2_f3">Error handling & retries</div><div class="svc-feature" data-i18n="svc_s2_f4">Audit logs & reporting</div></div></div>
+    <div class="svc-aside"><div class="svc-icon-large"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><p class="svc-aside-text">Fast. Precise. Scalable.</p></div>
+  </div>
+
+  <div class="service-block">
+    <div class="svc-content"><div class="svc-label" data-i18n="svc_s3_label">Core Service</div><h2 data-i18n="svc_s3_h2">System Integration</h2><p data-i18n="svc_s3_p">Your tools shouldn't work in silos. We connect your APIs, databases, SaaS platforms, and internal systems through intelligent agents that route, transform, and synchronise data in real time.</p><div class="svc-features"><div class="svc-feature" data-i18n="svc_s3_f1">REST & GraphQL API connectors</div><div class="svc-feature" data-i18n="svc_s3_f2">Database synchronisation</div><div class="svc-feature" data-i18n="svc_s3_f3">Event-driven architecture</div><div class="svc-feature" data-i18n="svc_s3_f4">Custom webhook handlers</div></div></div>
+    <div class="svc-aside"><div class="svc-icon-large"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><p class="svc-aside-text">Connected. Synchronised. Real-time.</p></div>
+  </div>
+
+  <div class="service-block">
+    <div class="svc-content"><div class="svc-label" data-i18n="svc_s4_label">Core Service</div><h2 data-i18n="svc_s4_h2">Custom AI Deployments</h2><p data-i18n="svc_s4_p">Every organisation is different. We work with you from requirements gathering through to deployment — delivering AI solutions trained on your data and aligned to your goals.</p><div class="svc-features"><div class="svc-feature" data-i18n="svc_s4_f1">Requirements & scoping workshop</div><div class="svc-feature" data-i18n="svc_s4_f2">Custom model fine-tuning</div><div class="svc-feature" data-i18n="svc_s4_f3">On-premise or cloud deployment</div><div class="svc-feature" data-i18n="svc_s4_f4">Ongoing support & iteration</div></div></div>
+    <div class="svc-aside"><div class="svc-icon-large"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div><p class="svc-aside-text">Tailored. Tested. Deployed.</p></div>
+  </div>
+
+  <div class="service-block">
+    <div class="svc-content"><div class="svc-label" data-i18n="svc_s5_label">Core Service</div><h2 data-i18n="svc_s5_h2">AI Consulting</h2><p data-i18n="svc_s5_p">Not sure where to start? We help you identify the highest-impact AI opportunities, design the right architecture, and build a realistic roadmap — before writing a single line of code.</p><div class="svc-features"><div class="svc-feature" data-i18n="svc_s5_f1">AI opportunity assessment</div><div class="svc-feature" data-i18n="svc_s5_f2">Architecture & tool selection</div><div class="svc-feature" data-i18n="svc_s5_f3">Roadmap & prioritisation</div><div class="svc-feature" data-i18n="svc_s5_f4">Team enablement & training</div></div></div>
+    <div class="svc-aside"><div class="svc-icon-large"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><p class="svc-aside-text">Strategic. Practical. Impactful.</p></div>
+  </div>
+
+  <div class="service-block">
+    <div class="svc-content"><div class="svc-label" data-i18n="svc_s6_label">Core Service</div><h2 data-i18n="svc_s6_h2">Data & Analytics</h2><p data-i18n="svc_s6_p">AI is only as good as the data behind it. We design and build data pipelines, dashboards, and AI-powered analytics that turn raw information into clear, actionable business intelligence.</p><div class="svc-features"><div class="svc-feature" data-i18n="svc_s6_f1">Data pipeline design & build</div><div class="svc-feature" data-i18n="svc_s6_f2">AI-powered reporting</div><div class="svc-feature" data-i18n="svc_s6_f3">Dashboard & visualisation</div><div class="svc-feature" data-i18n="svc_s6_f4">Predictive analytics</div></div></div>
+    <div class="svc-aside"><div class="svc-icon-large"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><p class="svc-aside-text">Insight. Clarity. Action.</p></div>
+  </div>
+
+  <section class="process-section">
+    <div class="section-label" style="justify-content:center;margin-bottom:0.75rem;" data-i18n="svc_process_label">How it works</div>
+    <h2 data-i18n="svc_process_h2">From brief to deployment.</h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><h4 data-i18n="svc_p1t">Discovery</h4><p data-i18n="svc_p1p">We analyse your workflows, pain points, and objectives.</p></div>
+      <div class="process-step"><div class="step-num">02</div><h4 data-i18n="svc_p2t">Design</h4><p data-i18n="svc_p2p">We architect the agent logic, integrations, and guardrails.</p></div>
+      <div class="process-step"><div class="step-num">03</div><h4 data-i18n="svc_p3t">Build</h4><p data-i18n="svc_p3p">We develop, test, and validate in a staging environment.</p></div>
+      <div class="process-step"><div class="step-num">04</div><h4 data-i18n="svc_p4t">Deploy</h4><p data-i18n="svc_p4p">We go live, monitor performance, and iterate with your team.</p></div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 data-i18n="svc_cta_h2">Ready to get started?</h2>
+      <p data-i18n="svc_cta_sub">Tell us about your project and we'll come back with a tailored proposal.</p>
+      <a class="btn btn-accent" href="contact.html" data-i18n="svc_cta_btn">Contact us</a>
+    </div>
+  </section>
+
+</main>
+<div id="footer-placeholder"></div>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('services');
+  // Handle split h1 keys
+  const t2 = translations[currentLang];
+  const parts = (t2.svc_h1||'').split('\n');
+  if(parts[0]) document.querySelector('[data-i18n="svc_h1a"]').textContent = parts[0];
+  if(parts[1]) document.querySelector('[data-i18n="svc_h1b"]').textContent = parts[1];
+</script>
+</body>
+</html>

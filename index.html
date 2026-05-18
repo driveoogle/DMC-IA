@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DMC IA — Full-spectrum AI services for your business.">
+<title>DMC IA — AI Services</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+main{flex:1;display:flex;flex-direction:column;}
+
+/* HERO */
+.hero{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:8rem 2rem 6rem;border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 50% 0%, rgba(0,229,160,0.07) 0%, transparent 60%),
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:100% 100%, 60px 60px, 60px 60px;
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;}
+.hero .tag{margin-bottom:2.5rem;}
+.hero h1{
+  font-size:clamp(3rem,7vw,6rem);font-weight:300;
+  line-height:1.05;letter-spacing:-0.03em;max-width:840px;margin-bottom:1.75rem;
+}
+.hero h1 strong{font-weight:500;}
+.hero h1 .grad{
+  background:linear-gradient(135deg,var(--accent),var(--accent3),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-weight:500;
+}
+.hero .sub{font-size:1.1rem;color:var(--text-dim);max-width:540px;font-weight:300;margin:0 auto 3rem;}
+.hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;}
+
+/* CAPS */
+.caps-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.caps-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.caps-header h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;letter-spacing:-0.02em;}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+
+/* WHY */
+.why-section{
+  padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:start;border-bottom:1px solid var(--border);
+}
+.why-left h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:1rem;line-height:1.15;}
+.why-left p{color:var(--text-dim);font-weight:300;font-size:1rem;margin-bottom:2rem;}
+.why-items{display:flex;flex-direction:column;}
+
+/* CTA BANNER */
+.cta-banner{
+  padding:7rem 2rem;display:flex;flex-direction:column;align-items:center;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center bottom,rgba(124,92,252,0.12) 0%,transparent 60%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;}
+.cta-banner h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.025em;margin-bottom:1rem;max-width:600px;line-height:1.15;}
+.cta-banner p{color:var(--text-dim);font-weight:300;font-size:1rem;max-width:460px;margin:0 auto 2.5rem;}
+
+@media(max-width:900px){
+  .caps-section,.why-section,.cta-banner{padding:4rem 2rem;}
+  .why-section{grid-template-columns:1fr;gap:3rem;}
+  .caps-header{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:640px){
+  .hero{padding:5rem 1.25rem 4rem;}
+  .caps-section,.why-section,.cta-banner{padding:3rem 1.25rem;}
+  .hero-ctas{flex-direction:column;width:100%;}
+  .hero-ctas .btn{width:100%;justify-content:center;}
+}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="tag">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span data-i18n="home_tag">AI Services & Solutions</span>
+      </div>
+      <h1>
+        <strong data-i18n="home_h1a">AI that works</strong><br>
+        <span class="grad" data-i18n="home_h1b">for your business.</span>
+      </h1>
+      <p class="sub" data-i18n="home_sub">DMC IA delivers a full range of artificial intelligence services — from autonomous agents and workflow automation to custom AI solutions, consulting, and integration.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="services.html" data-i18n="home_cta1">Explore services</a>
+        <a class="btn btn-outline" href="catalogue.html" data-i18n="home_cta2">View catalogue</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="caps-section">
+    <div class="caps-header">
+      <div>
+        <div class="section-label" data-i18n="home_caps_label">Our services</div>
+        <h2>Six core capabilities.</h2>
+      </div>
+      <a class="btn btn-ghost" href="services.html" data-i18n="nav_services">Services →</a>
+    </div>
+    <div class="caps">
+      <div class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <h3 data-i18n="home_c1t">Autonomous AI Agents</h3>
+        <p data-i18n="home_c1p">Agents that act, decide, and execute tasks continuously — no supervision needed.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 data-i18n="home_c2t">Workflow Automation</h3>
+        <p data-i18n="home_c2p">Streamline repetitive operations with agents that learn and adapt to your processes.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <h3 data-i18n="home_c3t">System Integration</h3>
+        <p data-i18n="home_c3p">Connect your stack end-to-end. Agents coordinate across your APIs, apps, and data.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+        <h3 data-i18n="home_c4t">Custom AI Solutions</h3>
+        <p data-i18n="home_c4p">Bespoke AI models, tools, and deployments tailored to your specific business goals.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 data-i18n="home_c5t">AI Consulting</h3>
+        <p data-i18n="home_c5p">Strategic guidance to identify, design, and implement the right AI approach for your organisation.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <h3 data-i18n="home_c6t">Data & Analytics</h3>
+        <p data-i18n="home_c6p">Turn your data into actionable insights with AI-powered analysis and reporting pipelines.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="why-left">
+      <div class="section-label" data-i18n="home_why_label">Why DMC IA</div>
+      <h2 data-i18n="home_why_h2">One partner. Full AI coverage.</h2>
+      <p data-i18n="home_why_sub">From strategy to deployment, we cover the full AI lifecycle. Whether you need a single agent or an end-to-end intelligent system, we design and deliver it.</p>
+      <a class="btn btn-accent" href="services.html" data-i18n="nav_services">View services</a>
+    </div>
+    <div class="why-items">
+      <div class="why-item"><span class="why-num">01</span><div><h4 data-i18n="home_w1t">No-code deployment</h4><p data-i18n="home_w1p">Agents go live without engineering overhead on your side.</p></div></div>
+      <div class="why-item"><span class="why-num">02</span><div><h4 data-i18n="home_w2t">Secure by design</h4><p data-i18n="home_w2p">Your data stays yours. Every agent runs within defined permission boundaries.</p></div></div>
+      <div class="why-item"><span class="why-num">03</span><div><h4 data-i18n="home_w3t">Always-on monitoring</h4><p data-i18n="home_w3p">Real-time observability on every task your agents perform.</p></div></div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center;" data-i18n="home_cta_label">Work with us</div>
+      <h2 data-i18n="home_cta_h2">Let's build your AI solution.</h2>
+      <p data-i18n="home_cta_sub">Tell us about your project — whether it's an agent, a custom model, or a full AI strategy — and we'll design the right solution.</p>
+      <a class="btn btn-accent" href="contact.html" data-i18n="home_cta_btn">Contact us</a>
+    </div>
+  </section>
+
+</main>
+<div id="footer-placeholder"></div>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>initLayout('home');</script>
+</body>
+</html>
