@@ -405,7 +405,7 @@ const translations = {
     home_form_p:"Formação prática para profissionais que querem dominar as ferramentas de IA e utilizá-las com confiança no dia a dia.",
     home_form_cta:"Descobrir formação →",
     home_form_w1:"Prático e imersivo",
-    home_form_w2:"Presencial ou remoto",
+    home_form_w2:"Online",
     home_form_w3:"Adaptado à sua equipa",
 
     /* CONTACT */
