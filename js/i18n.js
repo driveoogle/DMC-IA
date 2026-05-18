@@ -207,6 +207,8 @@ const translations = {
     contact_success:"Message sent. We'll be in touch within 24 hours.",
     contact_error:"Something went wrong. Please try again or email us directly.",
     contact_sending:"Sending…",
+    contact_note:"We reply within 24h.",
+    contact_info_box:"DMC IA is open for new projects. We work with organisations of all sizes to design and deploy custom AI solutions.",
   },
 
   pt: {
@@ -416,6 +418,8 @@ const translations = {
     contact_success:"Mensagem enviada. Entraremos em contacto em 24 horas.",
     contact_error:"Algo correu mal. Tente novamente ou envie-nos um email diretamente.",
     contact_sending:"A enviar…",
+    contact_note:"Respondemos em 24h.",
+    contact_info_box:"A DMC IA está disponível para novos projetos. Trabalhamos com organizações de todas as dimensões para desenhar e implementar soluções de IA personalizadas.",
   }
 };
 
