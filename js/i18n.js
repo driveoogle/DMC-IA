@@ -194,7 +194,7 @@ const translations = {
     home_form_p:"Practical training for professionals who want to master AI tools and use them confidently in their daily work.",
     home_form_cta:"Discover training →",
     home_form_w1:"Hands-on & practical",
-    home_form_w2:"In-person or remote",
+    home_form_w2:"Online",
     home_form_w3:"Tailored to your team",
 
     /* CONTACT */
