@@ -182,7 +182,8 @@ const translations = {
     form_faq4a:"Yes. We have a half-day executive format focused on AI strategy and decision-making — without going into technical details.",
     /* HOME TRAINING HIGHLIGHT */
     home_form_tag:"New offering",
-    home_form_h2:"AI Training & Prompt Engineering.",
+    home_form_h2a:"AI Training &",
+    home_form_h2b:"Prompt Engineering.",
     home_form_p:"Practical training for professionals who want to master AI tools and use them confidently in their daily work.",
     home_form_cta:"Discover training →",
     home_form_w1:"Hands-on & practical",
@@ -383,7 +384,8 @@ const translations = {
     form_faq4a:"Sim. Temos um formato executivo de meio-dia focado em estratégia de IA e tomada de decisão — sem entrar em detalhes técnicos.",
     /* HOME TRAINING HIGHLIGHT */
     home_form_tag:"Nova oferta",
-    home_form_h2:"Formação em IA & Prompt Engineering.",
+    home_form_h2a:"Formação em IA &",
+    home_form_h2b:"Prompt Engineering.",
     home_form_p:"Formação prática para profissionais que querem dominar as ferramentas de IA e utilizá-las com confiança no dia a dia.",
     home_form_cta:"Descobrir formação →",
     home_form_w1:"Prático e imersivo",
