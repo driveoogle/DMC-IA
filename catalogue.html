@@ -33,6 +33,72 @@ main{flex:1;display:flex;flex-direction:column;}
 }
 .page-hero .sub{font-size:1.05rem;color:var(--text-dim);font-weight:300;max-width:580px;}
 
+/* FILTER BAR */
+.filter-bar{
+  position:sticky;top:var(--nav-h);z-index:90;
+  background:rgba(12,12,16,0.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 4rem;
+}
+.filter-bar-inner{
+  display:flex;align-items:center;gap:0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.filter-bar-inner::-webkit-scrollbar{display:none;}
+
+.filter-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:1rem 1.25rem;
+  font-family:'DM Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-faint);font-weight:500;
+  border:none;background:none;cursor:pointer;
+  position:relative;white-space:nowrap;
+  transition:color .2s;
+}
+.filter-btn::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  opacity:0;transition:opacity .2s;
+}
+.filter-btn:hover{color:var(--text-dim);}
+.filter-btn.active{color:var(--text);}
+.filter-btn.active::after{opacity:1;}
+
+.filter-btn[data-filter="all"]::after{background:linear-gradient(90deg,var(--accent2),var(--accent));}
+.filter-btn[data-filter="finance"]::after{background:#00e5a0;}
+.filter-btn[data-filter="admin"]::after{background:#7c5cfc;}
+.filter-btn[data-filter="hr"]::after{background:#00c8ff;}
+.filter-btn[data-filter="ops"]::after{background:#f59e0b;}
+
+.filter-btn[data-filter="all"] .filter-dot{background:linear-gradient(135deg,var(--accent2),var(--accent));}
+.filter-btn[data-filter="finance"] .filter-dot{background:#00e5a0;}
+.filter-btn[data-filter="admin"] .filter-dot{background:#7c5cfc;}
+.filter-btn[data-filter="hr"] .filter-dot{background:#00c8ff;}
+.filter-btn[data-filter="ops"] .filter-dot{background:#f59e0b;}
+
+.filter-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;opacity:.5;transition:opacity .2s;}
+.filter-btn.active .filter-dot{opacity:1;}
+
+.filter-count{
+  font-size:0.55rem;padding:1px 6px;border-radius:100px;
+  background:rgba(255,255,255,0.06);color:var(--text-faint);
+  transition:background .2s,color .2s;
+}
+.filter-btn.active .filter-count{background:rgba(255,255,255,0.1);color:var(--text-dim);}
+
+.filter-sep{width:1px;height:1.2rem;background:var(--border);flex-shrink:0;margin:0 0.25rem;}
+
+/* SECTION FADE */
+.cat-section{transition:opacity .3s,transform .3s;}
+.cat-section.hidden{display:none;}
+.cat-section.fade-out{opacity:0;transform:translateY(8px);}
+.cat-section.fade-in{animation:fadeInUp .35s ease forwards;}
+
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(12px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
 /* CATEGORY SECTION */
 .cat-section{
   padding:4rem 4rem 3rem;
@@ -167,13 +233,20 @@ main{flex:1;display:flex;flex-direction:column;}
 .cta-banner h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.025em;margin-bottom:1rem;max-width:600px;line-height:1.15;}
 .cta-banner p{color:var(--text-dim);font-weight:300;font-size:1rem;max-width:460px;margin:0 auto 2.5rem;}
 
+/* CATCARD TAG CLICK */
+.catcard-badge{cursor:pointer;transition:filter .2s;}
+.catcard-badge:hover{filter:brightness(1.2);}
+
 @media(max-width:900px){
   .page-hero,.cat-section,.cta-banner{padding:4rem 2rem;}
+  .filter-bar{padding:0 2rem;}
 }
 @media(max-width:640px){
   .page-hero,.cat-section,.cta-banner{padding:3rem 1.25rem;}
   .cat-grid{grid-template-columns:1fr;}
   .cat-section-header{flex-direction:column;align-items:flex-start;}
+  .filter-bar{padding:0 1.25rem;}
+  .filter-btn{padding:0.85rem 0.9rem;font-size:0.6rem;}
 }
 </style>
 </head>
@@ -195,6 +268,38 @@ main{flex:1;display:flex;flex-direction:column;}
       <p class="sub" data-i18n="cat_sub">Pre-built AI agents designed for specific business roles. Each one operates autonomously within its domain, integrates with your existing tools, and is ready to go from day one.</p>
     </div>
   </section>
+
+  <!-- FILTER BAR -->
+  <nav class="filter-bar" role="tablist" aria-label="Filter by category">
+    <div class="filter-bar-inner">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+        <span class="filter-dot"></span>
+        <span data-i18n="cat_filter_all">All agents</span>
+        <span class="filter-count">9</span>
+      </button>
+      <div class="filter-sep"></div>
+      <button class="filter-btn" data-filter="finance" role="tab" aria-selected="false">
+        <span class="filter-dot"></span>
+        <span data-i18n="cat_cat_finance">Finance</span>
+        <span class="filter-count">3</span>
+      </button>
+      <button class="filter-btn" data-filter="admin" role="tab" aria-selected="false">
+        <span class="filter-dot"></span>
+        <span data-i18n="cat_cat_admin">Administration</span>
+        <span class="filter-count">2</span>
+      </button>
+      <button class="filter-btn" data-filter="hr" role="tab" aria-selected="false">
+        <span class="filter-dot"></span>
+        <span data-i18n="cat_cat_hr">Human Resources</span>
+        <span class="filter-count">2</span>
+      </button>
+      <button class="filter-btn" data-filter="ops" role="tab" aria-selected="false">
+        <span class="filter-dot"></span>
+        <span data-i18n="cat_cat_ops">Operations</span>
+        <span class="filter-count">2</span>
+      </button>
+    </div>
+  </nav>
 
   <!-- ── FINANCE ── -->
   <section class="cat-section finance" id="finance">
@@ -421,6 +526,49 @@ main{flex:1;display:flex;flex-direction:column;}
 <script src="js/layout.js"></script>
 <script>
   initLayout('catalogue');
+
+  /* ── Catalogue filter ── */
+  (function() {
+    const sections = document.querySelectorAll('.cat-section[id]');
+    const btns = document.querySelectorAll('.filter-btn');
+
+    function activate(filter) {
+      btns.forEach(b => {
+        const on = b.dataset.filter === filter;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on);
+      });
+
+      sections.forEach(sec => {
+        if (filter === 'all' || sec.id === filter) {
+          sec.classList.remove('hidden');
+          sec.classList.add('fade-in');
+          setTimeout(() => sec.classList.remove('fade-in'), 400);
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+
+      history.replaceState(null, '', filter === 'all' ? location.pathname : '#' + filter);
+    }
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => activate(btn.dataset.filter));
+    });
+
+    /* Badge clicks on cards also filter */
+    document.querySelectorAll('.catcard-badge').forEach(badge => {
+      badge.addEventListener('click', () => {
+        const sec = badge.closest('.cat-section');
+        if (sec) activate(sec.id);
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* Restore from hash */
+    const hash = location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) activate(hash);
+  })();
 </script>
 </body>
 </html>
