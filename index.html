@@ -58,7 +58,9 @@ main{flex:1;display:flex;flex-direction:column;}
 }
 .training-hl-content{position:relative;z-index:1;}
 .training-hl-content .tag{margin-bottom:2rem;background:rgba(0,200,255,0.08);border-color:rgba(0,200,255,0.25);color:var(--accent3);}
-.training-hl-content h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:1rem;line-height:1.15;}
+.training-hl-content h2{font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.03em;margin-bottom:1.25rem;line-height:1.1;}
+.training-hl-content h2 strong{font-weight:300;display:block;}
+.training-hl-content h2 .grad{background:linear-gradient(135deg,var(--accent3),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500;display:block;}
 .training-hl-content p{color:var(--text-dim);font-weight:300;font-size:1rem;margin-bottom:2rem;}
 .training-hl-items{position:relative;z-index:1;}
 
@@ -168,7 +170,10 @@ main{flex:1;display:flex;flex-direction:column;}
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         <span data-i18n="home_form_tag">New offering</span>
       </div>
-      <h2 data-i18n="home_form_h2">AI Training & Prompt Engineering.</h2>
+      <h2>
+        <strong data-i18n="home_form_h2a">AI Training &</strong>
+        <span class="grad" data-i18n="home_form_h2b">Prompt Engineering.</span>
+      </h2>
       <p data-i18n="home_form_p">Practical training for professionals who want to master AI tools and use them confidently in their daily work.</p>
       <a class="btn btn-accent" href="formation.html" data-i18n="home_form_cta">Discover training →</a>
     </div>
