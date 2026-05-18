@@ -11,6 +11,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dmc-ia.com/formation.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dmc-ia.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

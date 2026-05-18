@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DMC IA — Formação em IA Generativa e Prompt Engineering para profissionais e equipas.">
+<title>Formação IA — DMC IA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+main{flex:1;display:flex;flex-direction:column;}
+
+/* ── PAGE HERO ── */
+.page-hero{padding:7rem 4rem 5rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,rgba(0,200,255,0.08) 0%,transparent 55%);pointer-events:none;}
+.page-hero-inner{position:relative;z-index:1;}
+.page-hero .tag{margin-bottom:2rem;background:rgba(0,200,255,0.08);border-color:rgba(0,200,255,0.25);color:var(--accent3);}
+.page-hero .tag svg{stroke:var(--accent3);}
+.page-hero h1{font-size:clamp(2.8rem,5vw,5rem);font-weight:300;letter-spacing:-0.03em;line-height:1.08;max-width:700px;margin-bottom:1.5rem;}
+.page-hero h1 .grad{background:linear-gradient(135deg,var(--accent3),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500;display:block;}
+.page-hero .sub{font-size:1.05rem;color:var(--text-dim);font-weight:300;max-width:560px;margin-bottom:2.5rem;}
+.hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+
+/* ── FOR WHOM ── */
+.form-for-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.form-section-header{margin-bottom:3rem;}
+.form-section-header h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;letter-spacing:-0.02em;}
+.form-for-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+
+/* ── MODULES (LEARN) ── */
+.form-learn-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.form-modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+.module-num{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--accent3);font-weight:500;letter-spacing:0.1em;margin-bottom:0.5rem;}
+
+/* ── BENEFITS ── */
+.form-benefits-section{
+  padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:start;border-bottom:1px solid var(--border);
+}
+.form-benefits-left h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:1rem;line-height:1.15;}
+.form-benefits-left p{color:var(--text-dim);font-weight:300;font-size:1rem;}
+
+/* ── FORMAT ── */
+.form-format-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.form-format-section h2{font-size:clamp(1.8rem,3vw,2.2rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:3rem;text-align:center;}
+
+/* ── WHY DMC IA ── */
+.form-why-section{
+  padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:start;border-bottom:1px solid var(--border);
+}
+.form-why-left h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:1rem;line-height:1.15;}
+.form-why-left p{color:var(--text-dim);font-weight:300;font-size:1rem;}
+
+/* ── CTA SECTION ── */
+.cta-section{padding:6rem 4rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,200,255,0.07) 0%,transparent 60%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-section h2{font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-0.025em;margin-bottom:1rem;max-width:500px;line-height:1.15;}
+.cta-section p{color:var(--text-dim);font-weight:300;font-size:1rem;max-width:420px;margin:0 auto 2.5rem;}
+
+/* ── FAQ ── */
+.form-faq-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.form-faq-section h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;letter-spacing:-0.02em;margin-bottom:3rem;text-align:center;}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-item:first-child{border-top:1px solid var(--border);}
+.faq-btn{
+  width:100%;background:none;border:none;cursor:pointer;color:var(--text);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.5rem 0;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;
+  text-align:left;transition:color .15s;
+}
+.faq-btn:hover{color:var(--accent3);}
+.faq-arrow{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .2s;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{font-size:0.875rem;color:var(--text-dim);font-weight:300;line-height:1.75;display:none;padding-bottom:1.5rem;}
+.faq-item.open .faq-a{display:block;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .page-hero,.form-for-section,.form-learn-section,.form-format-section,.form-faq-section,.cta-section{padding:4rem 2rem;}
+  .form-benefits-section,.form-why-section{padding:4rem 2rem;grid-template-columns:1fr;gap:3rem;}
+}
+@media(max-width:640px){
+  .page-hero{padding:5rem 1.25rem 4rem;}
+  .form-for-section,.form-learn-section,.form-format-section,.form-faq-section,.cta-section{padding:3rem 1.25rem;}
+  .form-benefits-section,.form-why-section{padding:3rem 1.25rem;}
+  .hero-ctas{flex-direction:column;width:100%;}
+  .hero-ctas .btn{width:100%;justify-content:center;}
+}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="tag">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span data-i18n="form_tag">Training & Upskilling</span>
+      </div>
+      <h1>
+        <strong data-i18n="form_h1a">Master AI.</strong>
+        <span class="grad" data-i18n="form_h1b">Transform your team.</span>
+      </h1>
+      <p class="sub" data-i18n="form_sub">Hands-on training in generative AI and prompt engineering — designed for professionals and teams who want to use AI with confidence in their daily work.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="contact.html" data-i18n="form_cta1">Request training</a>
+        <a class="btn btn-outline" href="#programme" data-i18n="form_cta2">View programme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARA QUEM ── -->
+  <section class="form-for-section">
+    <div class="form-section-header">
+      <div class="section-label" data-i18n="form_for_label">Who it's for</div>
+      <h2 data-i18n="form_for_h2">This training is for you if…</h2>
+    </div>
+    <div class="form-for-grid">
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 data-i18n="form_for_1t">Manager or team leader</h3>
+        <p data-i18n="form_for_1p">You want to implement AI in your organisation but don't know where to start.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3 data-i18n="form_for_2t">Business professional</h3>
+        <p data-i18n="form_for_2p">You use digital tools daily and want to multiply your productivity with AI.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 data-i18n="form_for_3t">Consultant or freelancer</h3>
+        <p data-i18n="form_for_3p">You want to offer more value to your clients by mastering the most advanced AI tools.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+        </div>
+        <h3 data-i18n="form_for_4t">Content creator</h3>
+        <p data-i18n="form_for_4p">You produce text, visuals, or video and want to use AI to create more, faster.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── O QUE VAI APRENDER ── -->
+  <section class="form-learn-section" id="programme">
+    <div class="form-section-header">
+      <div class="section-label" data-i18n="form_learn_label">Programme</div>
+      <h2 data-i18n="form_learn_h2">What you'll learn.</h2>
+    </div>
+    <div class="form-modules">
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M20 15h2M2 9h2M20 9h2M9 2v2M9 20v2"/></svg>
+        </div>
+        <div class="module-num">01</div>
+        <h3 data-i18n="form_m1t">Generative AI Fundamentals</h3>
+        <p data-i18n="form_m1p">How language models work, their capabilities and limitations. Overview of the leading tools on the market.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        </div>
+        <div class="module-num">02</div>
+        <h3 data-i18n="form_m2t">Prompt Engineering</h3>
+        <p data-i18n="form_m2p">Advanced prompt techniques: chain-of-thought, few-shot, role prompting. How to get consistent, quality results.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="module-num">03</div>
+        <h3 data-i18n="form_m3t">AI Applied to Business</h3>
+        <p data-i18n="form_m3p">Practical use cases: email writing, document summarisation, data analysis, content creation, customer support.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+        </div>
+        <div class="module-num">04</div>
+        <h3 data-i18n="form_m4t">Automation with AI</h3>
+        <p data-i18n="form_m4p">Introduction to automation tools (n8n, Make, Zapier) integrated with AI models. Building simple workflows.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="module-num">05</div>
+        <h3 data-i18n="form_m5t">Security & Best Practices</h3>
+        <p data-i18n="form_m5p">How to use AI responsibly: data privacy, hallucinations, fact-checking, GDPR compliance.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="module-num">06</div>
+        <h3 data-i18n="form_m6t">Practical Project</h3>
+        <p data-i18n="form_m6p">Each participant develops a real use case for their role. Personalised feedback from the DMC IA team.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BENEFÍCIOS ── -->
+  <section class="form-benefits-section">
+    <div class="form-benefits-left">
+      <div class="section-label" data-i18n="form_benefits_label">Real impact</div>
+      <h2 data-i18n="form_benefits_h2">What changes in your company.</h2>
+    </div>
+    <div class="why-items">
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <div>
+          <h4 data-i18n="form_b1t">Multiplied productivity</h4>
+          <p data-i18n="form_b1p">Teams trained in AI complete repetitive tasks in half the time — freeing capacity for higher-value work.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <div>
+          <h4 data-i18n="form_b2t">Faster decisions</h4>
+          <p data-i18n="form_b2p">AI-assisted information synthesis and analysis reduces decision-making time significantly.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <div>
+          <h4 data-i18n="form_b3t">Real competitive advantage</h4>
+          <p data-i18n="form_b3p">Mastering AI tools today is the equivalent of mastering the internet in the 2000s.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FORMATO ── -->
+  <section class="form-format-section">
+    <div class="section-label" style="justify-content:center;margin-bottom:0.75rem;" data-i18n="form_format_label">How it works</div>
+    <h2 data-i18n="form_format_h2">Format adapted to your needs.</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h4 data-i18n="form_fmt1t">In-Person or Remote</h4>
+        <p data-i18n="form_fmt1p">Sessions take place at your premises or online — live, with real-time interaction and exercises.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h4 data-i18n="form_fmt2t">Small Groups</h4>
+        <p data-i18n="form_fmt2p">Maximum 12 participants per session to ensure personalised coaching and hands-on practice.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h4 data-i18n="form_fmt3t">Tailored Content</h4>
+        <p data-i18n="form_fmt3p">The programme is adapted to your sector, the tools you already use, and the most relevant use cases for your team.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h4 data-i18n="form_fmt4t">Post-Training Support</h4>
+        <p data-i18n="form_fmt4p">30 days of email support and access to updated reference materials after each session.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORQUE ESCOLHER DMC-IA ── -->
+  <section class="form-why-section">
+    <div class="form-why-left">
+      <div class="section-label" data-i18n="form_why_label">Why DMC IA</div>
+      <h2 data-i18n="form_why_h2">Training by practitioners.</h2>
+      <p data-i18n="form_why_sub">We don't teach theory — we teach what we use every day to build real AI solutions for real businesses.</p>
+    </div>
+    <div class="why-items">
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <div>
+          <h4 data-i18n="form_why1t">Hands-on expertise</h4>
+          <p data-i18n="form_why1p">Trainers are the same professionals who build AI agents and automation systems for companies.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <div>
+          <h4 data-i18n="form_why2t">Real industry cases</h4>
+          <p data-i18n="form_why2p">All examples and exercises are based on real business situations, not generic examples.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <div>
+          <h4 data-i18n="form_why3t">Measurable results</h4>
+          <p data-i18n="form_why3p">We set objectives before the training and measure results with your team after implementation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center;" data-i18n="form_cta_label">Start today</div>
+      <h2 data-i18n="form_cta_h2">Ready to upskill your team?</h2>
+      <p data-i18n="form_cta_sub">Tell us about your organisation's needs and we'll put together a tailored programme.</p>
+      <a class="btn btn-accent" href="contact.html" data-i18n="form_cta_btn">Request programme</a>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="form-faq-section">
+    <div class="section-label" style="justify-content:center;margin-bottom:0.75rem;" data-i18n="form_faq_label">FAQ</div>
+    <h2 data-i18n="form_faq_h2">Frequently asked questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="form_faq1q">Do I need technical AI knowledge?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-a" data-i18n="form_faq1a">No. The training is designed for professionals without a technical background. We start from the fundamentals and progress at the group's pace.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="form_faq2q">How many people can participate per session?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-a" data-i18n="form_faq2a">We recommend groups of 6 to 12 people to ensure quality. For larger groups, we organise multiple sessions.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="form_faq3q">Can the training be delivered in English?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-a" data-i18n="form_faq3a">Yes. Sessions can be conducted in Portuguese or English, depending on the team's needs.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="form_faq4q">Do you have training for executive teams (C-suite)?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-a" data-i18n="form_faq4a">Yes. We have a half-day executive format focused on AI strategy and decision-making — without going into technical details.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+<div id="footer-placeholder"></div>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('formation');
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(i) {
+      i.classList.remove('open');
+      i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+</body>
+</html>

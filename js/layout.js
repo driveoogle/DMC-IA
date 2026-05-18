@@ -12,6 +12,7 @@ function renderNav(activePage) {
     <a class="nav-link ${activePage==='home'?'active':''}" href="index.html" data-i18n="nav_home">Home</a>
     <a class="nav-link ${activePage==='services'?'active':''}" href="services.html" data-i18n="nav_services">Services</a>
     <a class="nav-link ${activePage==='catalogue'?'active':''}" href="catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
+    <a class="nav-link ${activePage==='formation'?'active':''}" href="formation.html" data-i18n="nav_formation">Training</a>
     <a class="nav-link ${activePage==='contact'?'active':''}" href="contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="nav-right">
@@ -37,6 +38,7 @@ function renderFooter() {
     <a class="footer-link" href="index.html" data-i18n="nav_home">Home</a>
     <a class="footer-link" href="services.html" data-i18n="nav_services">Services</a>
     <a class="footer-link" href="catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
+    <a class="footer-link" href="formation.html" data-i18n="nav_formation">Training</a>
     <a class="footer-link" href="contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="footer-copy">
