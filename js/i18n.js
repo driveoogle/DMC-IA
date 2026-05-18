@@ -423,7 +423,7 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('dmcia_lang') || 'en';
+let currentLang = localStorage.getItem('dmcia_lang') || 'pt';
 
 function setLang(lang) {
   currentLang = lang;
