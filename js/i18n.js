@@ -58,6 +58,7 @@ const translations = {
     /* CATALOGUE */
     cat_tag:"AI Employee Catalogue", cat_h1:"Your AI workforce,\nready to deploy.",
     cat_h1a:"Your AI workforce,", cat_h1b:"ready to deploy.",
+    cat_filter_all:"All agents",
     cat_cat_finance:"Finance",
     cat_cat_finance_sub:"Agents that manage your financial operations — invoicing, accounting, and payment recovery.",
     cat_cat_admin:"Administration",
@@ -177,6 +178,7 @@ const translations = {
     /* CATALOGUE */
     cat_tag:"Catálogo de Funcionários IA", cat_h1:"A sua equipa de IA,\npronta a implementar.",
     cat_h1a:"A sua equipa de IA,", cat_h1b:"pronta a implementar.",
+    cat_filter_all:"Todos os agentes",
     cat_cat_finance:"Finanças",
     cat_cat_finance_sub:"Agentes que gerem as suas operações financeiras — faturação, contabilidade e recuperação de pagamentos.",
     cat_cat_admin:"Administração",
