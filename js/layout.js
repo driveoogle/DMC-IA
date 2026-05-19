@@ -4,7 +4,25 @@ function renderNav(activePage) {
 <nav>
   <a class="brand" href="index.html">
     <div class="brand-dot">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nc-grad-nav" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#7c5cfc;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#00e5a0;stop-opacity:1"/>
+          </linearGradient>
+        </defs>
+        <line x1="50" y1="50" x2="100" y2="100" stroke="url(#nc-grad-nav)" stroke-width="10" stroke-linecap="round"/>
+        <line x1="150" y1="50" x2="100" y2="100" stroke="url(#nc-grad-nav)" stroke-width="10" stroke-linecap="round"/>
+        <line x1="100" y1="100" x2="100" y2="150" stroke="url(#nc-grad-nav)" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="20" fill="url(#nc-grad-nav)"/>
+        <circle cx="150" cy="50" r="20" fill="url(#nc-grad-nav)"/>
+        <circle cx="100" cy="150" r="20" fill="url(#nc-grad-nav)"/>
+        <circle cx="100" cy="100" r="28" fill="url(#nc-grad-nav)"/>
+        <circle cx="50" cy="50" r="8" fill="#0c0c10"/>
+        <circle cx="150" cy="50" r="8" fill="#0c0c10"/>
+        <circle cx="100" cy="150" r="8" fill="#0c0c10"/>
+        <circle cx="100" cy="100" r="12" fill="#0c0c10"/>
+      </svg>
     </div>
     <span class="brand-name">DMC IA</span>
   </a>
@@ -29,8 +47,26 @@ function renderFooter() {
   return `
 <footer>
   <div class="footer-brand">
-    <div class="brand-dot" style="width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,#7c5cfc,#00e5a0);">
-      <svg viewBox="0 0 24 24" style="width:12px;height:12px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    <div class="brand-dot" style="width:22px;height:22px;border-radius:5px;background:#0c0c10;">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;">
+        <defs>
+          <linearGradient id="nc-grad-footer" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#7c5cfc;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#00e5a0;stop-opacity:1"/>
+          </linearGradient>
+        </defs>
+        <line x1="50" y1="50" x2="100" y2="100" stroke="url(#nc-grad-footer)" stroke-width="10" stroke-linecap="round"/>
+        <line x1="150" y1="50" x2="100" y2="100" stroke="url(#nc-grad-footer)" stroke-width="10" stroke-linecap="round"/>
+        <line x1="100" y1="100" x2="100" y2="150" stroke="url(#nc-grad-footer)" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="20" fill="url(#nc-grad-footer)"/>
+        <circle cx="150" cy="50" r="20" fill="url(#nc-grad-footer)"/>
+        <circle cx="100" cy="150" r="20" fill="url(#nc-grad-footer)"/>
+        <circle cx="100" cy="100" r="28" fill="url(#nc-grad-footer)"/>
+        <circle cx="50" cy="50" r="8" fill="#0c0c10"/>
+        <circle cx="150" cy="50" r="8" fill="#0c0c10"/>
+        <circle cx="100" cy="150" r="8" fill="#0c0c10"/>
+        <circle cx="100" cy="100" r="12" fill="#0c0c10"/>
+      </svg>
     </div>
     DMC IA
   </div>

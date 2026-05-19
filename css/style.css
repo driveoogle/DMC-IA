@@ -51,12 +51,11 @@ nav{
 
 .brand-dot{
   width:30px;height:30px;border-radius:8px;
-  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  background:var(--bg);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .brand-dot svg{
-  width:15px;height:15px;stroke:#fff;fill:none;
-  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  width:30px;height:30px;
 }
 
 .brand-name{
