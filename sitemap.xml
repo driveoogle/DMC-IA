@@ -1,23 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dmc-ia.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://dmc-ia.com/services.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dmc-ia.com/formation.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dmc-ia.com/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Core pages -->
+  <url><loc>https://dmc-ia.com/</loc><lastmod>2025-05-24</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://dmc-ia.com/contact.html</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/services.html</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/formation.html</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dmc-ia.com/faq/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/about-brand/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Service pages -->
+  <url><loc>https://dmc-ia.com/services/ai-assistant/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/ai-automation/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/autonomous-ai-agent/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/business-automation/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/administrative-automation/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/ai-customer-support/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/ai-workflow/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/ai-marketing-automation/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://dmc-ia.com/services/ai-stock-management/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Sector pages -->
+  <url><loc>https://dmc-ia.com/sectors/restaurants/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/sectors/ecommerce/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/sectors/real-estate/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/sectors/medical/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/sectors/startups/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/sectors/small-business/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Location pages -->
+  <url><loc>https://dmc-ia.com/locations/portugal/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/locations/lisbon/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/locations/porto/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/locations/france/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/locations/belgium/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dmc-ia.com/locations/switzerland/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Case studies -->
+  <url><loc>https://dmc-ia.com/case-studies/financial-ai-analysis/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dmc-ia.com/case-studies/marketing-analysis-brunch-cafe/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dmc-ia.com/case-studies/stock-management-ai/</loc><lastmod>2025-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
 </urlset>
