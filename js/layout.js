@@ -27,18 +27,18 @@ function renderNav(activePage) {
     <span class="brand-name">DMC IA</span>
   </a>
   <div class="nav-center">
-    <a class="nav-link ${activePage==='home'?'active':''}" href="/">Home</a>
-    <a class="nav-link ${activePage==='services'?'active':''}" href="/services.html">Services</a>
-    <a class="nav-link ${activePage==='catalogue'?'active':''}" href="/catalogue.html">Catalogue</a>
-    <a class="nav-link ${activePage==='formation'?'active':''}" href="/formation.html">Training</a>
-    <a class="nav-link ${activePage==='contact'?'active':''}" href="/contact.html">Contact</a>
+    <a class="nav-link ${activePage==='home'?'active':''}" href="/" data-i18n="nav_home">Home</a>
+    <a class="nav-link ${activePage==='services'?'active':''}" href="/services.html" data-i18n="nav_services">Services</a>
+    <a class="nav-link ${activePage==='catalogue'?'active':''}" href="/catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
+    <a class="nav-link ${activePage==='formation'?'active':''}" href="/formation.html" data-i18n="nav_formation">Training</a>
+    <a class="nav-link ${activePage==='contact'?'active':''}" href="/contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="nav-right">
     <div class="lang-switch">
       <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">PT</button>
     </div>
-    <a class="btn btn-accent" href="/contact.html">Get Free AI Audit</a>
+    <a class="btn btn-accent" href="/contact.html" data-i18n="nav_cta">Get Free AI Audit</a>
   </div>
 </nav>`;
 }
@@ -71,11 +71,11 @@ function renderFooter() {
     DMC IA
   </div>
   <div class="footer-links">
-    <a class="footer-link" href="/">Home</a>
-    <a class="footer-link" href="/services.html">Services</a>
-    <a class="footer-link" href="/catalogue.html">Catalogue</a>
-    <a class="footer-link" href="/formation.html">Training</a>
-    <a class="footer-link" href="/contact.html">Contact</a>
+    <a class="footer-link" href="/" data-i18n="nav_home">Home</a>
+    <a class="footer-link" href="/services.html" data-i18n="nav_services">Services</a>
+    <a class="footer-link" href="/catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
+    <a class="footer-link" href="/formation.html" data-i18n="nav_formation">Training</a>
+    <a class="footer-link" href="/contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="footer-copy">
     <span data-i18n="footer_copy">© 2026 DMC IA. All rights reserved.</span>
