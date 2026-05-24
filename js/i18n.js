@@ -1,7 +1,7 @@
 /* ── DMC IA — i18n ── */
 const translations = {
   en: {
-    nav_home:"Home", nav_services:"Services", nav_catalogue:"Catalogue", nav_contact:"Contact", nav_cta:"Get Free AI Audit",
+    nav_home:"Home", nav_services:"Services", nav_catalogue:"Catalogue", nav_contact:"Contact", nav_cta:"Request a Quote",
     footer_copy:"© 2026 DMC IA. All rights reserved.", footer_privacy:"Privacy Policy", footer_terms:"Terms of Use",
 
     /* HOME */
@@ -308,7 +308,7 @@ const translations = {
   },
 
   pt: {
-    nav_home:"Início", nav_services:"Serviços", nav_catalogue:"Catálogo", nav_contact:"Contacto", nav_cta:"Diagnóstico IA Grátis",
+    nav_home:"Início", nav_services:"Serviços", nav_catalogue:"Catálogo", nav_contact:"Contacto", nav_cta:"Pede o teu orçamento",
     footer_copy:"© 2026 DMC IA. Todos os direitos reservados.", footer_privacy:"Política de Privacidade", footer_terms:"Termos de Utilização",
 
     /* HOME */

@@ -38,7 +38,7 @@ function renderNav(activePage) {
       <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">PT</button>
     </div>
-    <a class="btn btn-accent" href="/contact.html" data-i18n="nav_cta">Get Free AI Audit</a>
+    <a class="btn btn-accent" href="/contact.html" data-i18n="nav_cta">Request a Quote</a>
   </div>
 </nav>`;
 }
