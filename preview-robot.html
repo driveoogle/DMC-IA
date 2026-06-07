@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APERÇU — Robot 3D Interactif · DMC IA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── Variables ── */
+:root{
+  --bg:#0c0c10;--bg2:#111118;--bg3:#16161f;--bg4:#1c1c28;
+  --accent:#00e5a0;--accent2:#7c5cfc;--accent3:#00c8ff;
+  --accent-dim:rgba(0,229,160,0.10);--accent-glow:rgba(0,229,160,0.18);
+  --border:rgba(255,255,255,0.08);--border-acc:rgba(0,229,160,0.25);
+  --text:#f0f0f8;--text-dim:rgba(240,240,248,0.55);--text-faint:rgba(240,240,248,0.28);
+  --radius:14px;--nav-h:68px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:'DM Sans',sans-serif;line-height:1.1;}
+p{line-height:1.75;}
+
+/* ── PREVIEW BANNER ── */
+.preview-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:rgba(124,92,252,0.95);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  padding:0.85rem 2rem;font-size:0.82rem;font-family:'DM Mono',monospace;
+  letter-spacing:0.05em;color:#fff;
+}
+.preview-banner strong{color:#fff;font-weight:500;}
+.preview-badge{
+  background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);
+  border-radius:100px;padding:3px 12px;font-size:0.7rem;
+}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4rem;height:var(--nav-h);
+  border-bottom:1px solid var(--border);
+  background:rgba(12,12,16,0.92);backdrop-filter:blur(16px);
+  position:sticky;top:0;z-index:100;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-dot{width:30px;height:30px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.brand-name{font-family:'DM Mono',monospace;font-weight:500;font-size:0.95rem;letter-spacing:0.06em;}
+.nav-center{display:flex;align-items:center;gap:2rem;position:absolute;left:50%;transform:translateX(-50%);}
+.nav-link{font-size:0.875rem;color:var(--text-dim);}
+.nav-link.active{color:var(--text);font-weight:500;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.lang-switch{display:flex;border:1px solid var(--border);border-radius:100px;overflow:hidden;background:var(--bg3);}
+.lang-btn{font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;color:var(--text-faint);background:transparent;border:none;padding:5px 14px;cursor:pointer;}
+.lang-btn.active{background:var(--accent);color:var(--bg);border-radius:100px;}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:500;padding:9px 20px;border-radius:100px;cursor:pointer;transition:all .2s;border:none;}
+.btn-accent{background:var(--accent);color:var(--bg);}
+.btn-accent:hover{background:#00ffb3;box-shadow:0 0 20px rgba(0,229,160,0.35);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn-ghost{background:var(--bg3);color:var(--text-dim);border:1px solid var(--border);}
+
+/* ── Tag ── */
+.tag{display:inline-flex;align-items:center;gap:7px;font-size:0.72rem;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border:1px solid var(--border-acc);border-radius:100px;padding:5px 14px;}
+.tag svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── HERO ── */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 520px;
+  align-items:center;
+  gap:3rem;
+  padding:5rem 4rem 5rem;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  min-height:calc(100vh - var(--nav-h));
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 30% 50%, rgba(0,229,160,0.07) 0%, transparent 60%),
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:100% 100%, 60px 60px, 60px 60px;
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;}
+.hero .tag{margin-bottom:2.5rem;}
+.hero h1{font-size:clamp(3rem,5vw,5rem);font-weight:300;line-height:1.05;letter-spacing:-0.03em;max-width:640px;margin-bottom:1.75rem;}
+.hero h1 strong{font-weight:500;}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent3),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500;}
+.hero .sub{font-size:1.05rem;color:var(--text-dim);max-width:500px;font-weight:300;margin-bottom:3rem;}
+.hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+
+/* ── ROBOT CONTAINER ── */
+.robot-container{
+  position:relative;z-index:1;
+  width:100%;height:500px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+#robot-canvas{
+  width:100%;height:100%;
+  border-radius:24px;
+  cursor:none;
+}
+.robot-hint{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.1em;
+  color:var(--text-faint);background:rgba(12,12,16,0.7);
+  border:1px solid var(--border);border-radius:100px;padding:4px 14px;
+  white-space:nowrap;pointer-events:none;
+}
+
+/* NEW badge on robot */
+.robot-new-badge{
+  position:absolute;top:20px;right:20px;
+  font-size:0.62rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent2);background:rgba(124,92,252,0.12);border:1px solid rgba(124,92,252,0.3);
+  border-radius:100px;padding:4px 12px;
+}
+
+/* ── TRUST BAR ── */
+.trust-bar{padding:1.75rem 4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:0.75rem;color:var(--text-dim);font-size:0.9rem;}
+.trust-item svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── SERVICES ── */
+.caps-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.caps-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.caps-header h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;letter-spacing:-0.02em;}
+.section-label{font-size:0.7rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.acard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:border-color .25s,box-shadow .25s,transform .25s;position:relative;overflow:hidden;cursor:default;}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent),var(--accent3));opacity:0;transition:opacity .3s;border-radius:var(--radius) var(--radius) 0 0;}
+.acard:hover{border-color:rgba(0,229,160,0.3);box-shadow:0 0 0 1px rgba(0,229,160,0.1), 0 8px 40px rgba(0,229,160,0.08);transform:translateY(-4px);}
+.acard:hover::before{opacity:1;}
+.acard-icon{width:42px;height:42px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;}
+.acard-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.acard h3{font-size:0.95rem;font-weight:500;margin-bottom:0.5rem;}
+.acard p{font-size:0.85rem;color:var(--text-dim);font-weight:300;line-height:1.6;}
+
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;padding:4rem 2rem;min-height:auto;}
+  .robot-container{height:380px;}
+  nav{padding:0 1.5rem;}
+  .nav-center{display:none;}
+  .caps-section{padding:4rem 2rem;}
+  .trust-bar{gap:1.5rem;padding:1.5rem 2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- PREVIEW BANNER -->
+<div class="preview-banner">
+  <span class="preview-badge">APERÇU</span>
+  <strong>Prévisualisation : Robot 3D Interactif</strong>
+  <span style="color:rgba(255,255,255,0.7)">·</span>
+  <span style="color:rgba(255,255,255,0.7)">Bougez la souris sur le robot pour voir l'interaction</span>
+  <span style="color:rgba(255,255,255,0.7)">·</span>
+  <span style="color:rgba(255,255,255,0.7)">Composant : <code style="background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:4px;">interactive-3d-robot</code> via Three.js</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="brand" href="#">
+    <div class="brand-dot">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="30" height="30" rx="8" fill="#0c0c10"/>
+        <path d="M8 22L15 8L22 22" stroke="#00e5a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 18H20" stroke="#00e5a0" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="brand-name">DMC IA</span>
+  </a>
+  <div class="nav-center">
+    <a class="nav-link active" href="#">Services</a>
+    <a class="nav-link" href="#">Formation</a>
+    <a class="nav-link" href="#">Secteurs</a>
+    <a class="nav-link" href="#">À propos</a>
+    <a class="nav-link" href="#">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active">EN</button>
+      <button class="lang-btn">PT</button>
+      <button class="lang-btn">FR</button>
+    </div>
+    <a class="btn btn-accent" href="#">Get Free AI Audit</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO avec Robot 3D -->
+  <section class="hero" aria-label="Hero">
+
+    <div class="hero-content">
+      <div class="tag">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        AI Automation for Business
+      </div>
+      <h1>
+        <strong>AI automation</strong><br>
+        <span class="grad">that works for your business.</span>
+      </h1>
+      <p class="sub">DMC IA deploys autonomous AI agents, workflow automation and intelligent AI systems that eliminate repetitive tasks — so SMEs across Portugal and Europe can scale without scaling headcount.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#">Get Free AI Audit</a>
+        <a class="btn btn-outline" href="#">Explore Services</a>
+      </div>
+    </div>
+
+    <!-- ROBOT 3D INTERACTIF -->
+    <div class="robot-container">
+      <canvas id="robot-canvas"></canvas>
+      <div class="robot-hint">↖ Déplacez la souris pour interagir</div>
+      <div class="robot-new-badge">✦ NOUVEAU</div>
+    </div>
+
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>No-code deployment</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Live within weeks</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>SME-focused</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <span>Portugal &amp; Europe</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>Brand-only authority</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="caps-section">
+    <div class="caps-header">
+      <div>
+        <div class="section-label">Our services</div>
+        <h2>Eight AI automation capabilities.</h2>
+      </div>
+      <a class="btn btn-ghost" href="#">View all services →</a>
+    </div>
+    <div class="caps">
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <h3>Autonomous AI Agents</h3>
+        <p>AI agents that act, decide, and execute tasks continuously — no supervision needed. Full business automation 24/7.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>AI Workflow Automation</h3>
+        <p>Streamline repetitive operations with intelligent agents that learn and adapt to your business processes.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <h3>AI Business Assistant</h3>
+        <p>Always-available AI assistant that handles inquiries, schedules, reporting and operational tasks for your team.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>AI Customer Support</h3>
+        <p>Automated customer support agents that resolve queries, handle tickets, and escalate intelligently around the clock.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+        <h3>Administrative AI Automation</h3>
+        <p>Automate invoicing, scheduling, data entry, and back-office workflows to reduce administrative overhead by up to 70%.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <h3>Business Process Automation</h3>
+        <p>End-to-end business automation that connects your tools, eliminates silos, and creates intelligent operational workflows.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- Three.js via CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// ── Interactive 3D Robot (Three.js vanilla — fidèle au composant 21st.dev) ──
+
+const canvas = document.getElementById('robot-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+camera.position.set(0, 1.2, 6);
+
+// Couleurs
+const C_GREEN  = 0x00e5a0;
+const C_PURPLE = 0x7c5cfc;
+const C_BLUE   = 0x00c8ff;
+const C_DARK   = 0x111118;
+const C_MID    = 0x1c1c28;
+const C_LIGHT  = 0xf0f0f8;
+
+// Matériaux
+const matBody   = new THREE.MeshStandardMaterial({ color: C_MID,   metalness: 0.7, roughness: 0.25 });
+const matAccent = new THREE.MeshStandardMaterial({ color: C_GREEN, metalness: 0.3, roughness: 0.2,  emissive: C_GREEN, emissiveIntensity: 0.35 });
+const matEye    = new THREE.MeshStandardMaterial({ color: C_GREEN, emissive: C_GREEN, emissiveIntensity: 1.2, roughness: 0 });
+const matDark   = new THREE.MeshStandardMaterial({ color: 0x080810, metalness: 0.5, roughness: 0.4 });
+const matVisor  = new THREE.MeshStandardMaterial({ color: C_BLUE,  emissive: C_BLUE, emissiveIntensity: 0.5, transparent: true, opacity: 0.75, roughness: 0 });
+const matJoint  = new THREE.MeshStandardMaterial({ color: 0x0c0c14, metalness: 0.8, roughness: 0.2 });
+
+const robot = new THREE.Group();
+
+// ── CORPS ──
+const bodyGeo = new THREE.BoxGeometry(1.1, 1.3, 0.65, 1, 1, 1);
+const body = new THREE.Mesh(bodyGeo, matBody);
+body.position.y = 0;
+body.castShadow = true;
+robot.add(body);
+
+// Panneau de poitrine (accent)
+const chestGeo = new THREE.BoxGeometry(0.65, 0.55, 0.05);
+const chest = new THREE.Mesh(chestGeo, matAccent);
+chest.position.set(0, 0.1, 0.33);
+robot.add(chest);
+
+// Détails poitrine - petits indicateurs
+for (let i = -1; i <= 1; i++) {
+  const dotGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.04, 16);
+  const dot = new THREE.Mesh(dotGeo, matEye);
+  dot.position.set(i * 0.2, 0.02, 0.37);
+  dot.rotation.x = Math.PI / 2;
+  robot.add(dot);
+}
+
+// Logo / marquage sur le corps
+const logoGeo = new THREE.BoxGeometry(0.3, 0.08, 0.04);
+const logo = new THREE.Mesh(logoGeo, matAccent);
+logo.position.set(0, -0.25, 0.34);
+robot.add(logo);
+
+// ── TÊTE ──
+const headGroup = new THREE.Group();
+headGroup.position.y = 1.0;
+robot.add(headGroup);
+
+const headGeo = new THREE.BoxGeometry(0.85, 0.72, 0.65);
+const head = new THREE.Mesh(headGeo, matBody);
+head.castShadow = true;
+headGroup.add(head);
+
+// Visière
+const visorGeo = new THREE.BoxGeometry(0.62, 0.28, 0.06);
+const visor = new THREE.Mesh(visorGeo, matVisor);
+visor.position.set(0, 0.04, 0.32);
+headGroup.add(visor);
+
+// Yeux
+const eyeGeo = new THREE.SphereGeometry(0.09, 16, 16);
+const eyeL = new THREE.Mesh(eyeGeo, matEye);
+eyeL.position.set(-0.18, 0.04, 0.34);
+headGroup.add(eyeL);
+const eyeR = new THREE.Mesh(eyeGeo, matEye);
+eyeR.position.set(0.18, 0.04, 0.34);
+headGroup.add(eyeR);
+
+// Antennes
+const antennaGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.35, 8);
+const antL = new THREE.Mesh(antennaGeo, matJoint);
+antL.position.set(-0.28, 0.54, 0);
+robot.add(antL);
+const antR = new THREE.Mesh(antennaGeo, matJoint);
+antR.position.set(0.28, 0.54, 0);
+robot.add(antR);
+
+const antBallGeo = new THREE.SphereGeometry(0.055, 12, 12);
+const antBallL = new THREE.Mesh(antBallGeo, matAccent);
+antBallL.position.set(-0.28, 0.72, 0);
+robot.add(antBallL);
+const antBallR = new THREE.Mesh(antBallGeo, matAccent);
+antBallR.position.set(0.28, 0.72, 0);
+robot.add(antBallR);
+
+// Oreilles/côtés tête
+const earGeo = new THREE.BoxGeometry(0.14, 0.28, 0.5);
+const earL = new THREE.Mesh(earGeo, matDark);
+earL.position.set(-0.49, 1.0, 0);
+robot.add(earL);
+const earR = new THREE.Mesh(earGeo, matDark);
+earR.position.set(0.49, 1.0, 0);
+robot.add(earR);
+
+// ── COU ──
+const neckGeo = new THREE.CylinderGeometry(0.14, 0.18, 0.22, 12);
+const neck = new THREE.Mesh(neckGeo, matJoint);
+neck.position.y = 0.64;
+robot.add(neck);
+
+// ── ÉPAULES + BRAS ──
+function makeShoulder(side) {
+  const g = new THREE.Group();
+  const sGeo = new THREE.SphereGeometry(0.2, 16, 16);
+  const s = new THREE.Mesh(sGeo, matJoint);
+  g.add(s);
+  const uArmGeo = new THREE.BoxGeometry(0.24, 0.6, 0.24);
+  const uArm = new THREE.Mesh(uArmGeo, matBody);
+  uArm.position.y = -0.38;
+  uArm.castShadow = true;
+  g.add(uArm);
+  const elbowGeo = new THREE.SphereGeometry(0.14, 12, 12);
+  const elbow = new THREE.Mesh(elbowGeo, matJoint);
+  elbow.position.y = -0.72;
+  g.add(elbow);
+  const lArmGeo = new THREE.BoxGeometry(0.2, 0.52, 0.2);
+  const lArm = new THREE.Mesh(lArmGeo, matBody);
+  lArm.position.y = -1.04;
+  lArm.castShadow = true;
+  g.add(lArm);
+  // Main
+  const handGeo = new THREE.BoxGeometry(0.22, 0.22, 0.18);
+  const hand = new THREE.Mesh(handGeo, matAccent);
+  hand.position.y = -1.38;
+  g.add(hand);
+  g.position.set(side * 0.76, 0.35, 0);
+  return g;
+}
+const leftArm  = makeShoulder(-1);
+const rightArm = makeShoulder(1);
+robot.add(leftArm, rightArm);
+
+// ── HANCHES ──
+const hipGeo = new THREE.BoxGeometry(0.9, 0.2, 0.55);
+const hip = new THREE.Mesh(hipGeo, matDark);
+hip.position.y = -0.75;
+robot.add(hip);
+
+// ── JAMBES ──
+function makeLeg(side) {
+  const g = new THREE.Group();
+  const thighGeo = new THREE.BoxGeometry(0.32, 0.65, 0.32);
+  const thigh = new THREE.Mesh(thighGeo, matBody);
+  thigh.position.y = -0.32;
+  thigh.castShadow = true;
+  g.add(thigh);
+  const kneeGeo = new THREE.SphereGeometry(0.17, 12, 12);
+  const knee = new THREE.Mesh(kneeGeo, matJoint);
+  knee.position.y = -0.7;
+  g.add(knee);
+  const shinGeo = new THREE.BoxGeometry(0.26, 0.58, 0.28);
+  const shin = new THREE.Mesh(shinGeo, matBody);
+  shin.position.y = -1.06;
+  shin.castShadow = true;
+  g.add(shin);
+  const footGeo = new THREE.BoxGeometry(0.32, 0.16, 0.44);
+  const foot = new THREE.Mesh(footGeo, matDark);
+  foot.position.set(0, -1.44, 0.08);
+  g.add(foot);
+  // Détail accent sur pied
+  const accentGeo = new THREE.BoxGeometry(0.32, 0.04, 0.1);
+  const acc = new THREE.Mesh(accentGeo, matAccent);
+  acc.position.set(0, -1.38, 0.2);
+  g.add(acc);
+  g.position.set(side * 0.3, -0.85, 0);
+  return g;
+}
+const leftLeg  = makeLeg(-1);
+const rightLeg = makeLeg(1);
+robot.add(leftLeg, rightLeg);
+
+// Position finale du robot
+robot.position.y = 0.4;
+scene.add(robot);
+
+// ── SOCLE / OMBRE ──
+const shadowGeo = new THREE.CircleGeometry(1.1, 32);
+const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.3, depthWrite: false });
+const shadowCircle = new THREE.Mesh(shadowGeo, shadowMat);
+shadowCircle.rotation.x = -Math.PI / 2;
+shadowCircle.position.y = -2.0;
+scene.add(shadowCircle);
+
+// ── ÉCLAIRAGE ──
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
+scene.add(ambientLight);
+
+const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+keyLight.position.set(3, 5, 4);
+keyLight.castShadow = true;
+scene.add(keyLight);
+
+const fillLight = new THREE.PointLight(C_GREEN, 2.5, 12);
+fillLight.position.set(-3, 2, 3);
+scene.add(fillLight);
+
+const rimLight = new THREE.PointLight(C_PURPLE, 1.8, 10);
+rimLight.position.set(3, 1, -3);
+scene.add(rimLight);
+
+const topLight = new THREE.PointLight(C_BLUE, 1.2, 8);
+topLight.position.set(0, 5, 2);
+scene.add(topLight);
+
+// ── PARTICULES ──
+const particleCount = 80;
+const positions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount; i++) {
+  positions[i*3]   = (Math.random() - 0.5) * 8;
+  positions[i*3+1] = (Math.random() - 0.5) * 8;
+  positions[i*3+2] = (Math.random() - 0.5) * 4 - 2;
+}
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+const pMat = new THREE.PointsMaterial({ color: C_GREEN, size: 0.04, transparent: true, opacity: 0.5 });
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+// ── INTERACTION SOURIS ──
+let mouseX = 0, mouseY = 0;
+let targetRotY = 0, targetRotX = 0;
+let currentRotY = 0, currentRotX = 0;
+
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const nx = (e.clientX - rect.left) / rect.width - 0.5;
+  const ny = (e.clientY - rect.top)  / rect.height - 0.5;
+  targetRotY = nx * 0.9;
+  targetRotX = -ny * 0.5;
+  mouseX = nx;
+  mouseY = ny;
+});
+
+canvas.addEventListener('mouseleave', () => {
+  targetRotY = 0;
+  targetRotX = 0;
+});
+
+// ── RESIZE ──
+function resize() {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+const resizeObs = new ResizeObserver(resize);
+resizeObs.observe(canvas);
+resize();
+
+// ── ANIMATION ──
+let t = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  t += 0.016;
+
+  // Lerp rotation vers la souris
+  currentRotY += (targetRotY - currentRotY) * 0.06;
+  currentRotX += (targetRotX - currentRotX) * 0.06;
+
+  robot.rotation.y = currentRotY;
+  robot.rotation.x = currentRotX * 0.4;
+
+  // Tête suit plus fort la souris
+  headGroup.rotation.y = currentRotY * 0.6;
+  headGroup.rotation.x = currentRotX * 0.6;
+
+  // Flottement idle
+  robot.position.y = 0.4 + Math.sin(t * 0.9) * 0.06;
+
+  // Bras idle swing
+  leftArm.rotation.z  =  0.08 + Math.sin(t * 0.9) * 0.06;
+  rightArm.rotation.z = -0.08 - Math.sin(t * 0.9) * 0.06;
+  leftArm.rotation.x  = currentRotX * 0.3;
+  rightArm.rotation.x = currentRotX * 0.3;
+
+  // Jambes idle
+  leftLeg.rotation.x  = Math.sin(t * 0.9) * 0.03;
+  rightLeg.rotation.x = -Math.sin(t * 0.9) * 0.03;
+
+  // Clignotement yeux
+  const blink = Math.sin(t * 0.3) > 0.97 ? 0.1 : 1.2;
+  matEye.emissiveIntensity = blink;
+
+  // Pulsation accent
+  matAccent.emissiveIntensity = 0.25 + Math.sin(t * 1.5) * 0.12;
+  fillLight.intensity = 2.0 + Math.sin(t * 1.5) * 0.5;
+
+  // Rotation lente particules
+  particles.rotation.y += 0.0006;
+  particles.rotation.x += 0.0002;
+
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+
+</body>
+</html>
