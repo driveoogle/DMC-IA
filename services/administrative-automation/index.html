@@ -51,11 +51,6 @@
 .benefit-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;}
 .benefit-card h3{font-size:1rem;font-weight:500;margin-bottom:0.5rem;color:var(--accent);}
 .benefit-card p{font-size:0.9rem;color:var(--text-dim);margin:0;}
-.steps-list{margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem;}
-.step{display:flex;gap:1.5rem;align-items:flex-start;}
-.step-num{font-size:1.8rem;font-weight:300;color:var(--accent);opacity:0.7;min-width:3rem;font-family:'DM Mono',monospace;}
-.step-content h3{font-size:1rem;font-weight:500;margin-bottom:0.4rem;}
-.step-content p{color:var(--text-dim);font-size:0.95rem;margin:0;}
 .faq-list{margin-top:2rem;max-width:800px;}
 .faq-item{border-bottom:1px solid var(--border);padding:1.5rem 0;}
 .faq-item h3{font-size:1rem;font-weight:500;margin-bottom:0.75rem;}
@@ -83,7 +78,7 @@
   <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
     <li><a href="/services/">Services</a></li>
-    <li aria-current="page">Administrative AI Automation</li>
+    <li aria-current="page" data-i18n="admin_breadcrumb">Administrative AI Automation</li>
   </ol>
 </nav>
 
@@ -91,87 +86,87 @@
   <div class="page-hero-inner">
     <div class="tag">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
-      <span>AI Automation Service</span>
+      <span data-i18n="admin_tag">AI Automation Service</span>
     </div>
-    <h1>Administrative AI Automation</h1>
-    <p class="sub">Eliminate back-office bottlenecks with AI that handles invoicing, scheduling, data entry and administrative workflows automatically. Reclaim 70% of admin time for your team.</p>
+    <h1 data-i18n="admin_h1">Administrative AI Automation</h1>
+    <p class="sub" data-i18n="admin_sub">Eliminate back-office bottlenecks with AI that handles invoicing, scheduling, data entry and administrative workflows automatically. Reclaim 70% of admin time for your team.</p>
     <div class="hero-ctas">
-      <a class="btn btn-accent" href="/contact.html">Get Free AI Audit</a>
-      <a class="btn btn-outline" href="/faq/">Learn More</a>
+      <a class="btn btn-accent" href="/contact.html" data-i18n="admin_cta1">Get Free AI Audit</a>
+      <a class="btn btn-outline" href="/faq/" data-i18n="admin_cta2">Learn More</a>
     </div>
   </div>
 </section>
 
 <section class="content-section">
   <div class="inner">
-    <h2>What is Administrative AI Automation?</h2>
-    <p>Administrative AI automation uses intelligent agents and machine learning to handle the repetitive, rule-driven tasks that consume your team's time every day — without generating direct business value. Invoices to process, appointments to schedule, data to enter, emails to sort, documents to file, reports to generate.</p>
-    <p>These tasks are essential but mechanical. They require attention, accuracy, and consistency — all of which AI agents deliver at scale, without fatigue, at a fraction of the human labour cost. DMC IA builds custom administrative automation systems that integrate directly with your existing business tools and handle your specific workflows.</p>
-    <p>The result: your team stops spending time on administration and starts focusing on the strategic, creative, and relationship-driven work that only humans can do well.</p>
+    <h2 data-i18n="admin_s1_h2">What is Administrative AI Automation?</h2>
+    <p data-i18n="admin_s1_p1">Administrative AI automation uses intelligent agents and machine learning to handle the repetitive, rule-driven tasks that consume your team's time every day — without generating direct business value. Invoices to process, appointments to schedule, data to enter, emails to sort, documents to file, reports to generate.</p>
+    <p data-i18n="admin_s1_p2">These tasks are essential but mechanical. They require attention, accuracy, and consistency — all of which AI agents deliver at scale, without fatigue, at a fraction of the human labour cost. DMC IA builds custom administrative automation systems that integrate directly with your existing business tools and handle your specific workflows.</p>
+    <p data-i18n="admin_s1_p3">The result: your team stops spending time on administration and starts focusing on the strategic, creative, and relationship-driven work that only humans can do well.</p>
   </div>
 </section>
 
 <section class="content-section">
   <div class="inner">
-    <h2>Administrative Tasks We Automate</h2>
+    <h2 data-i18n="admin_s2_h2">Administrative Tasks We Automate</h2>
     <div class="benefit-grid">
-      <div class="benefit-card"><h3>Invoice Processing</h3><p>Extract invoice data, validate amounts, match purchase orders, route for approval, and update accounting systems automatically.</p></div>
-      <div class="benefit-card"><h3>Appointment Scheduling</h3><p>AI agents manage calendars, handle booking requests, send confirmations, and reschedule intelligently based on availability.</p></div>
-      <div class="benefit-card"><h3>Email Management</h3><p>Sort, categorise, draft responses, and route incoming emails to the right team member or automated workflow.</p></div>
-      <div class="benefit-card"><h3>Data Entry &amp; Migration</h3><p>Extract data from documents, forms, and emails and populate your databases, CRM, or ERP systems accurately.</p></div>
-      <div class="benefit-card"><h3>Document Generation</h3><p>Automatically create contracts, proposals, reports, and compliance documents from templates and live business data.</p></div>
-      <div class="benefit-card"><h3>Expense Management</h3><p>Process expense submissions, categorise costs, flag anomalies, and prepare reports for approval and accounting.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_b1t">Invoice Processing</h3><p data-i18n="admin_b1p">Extract invoice data, validate amounts, match purchase orders, route for approval, and update accounting systems automatically.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_b2t">Appointment Scheduling</h3><p data-i18n="admin_b2p">AI agents manage calendars, handle booking requests, send confirmations, and reschedule intelligently based on availability.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_b3t">Email Management</h3><p data-i18n="admin_b3p">Sort, categorise, draft responses, and route incoming emails to the right team member or automated workflow.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_b4t">Data Entry &amp; Migration</h3><p data-i18n="admin_b4p">Extract data from documents, forms, and emails and populate your databases, CRM, or ERP systems accurately.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_b5t">Document Generation</h3><p data-i18n="admin_b5p">Automatically create contracts, proposals, reports, and compliance documents from templates and live business data.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_b6t">Expense Management</h3><p data-i18n="admin_b6p">Process expense submissions, categorise costs, flag anomalies, and prepare reports for approval and accounting.</p></div>
     </div>
   </div>
 </section>
 
 <section class="content-section">
   <div class="inner">
-    <h2>Industries That Benefit Most</h2>
-    <p>Administrative AI automation delivers the highest ROI in businesses where administrative work is high-volume, structured, and currently manual. Key sectors include:</p>
+    <h2 data-i18n="admin_s3_h2">Industries That Benefit Most</h2>
+    <p data-i18n="admin_s3_intro">Administrative AI automation delivers the highest ROI in businesses where administrative work is high-volume, structured, and currently manual. Key sectors include:</p>
     <div class="benefit-grid">
-      <div class="benefit-card"><h3>Accounting &amp; Finance</h3><p>Invoice processing, reconciliation, reporting, and client communications handled by AI agents around the clock.</p></div>
-      <div class="benefit-card"><h3>Medical &amp; Healthcare</h3><p>Patient appointments, insurance documentation, referral management, and administrative compliance workflows.</p></div>
-      <div class="benefit-card"><h3>Real Estate</h3><p>Property listing management, viewing coordination, contract preparation, and client follow-up sequences.</p></div>
-      <div class="benefit-card"><h3>Professional Services</h3><p>Client onboarding, project administration, time tracking, billing, and document management for law firms, consultancies, and agencies.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_ind1t">Accounting &amp; Finance</h3><p data-i18n="admin_ind1p">Invoice processing, reconciliation, reporting, and client communications handled by AI agents around the clock.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_ind2t">Medical &amp; Healthcare</h3><p data-i18n="admin_ind2p">Patient appointments, insurance documentation, referral management, and administrative compliance workflows.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_ind3t">Real Estate</h3><p data-i18n="admin_ind3p">Property listing management, viewing coordination, contract preparation, and client follow-up sequences.</p></div>
+      <div class="benefit-card"><h3 data-i18n="admin_ind4t">Professional Services</h3><p data-i18n="admin_ind4p">Client onboarding, project administration, time tracking, billing, and document management for law firms, consultancies, and agencies.</p></div>
     </div>
   </div>
 </section>
 
 <section class="content-section">
   <div class="inner">
-    <h2>Frequently Asked Questions</h2>
+    <h2 data-i18n="admin_faq_h2">Frequently Asked Questions</h2>
     <div class="faq-list">
-      <div class="faq-item"><h3>What administrative tasks can AI automate?</h3><p>AI can automate invoice generation, payment reminders, appointment scheduling, email management, document processing, data entry, expense reporting, calendar management, and contract handling.</p></div>
-      <div class="faq-item"><h3>How much time can AI administrative automation save?</h3><p>Most businesses automate 5–20 hours per week of administrative work per employee. For a 10-person team, that can mean 50–200 hours reclaimed each week.</p></div>
-      <div class="faq-item"><h3>Can AI automation handle invoice processing?</h3><p>Yes. AI can extract data from incoming invoices, validate against purchase orders, route for approval, and update your accounting system automatically — with near-zero manual intervention.</p></div>
-      <div class="faq-item"><h3>Does AI administrative automation work with my accounting software?</h3><p>Yes. DMC IA integrates with major accounting platforms including QuickBooks, Xero, Sage, and custom ERPs, as well as email and calendar platforms.</p></div>
-      <div class="faq-item"><h3>Is administrative AI automation secure for sensitive business data?</h3><p>Yes. DMC IA implements strict data handling protocols, encryption, and access controls. Sensitive financial and operational data is protected at every step.</p></div>
-      <div class="faq-item"><h3>How quickly can administrative AI automation be deployed?</h3><p>Most administrative automation projects are live within 2–4 weeks. Simple workflows like invoice automation can be deployed in under a week.</p></div>
+      <div class="faq-item"><h3 data-i18n="admin_faq1q">What administrative tasks can AI automate?</h3><p data-i18n="admin_faq1a">AI can automate invoice generation, payment reminders, appointment scheduling, email management, document processing, data entry, expense reporting, calendar management, and contract handling.</p></div>
+      <div class="faq-item"><h3 data-i18n="admin_faq2q">How much time can AI administrative automation save?</h3><p data-i18n="admin_faq2a">Most businesses automate 5–20 hours per week of administrative work per employee. For a 10-person team, that can mean 50–200 hours reclaimed each week.</p></div>
+      <div class="faq-item"><h3 data-i18n="admin_faq3q">Can AI automation handle invoice processing?</h3><p data-i18n="admin_faq3a">Yes. AI can extract data from incoming invoices, validate against purchase orders, route for approval, and update your accounting system automatically — with near-zero manual intervention.</p></div>
+      <div class="faq-item"><h3 data-i18n="admin_faq4q">Does AI administrative automation work with my accounting software?</h3><p data-i18n="admin_faq4a">Yes. DMC IA integrates with major accounting platforms including QuickBooks, Xero, Sage, and custom ERPs, as well as email and calendar platforms.</p></div>
+      <div class="faq-item"><h3 data-i18n="admin_faq5q">Is administrative AI automation secure for sensitive business data?</h3><p data-i18n="admin_faq5a">Yes. DMC IA implements strict data handling protocols, encryption, and access controls. Sensitive financial and operational data is protected at every step.</p></div>
+      <div class="faq-item"><h3 data-i18n="admin_faq6q">How quickly can administrative AI automation be deployed?</h3><p data-i18n="admin_faq6a">Most administrative automation projects are live within 2–4 weeks. Simple workflows like invoice automation can be deployed in under a week.</p></div>
     </div>
   </div>
 </section>
 
 <section class="content-section">
   <div class="inner">
-    <h2>Explore Related Services</h2>
+    <h2 data-i18n="admin_related_h2">Explore Related Services</h2>
     <div class="related-links">
-      <a class="related-link" href="/services/ai-workflow/"><span>Service</span><strong>AI Workflow Automation</strong></a>
-      <a class="related-link" href="/services/business-automation/"><span>Service</span><strong>Business Process Automation</strong></a>
-      <a class="related-link" href="/services/autonomous-ai-agent/"><span>Service</span><strong>Autonomous AI Agents</strong></a>
-      <a class="related-link" href="/sectors/medical/"><span>Sector</span><strong>Medical Offices</strong></a>
-      <a class="related-link" href="/sectors/real-estate/"><span>Sector</span><strong>Real Estate</strong></a>
+      <a class="related-link" href="/services/ai-workflow/"><span data-i18n="admin_rel1lbl">Service</span><strong data-i18n="admin_rel1">AI Workflow Automation</strong></a>
+      <a class="related-link" href="/services/business-automation/"><span data-i18n="admin_rel2lbl">Service</span><strong data-i18n="admin_rel2">Business Process Automation</strong></a>
+      <a class="related-link" href="/services/autonomous-ai-agent/"><span data-i18n="admin_rel3lbl">Service</span><strong data-i18n="admin_rel3">Autonomous AI Agents</strong></a>
+      <a class="related-link" href="/sectors/medical/"><span data-i18n="admin_rel4lbl">Sector</span><strong data-i18n="admin_rel4">Medical Offices</strong></a>
+      <a class="related-link" href="/sectors/real-estate/"><span data-i18n="admin_rel5lbl">Sector</span><strong data-i18n="admin_rel5">Real Estate</strong></a>
     </div>
   </div>
 </section>
 
 <section class="cta-banner">
   <div class="cta-inner">
-    <h2>Stop wasting time on administration.</h2>
-    <p>Get a free AI audit and discover exactly how much administrative time AI can reclaim for your team.</p>
+    <h2 data-i18n="admin_cta_h2">Stop wasting time on administration.</h2>
+    <p data-i18n="admin_cta_p">Get a free AI audit and discover exactly how much administrative time AI can reclaim for your team.</p>
     <div class="cta-btns">
-      <a class="btn btn-accent" href="/contact.html">Get Free AI Audit</a>
-      <a class="btn btn-outline" href="/contact.html">Book a Call</a>
+      <a class="btn btn-accent" href="/contact.html" data-i18n="admin_cta_btn1">Get Free AI Audit</a>
+      <a class="btn btn-outline" href="/contact.html" data-i18n="admin_cta_btn2">Book a Call</a>
     </div>
   </div>
 </section>
