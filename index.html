@@ -152,6 +152,7 @@ main{flex:1;display:flex;flex-direction:column;}
   position:absolute;inset:0;width:100%;height:100%;
   pointer-events:none;z-index:0;
   opacity:0;transition:opacity 1.2s ease;
+  will-change:transform;transform:translateZ(0);
 }
 #hero-canvas.ready{opacity:1;}
 .hero-inner{position:relative;z-index:1;}
@@ -512,19 +513,27 @@ main{flex:1;display:flex;flex-direction:column;}
 <script src="js/layout.js" defer></script>
 <script>
 (function(){
+  /* Respect prefers-reduced-motion */
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
   var canvas = document.getElementById('hero-canvas');
   if(!canvas) return;
   var section = canvas.parentElement;
   var ctx = canvas.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio||1, 2); /* cap à 2 pour perf */
+  var isMobile = window.innerWidth < 768;
   var particles = [];
-  var mouse = { x: null, y: null, radius: 160 };
+  var mouse = { x: null, y: null, radius: isMobile ? 100 : 160 };
   var raf;
+  var resizeTimer;
 
   /* DMC IA palette */
-  var C_DOT  = 'rgba(0,229,160,0.55)';   /* --accent green  */
-  var C_LINE = [0,229,160];              /* green lines     */
-  var C_NEAR = [0,200,255];              /* blue near mouse */
-  var BG     = [12,12,16];              /* --bg            */
+  var C_LINE = [0,229,160];
+  var C_NEAR = [0,200,255];
+  var BG     = [12,12,16];
+
+  /* Taille logique du canvas (CSS px) */
+  var W = 0, H = 0;
 
   function Particle(x,y,dx,dy,r){
     this.x=x; this.y=y; this.dx=dx; this.dy=dy; this.r=r;
@@ -532,16 +541,16 @@ main{flex:1;display:flex;flex-direction:column;}
   Particle.prototype.draw=function(){
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=C_DOT;
+    ctx.fillStyle='rgba(0,229,160,0.55)';
     ctx.fill();
   };
   Particle.prototype.update=function(){
-    if(this.x>canvas.width||this.x<0)  this.dx=-this.dx;
-    if(this.y>canvas.height||this.y<0) this.dy=-this.dy;
+    if(this.x>W||this.x<0) this.dx=-this.dx;
+    if(this.y>H||this.y<0) this.dy=-this.dy;
     if(mouse.x!==null){
       var dx=mouse.x-this.x, dy=mouse.y-this.y;
       var dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<mouse.radius+this.r){
+      if(dist<mouse.radius+this.r&&dist>0){
         var f=(mouse.radius-dist)/mouse.radius;
         this.x-=(dx/dist)*f*4;
         this.y-=(dy/dist)*f*4;
@@ -553,12 +562,15 @@ main{flex:1;display:flex;flex-direction:column;}
 
   function init(){
     particles=[];
-    var n=Math.floor((canvas.width*canvas.height)/11000);
+    /* Moins de particules sur mobile pour la performance */
+    var divisor = isMobile ? 16000 : 11000;
+    var max     = isMobile ? 30    : 120;
+    var n = Math.min(Math.floor((W*H)/divisor), max);
     for(var i=0;i<n;i++){
       var r=Math.random()*1.5+0.5;
       particles.push(new Particle(
-        Math.random()*(canvas.width-r*4)+r*2,
-        Math.random()*(canvas.height-r*4)+r*2,
+        Math.random()*(W-r*4)+r*2,
+        Math.random()*(H-r*4)+r*2,
         (Math.random()*0.3-0.15),
         (Math.random()*0.3-0.15),
         r
@@ -567,7 +579,6 @@ main{flex:1;display:flex;flex-direction:column;}
   }
 
   function connect(){
-    var W=canvas.width, H=canvas.height;
     var threshold=(W/7)*(H/7);
     for(var a=0;a<particles.length;a++){
       for(var b=a+1;b<particles.length;b++){
@@ -578,7 +589,7 @@ main{flex:1;display:flex;flex-direction:column;}
           var near=false;
           if(mouse.x!==null){
             var mx=particles[a].x-mouse.x, my=particles[a].y-mouse.y;
-            near=Math.sqrt(mx*mx+my*my)<mouse.radius;
+            near=(mx*mx+my*my)<mouse.radius*mouse.radius;
           }
           var c=near?C_NEAR:C_LINE;
           ctx.strokeStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+op+')';
@@ -594,23 +605,38 @@ main{flex:1;display:flex;flex-direction:column;}
 
   function animate(){
     raf=requestAnimationFrame(animate);
-    /* fond semi-transparent pour effet traînée légère */
+    ctx.save();
+    ctx.scale(dpr,dpr);
     ctx.fillStyle='rgba('+BG[0]+','+BG[1]+','+BG[2]+',0.88)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillRect(0,0,W,H);
     for(var i=0;i<particles.length;i++) particles[i].update();
     connect();
+    ctx.restore();
   }
 
-  function resize(){
-    var rect=section.getBoundingClientRect();
-    canvas.width=section.offsetWidth;
-    canvas.height=section.offsetHeight;
+  function applySize(){
+    W = section.offsetWidth;
+    H = section.offsetHeight;
+    /* Taille physique du canvas (pixels réels) */
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    /* Taille CSS affichée */
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
     init();
   }
 
-  window.addEventListener('resize',resize);
+  /* Debounce resize — évite les re-init multiples au changement d'orientation */
+  function onResize(){
+    isMobile = window.innerWidth < 768;
+    mouse.radius = isMobile ? 100 : 160;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applySize, 150);
+  }
 
-  /* La souris est relative à la section, pas à la fenêtre */
+  window.addEventListener('resize', onResize);
+
+  /* ── Souris (desktop) ── */
   section.addEventListener('mousemove',function(e){
     var r=section.getBoundingClientRect();
     mouse.x=e.clientX-r.left;
@@ -620,8 +646,18 @@ main{flex:1;display:flex;flex-direction:column;}
     mouse.x=null; mouse.y=null;
   });
 
-  /* Active pointer events sur le canvas uniquement pour le mousemove de section */
-  resize();
+  /* ── Touch (mobile) ── */
+  section.addEventListener('touchmove',function(e){
+    var t=e.touches[0];
+    var r=section.getBoundingClientRect();
+    mouse.x=t.clientX-r.left;
+    mouse.y=t.clientY-r.top;
+  },{passive:true});
+  section.addEventListener('touchend',function(){
+    mouse.x=null; mouse.y=null;
+  },{passive:true});
+
+  applySize();
   animate();
   setTimeout(function(){ canvas.classList.add('ready'); },100);
 })();
