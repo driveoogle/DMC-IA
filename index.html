@@ -148,14 +148,12 @@ main{flex:1;display:flex;flex-direction:column;}
   padding:8rem 2rem 6rem;border-bottom:1px solid var(--border);
   position:relative;overflow:hidden;
 }
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle at 50% 0%, rgba(0,229,160,0.07) 0%, transparent 60%),
-    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
-  background-size:100% 100%, 60px 60px, 60px 60px;
-  pointer-events:none;
+#hero-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  opacity:0;transition:opacity 1.2s ease;
 }
+#hero-canvas.ready{opacity:1;}
 .hero-inner{position:relative;z-index:1;}
 .hero .tag{margin-bottom:2.5rem;}
 .hero h1{
@@ -271,6 +269,7 @@ main{flex:1;display:flex;flex-direction:column;}
 
   <!-- HERO -->
   <section class="hero" aria-label="Hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
       <div class="tag" role="text">
         <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -511,6 +510,122 @@ main{flex:1;display:flex;flex-direction:column;}
 <div id="footer-placeholder"></div>
 <script src="js/i18n.js" defer></script>
 <script src="js/layout.js" defer></script>
+<script>
+(function(){
+  var canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  var section = canvas.parentElement;
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var mouse = { x: null, y: null, radius: 160 };
+  var raf;
+
+  /* DMC IA palette */
+  var C_DOT  = 'rgba(0,229,160,0.55)';   /* --accent green  */
+  var C_LINE = [0,229,160];              /* green lines     */
+  var C_NEAR = [0,200,255];              /* blue near mouse */
+  var BG     = [12,12,16];              /* --bg            */
+
+  function Particle(x,y,dx,dy,r){
+    this.x=x; this.y=y; this.dx=dx; this.dy=dy; this.r=r;
+  }
+  Particle.prototype.draw=function(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=C_DOT;
+    ctx.fill();
+  };
+  Particle.prototype.update=function(){
+    if(this.x>canvas.width||this.x<0)  this.dx=-this.dx;
+    if(this.y>canvas.height||this.y<0) this.dy=-this.dy;
+    if(mouse.x!==null){
+      var dx=mouse.x-this.x, dy=mouse.y-this.y;
+      var dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<mouse.radius+this.r){
+        var f=(mouse.radius-dist)/mouse.radius;
+        this.x-=(dx/dist)*f*4;
+        this.y-=(dy/dist)*f*4;
+      }
+    }
+    this.x+=this.dx; this.y+=this.dy;
+    this.draw();
+  };
+
+  function init(){
+    particles=[];
+    var n=Math.floor((canvas.width*canvas.height)/11000);
+    for(var i=0;i<n;i++){
+      var r=Math.random()*1.5+0.5;
+      particles.push(new Particle(
+        Math.random()*(canvas.width-r*4)+r*2,
+        Math.random()*(canvas.height-r*4)+r*2,
+        (Math.random()*0.3-0.15),
+        (Math.random()*0.3-0.15),
+        r
+      ));
+    }
+  }
+
+  function connect(){
+    var W=canvas.width, H=canvas.height;
+    var threshold=(W/7)*(H/7);
+    for(var a=0;a<particles.length;a++){
+      for(var b=a+1;b<particles.length;b++){
+        var dist=(particles[a].x-particles[b].x)*(particles[a].x-particles[b].x)
+                +(particles[a].y-particles[b].y)*(particles[a].y-particles[b].y);
+        if(dist<threshold){
+          var op=0.55*(1-dist/threshold);
+          var near=false;
+          if(mouse.x!==null){
+            var mx=particles[a].x-mouse.x, my=particles[a].y-mouse.y;
+            near=Math.sqrt(mx*mx+my*my)<mouse.radius;
+          }
+          var c=near?C_NEAR:C_LINE;
+          ctx.strokeStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+op+')';
+          ctx.lineWidth=0.8;
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x,particles[a].y);
+          ctx.lineTo(particles[b].x,particles[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate(){
+    raf=requestAnimationFrame(animate);
+    /* fond semi-transparent pour effet traînée légère */
+    ctx.fillStyle='rgba('+BG[0]+','+BG[1]+','+BG[2]+',0.88)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(var i=0;i<particles.length;i++) particles[i].update();
+    connect();
+  }
+
+  function resize(){
+    var rect=section.getBoundingClientRect();
+    canvas.width=section.offsetWidth;
+    canvas.height=section.offsetHeight;
+    init();
+  }
+
+  window.addEventListener('resize',resize);
+
+  /* La souris est relative à la section, pas à la fenêtre */
+  section.addEventListener('mousemove',function(e){
+    var r=section.getBoundingClientRect();
+    mouse.x=e.clientX-r.left;
+    mouse.y=e.clientY-r.top;
+  });
+  section.addEventListener('mouseleave',function(){
+    mouse.x=null; mouse.y=null;
+  });
+
+  /* Active pointer events sur le canvas uniquement pour le mousemove de section */
+  resize();
+  animate();
+  setTimeout(function(){ canvas.classList.add('ready'); },100);
+})();
+</script>
 <script>document.addEventListener('DOMContentLoaded',function(){initLayout('home');});</script>
 </body>
 </html>

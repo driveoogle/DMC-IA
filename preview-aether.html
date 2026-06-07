@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APERÇU — AetherFlow Hero · DMC IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0c10;--bg2:#111118;--bg3:#16161f;--bg4:#1c1c28;
+  --accent:#00e5a0;--accent2:#7c5cfc;--accent3:#00c8ff;
+  --accent-dim:rgba(0,229,160,0.10);--border:rgba(255,255,255,0.08);
+  --border-acc:rgba(0,229,160,0.25);--text:#f0f0f8;
+  --text-dim:rgba(240,240,248,0.55);--text-faint:rgba(240,240,248,0.28);
+  --radius:14px;--nav-h:68px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4rem;height:var(--nav-h);
+  border-bottom:1px solid var(--border);
+  background:rgba(12,12,16,0.92);backdrop-filter:blur(16px);
+  position:sticky;top:0;z-index:100;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-dot{width:30px;height:30px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.brand-name{font-family:'DM Mono',monospace;font-weight:500;font-size:0.95rem;letter-spacing:0.06em;}
+.nav-center{display:flex;align-items:center;gap:2rem;position:absolute;left:50%;transform:translateX(-50%);}
+.nav-link{font-size:0.875rem;color:var(--text-dim);}
+.nav-link.active{color:var(--text);font-weight:500;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.lang-switch{display:flex;border:1px solid var(--border);border-radius:100px;overflow:hidden;background:var(--bg3);}
+.lang-btn{font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;color:var(--text-faint);background:transparent;border:none;padding:5px 14px;cursor:pointer;}
+.lang-btn.active{background:var(--accent);color:var(--bg);border-radius:100px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:500;padding:9px 20px;border-radius:100px;cursor:pointer;transition:all .2s;border:none;letter-spacing:0.01em;}
+.btn-accent{background:var(--accent);color:var(--bg);}
+.btn-accent:hover{background:#00ffb3;box-shadow:0 0 20px rgba(0,229,160,0.35);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn-ghost{background:var(--bg3);color:var(--text-dim);border:1px solid var(--border);}
+
+/* ── TAG ── */
+.tag{display:inline-flex;align-items:center;gap:7px;font-size:0.72rem;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border:1px solid var(--border-acc);border-radius:100px;padding:5px 14px;}
+.tag svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── HERO ── */
+.hero{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:8rem 2rem 6rem;border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  min-height:calc(100vh - var(--nav-h));
+}
+#hero-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  opacity:0;transition:opacity 1.2s ease;
+}
+#hero-canvas.ready{opacity:1;}
+.hero-inner{position:relative;z-index:1;}
+.hero .tag{margin-bottom:2.5rem;}
+.hero h1{font-size:clamp(3rem,7vw,6rem);font-weight:300;line-height:1.05;letter-spacing:-0.03em;max-width:840px;margin-bottom:1.75rem;}
+.hero h1 strong{font-weight:500;}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent3),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500;}
+.hero .sub{font-size:1.1rem;color:var(--text-dim);max-width:580px;font-weight:300;margin:0 auto 3rem;}
+.hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;}
+
+/* ── TRUST BAR ── */
+.trust-bar{padding:2rem 4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:0.75rem;color:var(--text-dim);font-size:0.9rem;}
+.trust-item svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── SERVICES ── */
+.caps-section{padding:6rem 4rem;border-bottom:1px solid var(--border);}
+.caps-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.caps-header h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;letter-spacing:-0.02em;}
+.section-label{font-size:0.7rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.acard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:border-color .25s,transform .25s;position:relative;overflow:hidden;}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent),var(--accent3));opacity:0;transition:opacity .3s;}
+.acard:hover{border-color:rgba(0,229,160,0.3);transform:translateY(-4px);}
+.acard:hover::before{opacity:1;}
+.acard-icon{width:42px;height:42px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;}
+.acard-icon svg{width:18px;height:18px;stroke:var(--text-dim);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.acard:hover .acard-icon svg{stroke:var(--accent);}
+.acard h3{font-size:0.95rem;font-weight:500;margin-bottom:0.5rem;}
+.acard p{font-size:0.82rem;color:var(--text-dim);font-weight:300;line-height:1.65;}
+
+/* ── PREVIEW BANNER ── */
+.preview-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:rgba(124,92,252,0.96);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  padding:0.75rem 2rem;font-size:0.8rem;font-family:'DM Mono',monospace;
+  letter-spacing:0.04em;color:#fff;
+}
+.preview-badge{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:100px;padding:2px 10px;font-size:0.68rem;}
+code{background:rgba(255,255,255,0.15);padding:2px 7px;border-radius:4px;}
+
+@media(max-width:900px){
+  .caps-section{padding:4rem 2rem;}
+  .nav-center{display:none;}
+  nav{padding:0 1.5rem;}
+  .trust-bar{gap:1.5rem;padding:1.5rem 2rem;}
+}
+@media(max-width:640px){
+  .hero{padding:5rem 1.25rem 4rem;}
+  .hero-ctas{flex-direction:column;width:100%;}
+  .hero-ctas .btn{width:100%;justify-content:center;}
+  .trust-bar{flex-direction:column;gap:1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="brand" href="#">
+    <div class="brand-dot">
+      <svg viewBox="0 0 30 30" fill="none">
+        <rect width="30" height="30" rx="8" fill="#0c0c10"/>
+        <path d="M8 22L15 8L22 22" stroke="#00e5a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 18H20" stroke="#00e5a0" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="brand-name">DMC IA</span>
+  </a>
+  <div class="nav-center">
+    <a class="nav-link active" href="#">Services</a>
+    <a class="nav-link" href="#">Formation</a>
+    <a class="nav-link" href="#">Secteurs</a>
+    <a class="nav-link" href="#">À propos</a>
+    <a class="nav-link" href="#">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active">EN</button>
+      <button class="lang-btn">PT</button>
+      <button class="lang-btn">FR</button>
+    </div>
+    <a class="btn btn-accent" href="#">Get Free AI Audit</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO avec particules -->
+  <section class="hero" aria-label="Hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="tag" role="text">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>AI Automation for Business</span>
+      </div>
+      <h1>
+        <strong>AI automation</strong><br>
+        <span class="grad">that works for your business.</span>
+      </h1>
+      <p class="sub">DMC IA deploys autonomous AI agents, workflow automation and intelligent AI systems that eliminate repetitive tasks — so SMEs across Portugal and Europe can scale without scaling headcount.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#">Get Free AI Audit</a>
+        <a class="btn btn-outline" href="#">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>No-code deployment</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Live within weeks</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>SME-focused</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <span>Portugal &amp; Europe</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>Brand-only authority</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="caps-section">
+    <div class="caps-header">
+      <div>
+        <div class="section-label">Our services</div>
+        <h2>Eight AI automation capabilities.</h2>
+      </div>
+      <a class="btn btn-ghost" href="#">View all services →</a>
+    </div>
+    <div class="caps">
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <h3>Autonomous AI Agents</h3>
+        <p>AI agents that act, decide, and execute tasks continuously — no supervision needed. Full business automation 24/7.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>AI Workflow Automation</h3>
+        <p>Streamline repetitive operations with intelligent agents that learn and adapt to your business processes.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <h3>AI Business Assistant</h3>
+        <p>Always-available AI assistant that handles inquiries, schedules, reporting and operational tasks.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>AI Customer Support</h3>
+        <p>Automated support agents that resolve queries, handle tickets, and escalate intelligently around the clock.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+        <h3>Administrative AI Automation</h3>
+        <p>Automate invoicing, scheduling, data entry, and back-office workflows to reduce overhead by up to 70%.</p>
+      </article>
+      <article class="acard">
+        <div class="acard-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <h3>Business Process Automation</h3>
+        <p>End-to-end automation that connects your tools, eliminates silos, and creates intelligent workflows.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- PREVIEW BANNER -->
+<div class="preview-banner">
+  <span class="preview-badge">APERÇU</span>
+  <strong>AetherFlow Hero intégré</strong>
+  <span style="opacity:.6">·</span>
+  <span style="opacity:.8">Déplacez la souris dans le hero pour voir les particules réagir</span>
+</div>
+
+<script>
+(function(){
+  var canvas=document.getElementById('hero-canvas');
+  if(!canvas)return;
+  var section=canvas.parentElement;
+  var ctx=canvas.getContext('2d');
+  var particles=[];
+  var mouse={x:null,y:null,radius:160};
+  var raf;
+  var C_LINE=[0,229,160];
+  var C_NEAR=[0,200,255];
+  var BG=[12,12,16];
+
+  function Particle(x,y,dx,dy,r){this.x=x;this.y=y;this.dx=dx;this.dy=dy;this.r=r;}
+  Particle.prototype.draw=function(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,229,160,0.55)';ctx.fill();
+  };
+  Particle.prototype.update=function(){
+    if(this.x>canvas.width||this.x<0)this.dx=-this.dx;
+    if(this.y>canvas.height||this.y<0)this.dy=-this.dy;
+    if(mouse.x!==null){
+      var dx=mouse.x-this.x,dy=mouse.y-this.y;
+      var d=Math.sqrt(dx*dx+dy*dy);
+      if(d<mouse.radius+this.r){var f=(mouse.radius-d)/mouse.radius;this.x-=(dx/d)*f*4;this.y-=(dy/d)*f*4;}
+    }
+    this.x+=this.dx;this.y+=this.dy;this.draw();
+  };
+
+  function init(){
+    particles=[];
+    var n=Math.floor((canvas.width*canvas.height)/11000);
+    for(var i=0;i<n;i++){
+      var r=Math.random()*1.5+0.5;
+      particles.push(new Particle(
+        Math.random()*(canvas.width-r*4)+r*2,
+        Math.random()*(canvas.height-r*4)+r*2,
+        Math.random()*0.3-0.15,Math.random()*0.3-0.15,r));
+    }
+  }
+
+  function connect(){
+    var thr=(canvas.width/7)*(canvas.height/7);
+    for(var a=0;a<particles.length;a++){
+      for(var b=a+1;b<particles.length;b++){
+        var d=(particles[a].x-particles[b].x)*(particles[a].x-particles[b].x)+(particles[a].y-particles[b].y)*(particles[a].y-particles[b].y);
+        if(d<thr){
+          var op=0.55*(1-d/thr);
+          var near=false;
+          if(mouse.x!==null){var mx=particles[a].x-mouse.x,my=particles[a].y-mouse.y;near=Math.sqrt(mx*mx+my*my)<mouse.radius;}
+          var c=near?C_NEAR:C_LINE;
+          ctx.strokeStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+op+')';
+          ctx.lineWidth=0.8;ctx.beginPath();
+          ctx.moveTo(particles[a].x,particles[a].y);ctx.lineTo(particles[b].x,particles[b].y);ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate(){
+    raf=requestAnimationFrame(animate);
+    ctx.fillStyle='rgba('+BG[0]+','+BG[1]+','+BG[2]+',0.88)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(var i=0;i<particles.length;i++)particles[i].update();
+    connect();
+  }
+
+  function resize(){
+    canvas.width=section.offsetWidth;
+    canvas.height=section.offsetHeight;
+    init();
+  }
+
+  window.addEventListener('resize',resize);
+  section.addEventListener('mousemove',function(e){
+    var r=section.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;
+  });
+  section.addEventListener('mouseleave',function(){mouse.x=null;mouse.y=null;});
+
+  resize();animate();
+  setTimeout(function(){canvas.classList.add('ready');},100);
+})();
+</script>
+</body>
+</html>
