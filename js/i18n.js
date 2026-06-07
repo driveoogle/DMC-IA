@@ -843,6 +843,17 @@ const translations = {
     aiauto_rel6lbl:"Sector", aiauto_rel6:"Startups",
     aiauto_cta_h2:"Ready to Automate Your Business?",
     aiauto_cta_btn1:"Get Free AI Audit", aiauto_cta_btn2:"Book a Call",
+
+    /* SERVICES INDEX */
+    svc_breadcrumb:"Services",
+    svc_tag:"AI Automation Services",
+    svc_h1:"All AI Automation Services",
+    svc_sub:"DMC IA delivers nine specialised AI automation services for SMEs across Portugal and Europe. Each solution is custom-built, deployed in weeks, and maintained end-to-end.",
+    svc_cta1:"Get Free AI Audit", svc_cta2:"Book a Call",
+    svc_c9t:"AI Automation Consulting", svc_c9p:"Strategic AI consulting to identify the highest-impact automation opportunities in your business and build a clear roadmap.",
+    svc_cta_h2:"Not Sure Where to Start?",
+    svc_cta_p:"Get a free AI audit and we'll map the exact automation opportunities in your business — no commitment required.",
+    svc_cta_btn1:"Get Free AI Audit", svc_cta_btn2:"Book a Call",
   },
 
   pt: {
@@ -1688,6 +1699,17 @@ const translations = {
     aiauto_rel6lbl:"Setor", aiauto_rel6:"Startups",
     aiauto_cta_h2:"Pronto para Automatizar a Sua Empresa?",
     aiauto_cta_btn1:"Diagnóstico IA Grátis", aiauto_cta_btn2:"Agendar Chamada",
+
+    /* SERVICES INDEX */
+    svc_breadcrumb:"Serviços",
+    svc_tag:"Serviços de Automação IA",
+    svc_h1:"Todos os Serviços de Automação IA",
+    svc_sub:"A DMC IA oferece nove serviços especializados de automação IA para PMEs em Portugal e na Europa. Cada solução é desenvolvida à medida, implementada em semanas e mantida de ponta a ponta.",
+    svc_cta1:"Diagnóstico IA Grátis", svc_cta2:"Agendar Chamada",
+    svc_c9t:"Consultoria em Automação IA", svc_c9p:"Consultoria estratégica de IA para identificar as oportunidades de automação de maior impacto no seu negócio e construir um roadmap claro.",
+    svc_cta_h2:"Não Sabe Por Onde Começar?",
+    svc_cta_p:"Faça um diagnóstico IA gratuito e mapeamos as oportunidades de automação no seu negócio — sem compromisso.",
+    svc_cta_btn1:"Diagnóstico IA Grátis", svc_cta_btn2:"Agendar Chamada",
   }
 };
 
