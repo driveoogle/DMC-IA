@@ -80,8 +80,8 @@ function renderFooter() {
   <div class="footer-copy">
     <span data-i18n="footer_copy">© 2026 DMC IA. All rights reserved.</span>
     <span style="display:flex;gap:1rem;">
-      <a class="footer-link" href="/privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
-      <a class="footer-link" href="/terms.html" data-i18n="footer_terms">Terms of Use</a>
+      <a class="footer-link" href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <a class="footer-link" href="terms.html" data-i18n="footer_terms">Terms of Use</a>
     </span>
   </div>
 </footer>`;
