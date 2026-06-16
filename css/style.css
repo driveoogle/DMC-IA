@@ -19,6 +19,7 @@
   --text-faint:rgba(240,240,248,0.28);
   --radius:    14px;
   --nav-h:     68px;
+  --nav-bg:    rgba(12,12,16,0.92);
 }
 
 /* ── Thème clair ── */
@@ -31,6 +32,7 @@ html.light{
   --text:      #0c0c10;
   --text-dim:  rgba(12,12,16,0.6);
   --text-faint:rgba(12,12,16,0.32);
+  --nav-bg:    rgba(255,255,255,0.92);
 }
 
 html,body{height:100%;}
@@ -55,7 +57,7 @@ nav{
   padding:0 4rem;height:var(--nav-h);
   border-bottom:1px solid var(--border);
   position:sticky;top:0;
-  background:rgba(12,12,16,0.92);
+  background:var(--nav-bg);
   backdrop-filter:blur(16px);
   z-index:100;
 }
