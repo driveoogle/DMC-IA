@@ -106,7 +106,7 @@ function renderChatWidget() {
   </button>
   <div class="chat-panel" id="chat-panel" hidden>
     <div class="chat-panel-header">
-      <span>🤖 Assistant DMC IA</span>
+      <span>🤖 Assistant MIDAS</span>
       <button class="chat-close" id="chat-close" aria-label="Fermer le chat">&times;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
