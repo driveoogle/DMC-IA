@@ -99,6 +99,12 @@ function initLayout(activePage) {
 
 /* ── Chat widget IA ── */
 function renderChatWidget() {
+  const t = (typeof translations !== 'undefined' && typeof currentLang !== 'undefined')
+    ? translations[currentLang] : {};
+  const title       = t.chat_title       || "🤖 MIDAS Assistant";
+  const greeting    = t.chat_greeting    || "👋 Hello! How can I help you?";
+  const placeholder = t.chat_placeholder || "Type your message...";
+
   return `
 <div class="chat-widget" id="chat-widget">
   <button class="chat-bubble" id="chat-bubble" aria-label="Ouvrir le chat assistant">
@@ -106,14 +112,14 @@ function renderChatWidget() {
   </button>
   <div class="chat-panel" id="chat-panel" hidden>
     <div class="chat-panel-header">
-      <span>🤖 Assistant MIDAS</span>
+      <span data-i18n="chat_title">${title}</span>
       <button class="chat-close" id="chat-close" aria-label="Fermer le chat">&times;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="chat-msg chat-msg-ai">👋 Bonjour ! Comment puis-je vous aider ?</div>
+      <div class="chat-msg chat-msg-ai" data-i18n="chat_greeting">${greeting}</div>
     </div>
     <div class="chat-input-row">
-      <input type="text" id="chat-input" class="chat-input" placeholder="Écrivez votre message...">
+      <input type="text" id="chat-input" class="chat-input" data-i18n-placeholder="chat_placeholder" placeholder="${placeholder}">
       <button id="chat-send" class="chat-send" aria-label="Envoyer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
@@ -159,8 +165,10 @@ function initChatWidget() {
     const typing = addMessage('ai', '…');
     typing.classList.add('chat-msg-typing');
     setTimeout(() => {
+      const t = (typeof translations !== 'undefined' && typeof currentLang !== 'undefined')
+        ? translations[currentLang] : {};
       typing.classList.remove('chat-msg-typing');
-      typing.textContent = "Merci pour votre message. Un membre de l'équipe DMC IA vous répondra rapidement.";
+      typing.textContent = t.chat_reply || "Thanks for your message. A member of the DMC IA team will get back to you shortly.";
       list.scrollTop = list.scrollHeight;
     }, 1200);
   }

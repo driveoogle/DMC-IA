@@ -4,6 +4,12 @@ const translations = {
     nav_home:"Home", nav_services:"Services", nav_catalogue:"Catalogue", nav_contact:"Contact", nav_cta:"Request a Quote",
     footer_copy:"© 2026 DMC IA. All rights reserved.", footer_privacy:"Privacy Policy", footer_terms:"Terms of Use",
 
+    /* CHAT WIDGET */
+    chat_title:"🤖 MIDAS Assistant",
+    chat_greeting:"👋 Hello! How can I help you?",
+    chat_placeholder:"Type your message...",
+    chat_reply:"Thanks for your message. A member of the DMC IA team will get back to you shortly.",
+
     /* HOME */
     home_tag:"AI Services & Solutions",
     home_hero_tag:"AI Automation for Business",
@@ -967,6 +973,12 @@ const translations = {
   pt: {
     nav_home:"Início", nav_services:"Serviços", nav_catalogue:"Catálogo", nav_contact:"Contacto", nav_cta:"Pede o teu orçamento",
     footer_copy:"© 2026 DMC IA. Todos os direitos reservados.", footer_privacy:"Política de Privacidade", footer_terms:"Termos de Utilização",
+
+    /* CHAT WIDGET */
+    chat_title:"🤖 Assistente MIDAS",
+    chat_greeting:"👋 Olá! Como posso ajudar?",
+    chat_placeholder:"Escreva a sua mensagem...",
+    chat_reply:"Obrigado pela sua mensagem. Um membro da equipa DMC IA irá responder em breve.",
 
     /* HOME */
     home_tag:"Serviços e Soluções de IA",
