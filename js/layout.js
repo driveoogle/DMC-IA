@@ -94,6 +94,79 @@ function initLayout(activePage) {
   if (footEl) footEl.outerHTML = renderFooter();
   initLang();
   initTilt();
+  initChatWidget();
+}
+
+/* ── Chat widget IA ── */
+function renderChatWidget() {
+  return `
+<div class="chat-widget" id="chat-widget">
+  <button class="chat-bubble" id="chat-bubble" aria-label="Ouvrir le chat assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </button>
+  <div class="chat-panel" id="chat-panel" hidden>
+    <div class="chat-panel-header">
+      <span>🤖 Assistant DMC IA</span>
+      <button class="chat-close" id="chat-close" aria-label="Fermer le chat">&times;</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg chat-msg-ai">👋 Bonjour ! Comment puis-je vous aider ?</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" class="chat-input" placeholder="Écrivez votre message...">
+      <button id="chat-send" class="chat-send" aria-label="Envoyer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>`;
+}
+
+function initChatWidget() {
+  if (document.getElementById('chat-widget')) return;
+  document.body.insertAdjacentHTML('beforeend', renderChatWidget());
+
+  const bubble   = document.getElementById('chat-bubble');
+  const panel    = document.getElementById('chat-panel');
+  const closeBtn = document.getElementById('chat-close');
+  const input    = document.getElementById('chat-input');
+  const sendBtn  = document.getElementById('chat-send');
+  const list     = document.getElementById('chat-messages');
+
+  function togglePanel(open) {
+    panel.hidden = !open;
+    bubble.classList.toggle('chat-bubble-active', open);
+  }
+
+  bubble.addEventListener('click', () => togglePanel(panel.hidden));
+  closeBtn.addEventListener('click', () => togglePanel(false));
+
+  function addMessage(sender, text) {
+    const div = document.createElement('div');
+    div.className = `chat-msg chat-msg-${sender}`;
+    div.textContent = text;
+    list.appendChild(div);
+    list.scrollTop = list.scrollHeight;
+    return div;
+  }
+
+  function send() {
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage('user', text);
+    input.value = '';
+
+    const typing = addMessage('ai', '…');
+    typing.classList.add('chat-msg-typing');
+    setTimeout(() => {
+      typing.classList.remove('chat-msg-typing');
+      typing.textContent = "Merci pour votre message. Un membre de l'équipe DMC IA vous répondra rapidement.";
+      list.scrollTop = list.scrollHeight;
+    }, 1200);
+  }
+
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
 }
 
 /* ── Card tilt effect ── */
