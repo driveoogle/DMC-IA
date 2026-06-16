@@ -543,7 +543,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   /* DMC IA palette */
   var C_LINE = [0,229,160];
   var C_NEAR = [0,200,255];
-  var BG     = [12,12,16];
+  var BG_DARK  = [12,12,16];
+  var BG_LIGHT = [255,255,255];
+  function currentBg(){
+    return document.documentElement.classList.contains('light') ? BG_LIGHT : BG_DARK;
+  }
 
   /* Taille logique du canvas (CSS px) */
   var W = 0, H = 0;
@@ -620,7 +624,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     raf=requestAnimationFrame(animate);
     ctx.save();
     ctx.scale(dpr,dpr);
-    ctx.fillStyle='rgba('+BG[0]+','+BG[1]+','+BG[2]+',0.88)';
+    var bg=currentBg();
+    ctx.fillStyle='rgba('+bg[0]+','+bg[1]+','+bg[2]+',0.88)';
     ctx.fillRect(0,0,W,H);
     for(var i=0;i<particles.length;i++) particles[i].update();
     connect();
