@@ -445,6 +445,23 @@ body.nav-mobile-locked{overflow:hidden;}
 .chat-msg-ai{background:var(--bg3);color:var(--text);align-self:flex-start;}
 .chat-msg-user{background:var(--accent);color:var(--bg);align-self:flex-end;}
 .chat-msg-typing{opacity:.5;}
+.chat-msg-link{
+  background:transparent;border:1px solid var(--border-acc);
+  color:var(--accent);font-family:'DM Mono',monospace;font-size:0.78rem;
+  cursor:pointer;
+}
+.chat-msg-link:hover{background:var(--accent-dim);}
+
+.chat-quick-replies{
+  display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;
+}
+.chat-quick-btn{
+  font-family:'DM Sans',sans-serif;font-size:0.75rem;
+  background:var(--bg3);color:var(--text-dim);
+  border:1px solid var(--border);border-radius:100px;
+  padding:6px 12px;cursor:pointer;transition:all .15s;
+}
+.chat-quick-btn:hover{border-color:var(--border-acc);color:var(--accent);}
 
 .chat-input-row{
   display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);

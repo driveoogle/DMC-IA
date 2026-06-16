@@ -147,6 +147,7 @@ function renderChatWidget() {
     <div class="chat-messages" id="chat-messages">
       <div class="chat-msg chat-msg-ai" data-i18n="chat_greeting">${greeting}</div>
     </div>
+    <div class="chat-quick-replies" id="chat-quick-replies"></div>
     <div class="chat-input-row">
       <input type="text" id="chat-input" class="chat-input" data-i18n-placeholder="chat_placeholder" placeholder="${placeholder}">
       <button id="chat-send" class="chat-send" aria-label="Envoyer">
@@ -155,6 +156,27 @@ function renderChatWidget() {
     </div>
   </div>
 </div>`;
+}
+
+/* Moteur d'intentions du support IA — reflète le service AI Customer Support */
+const chatIntents = [
+  { id:'pricing',   answerKey:'chat_a_pricing',   patterns:['price','pricing','cost','combien','preco','preço','tarif','quanto custa'] },
+  { id:'services',  answerKey:'chat_a_services',  patterns:['service','servico','serviço','what do you do','o que fazem','automation','automatizacao','automação'] },
+  { id:'audit',     answerKey:'chat_a_audit',     patterns:['audit','diagnostico','diagnóstico','demo','book a call','agendar','quote','orcamento','orçamento'] },
+  { id:'languages', answerKey:'chat_a_languages', patterns:['language','idioma','lingua','língua','speak french','speak english'] },
+  { id:'hours',      answerKey:'chat_a_hours',     patterns:['hours','horario','horário','available','disponivel','disponível','open 24','24/7'] },
+  { id:'human',      answerKey:'chat_a_human',     patterns:['human','humano','agent','speak to someone','falar com alguem','falar com alguém','representative'] },
+  { id:'greeting',   answerKey:'chat_a_greeting',  patterns:['hello','hi','ola','olá','bonjour','hey'] },
+  { id:'thanks',     answerKey:'chat_a_thanks',    patterns:['thanks','thank you','obrigado','obrigada','merci'] },
+];
+
+function matchChatIntent(rawText) {
+  const text = rawText
+    .toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '');
+  return chatIntents.find(intent =>
+    intent.patterns.some(p => text.includes(p.normalize('NFD').replace(/[̀-ͯ]/g, '')))
+  );
 }
 
 function initChatWidget() {
@@ -167,6 +189,7 @@ function initChatWidget() {
   const input    = document.getElementById('chat-input');
   const sendBtn  = document.getElementById('chat-send');
   const list     = document.getElementById('chat-messages');
+  const quickRow = document.getElementById('chat-quick-replies');
 
   function togglePanel(open) {
     panel.classList.toggle('chat-panel-open', open);
@@ -185,25 +208,63 @@ function initChatWidget() {
     return div;
   }
 
+  function currentT() {
+    return (typeof translations !== 'undefined' && typeof currentLang !== 'undefined')
+      ? translations[currentLang] : {};
+  }
+
+  function renderQuickReplies() {
+    const t = currentT();
+    const quick = [
+      { label: t.chat_quick_pricing  || '💶 Pricing',      text: t.chat_quick_pricing  ? t.chat_quick_pricing.replace(/^\S+\s/, '')  : 'Pricing' },
+      { label: t.chat_quick_services || '🤖 Our services', text: t.chat_quick_services ? t.chat_quick_services.replace(/^\S+\s/, '') : 'Our services' },
+      { label: t.chat_quick_audit    || '📋 Free AI audit', text: t.chat_quick_audit    ? t.chat_quick_audit.replace(/^\S+\s/, '')    : 'Free AI audit' },
+      { label: t.chat_quick_human    || '🙋 Talk to a human', text: t.chat_quick_human  ? t.chat_quick_human.replace(/^\S+\s/, '')    : 'Talk to a human' },
+    ];
+    quickRow.innerHTML = '';
+    quick.forEach(q => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-quick-btn';
+      btn.textContent = q.label;
+      btn.addEventListener('click', () => { input.value = q.text; send(); });
+      quickRow.appendChild(btn);
+    });
+  }
+
+  function respond(userText) {
+    const t = currentT();
+    const intent = matchChatIntent(userText);
+    const typing = addMessage('ai', '…');
+    typing.classList.add('chat-msg-typing');
+    setTimeout(() => {
+      typing.classList.remove('chat-msg-typing');
+      if (intent && t[intent.answerKey]) {
+        typing.textContent = t[intent.answerKey];
+      } else {
+        typing.textContent = t.chat_a_fallback || t.chat_reply || "Thanks for your message. A member of the DMC IA team will get back to you shortly.";
+      }
+      if (intent && (intent.id === 'human' || intent.id === 'audit')) {
+        const link = document.createElement('a');
+        link.href = '/contact.html';
+        link.className = 'chat-msg chat-msg-ai chat-msg-link';
+        link.textContent = '→ contact.html';
+        list.appendChild(link);
+      }
+      list.scrollTop = list.scrollHeight;
+    }, 700 + Math.random() * 500);
+  }
+
   function send() {
     const text = input.value.trim();
     if (!text) return;
     addMessage('user', text);
     input.value = '';
-
-    const typing = addMessage('ai', '…');
-    typing.classList.add('chat-msg-typing');
-    setTimeout(() => {
-      const t = (typeof translations !== 'undefined' && typeof currentLang !== 'undefined')
-        ? translations[currentLang] : {};
-      typing.classList.remove('chat-msg-typing');
-      typing.textContent = t.chat_reply || "Thanks for your message. A member of the DMC IA team will get back to you shortly.";
-      list.scrollTop = list.scrollHeight;
-    }, 1200);
+    respond(text);
   }
 
   sendBtn.addEventListener('click', send);
   input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+  renderQuickReplies();
 }
 
 /* ── Card tilt effect ── */

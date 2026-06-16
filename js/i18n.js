@@ -6,9 +6,22 @@ const translations = {
 
     /* CHAT WIDGET */
     chat_title:"🤖 MIDAS Assistant",
-    chat_greeting:"👋 Hello! How can I help you?",
+    chat_greeting:"👋 Hello! I'm MIDAS, your AI support agent. Ask me about our services, pricing, or book a free AI audit.",
     chat_placeholder:"Type your message...",
     chat_reply:"Thanks for your message. A member of the DMC IA team will get back to you shortly.",
+    chat_quick_pricing:"💶 Pricing",
+    chat_quick_services:"🤖 Our services",
+    chat_quick_audit:"📋 Free AI audit",
+    chat_quick_human:"🙋 Talk to a human",
+    chat_a_pricing:"Costs vary by complexity and scope — from single workflow automations to full business automation systems. The best next step is a free AI audit where we scope your needs and give you a tailored quote.",
+    chat_a_services:"We build autonomous AI agents, workflow automation, AI customer support, administrative automation, marketing automation, and AI stock management. Which one are you interested in?",
+    chat_a_audit:"Great — a free AI audit takes ~24h. Head to our contact page and tell us about your business, we'll identify the highest-impact automations for you.",
+    chat_a_languages:"I can help in English and Portuguese. DMC IA also serves clients in French across Portugal, France, Belgium, Switzerland and Luxembourg.",
+    chat_a_hours:"AI agents like me work 24/7 — no waiting, no business hours. For a human reply, our team responds within 24 hours.",
+    chat_a_human:"Connecting you with the DMC IA team — please use the contact form and we'll get back to you within 24 hours with full context from this conversation.",
+    chat_a_greeting:"👋 Hello! How can I help — pricing, services, or booking a free AI audit?",
+    chat_a_thanks:"You're welcome! Anything else I can help with?",
+    chat_a_fallback:"I've noted your message and I'm escalating it to a member of the DMC IA team, who will follow up shortly. In the meantime, would you like to know about our pricing, services, or book a free AI audit?",
 
     /* HOME */
     home_tag:"AI Services & Solutions",
@@ -976,9 +989,22 @@ const translations = {
 
     /* CHAT WIDGET */
     chat_title:"🤖 Assistente MIDAS",
-    chat_greeting:"👋 Olá! Como posso ajudar?",
+    chat_greeting:"👋 Olá! Sou o MIDAS, o seu agente de suporte com IA. Pergunte-me sobre os nossos serviços, preços, ou peça um diagnóstico IA gratuito.",
     chat_placeholder:"Escreva a sua mensagem...",
     chat_reply:"Obrigado pela sua mensagem. Um membro da equipa DMC IA irá responder em breve.",
+    chat_quick_pricing:"💶 Preços",
+    chat_quick_services:"🤖 Os nossos serviços",
+    chat_quick_audit:"📋 Diagnóstico IA grátis",
+    chat_quick_human:"🙋 Falar com um humano",
+    chat_a_pricing:"Os custos variam segundo a complexidade e o âmbito — desde automações simples até sistemas completos de automação empresarial. O melhor passo seguinte é um diagnóstico IA gratuito para definirmos o seu projeto e dar-lhe um orçamento à medida.",
+    chat_a_services:"Construímos agentes de IA autónomos, automação de workflows, suporte ao cliente com IA, automação administrativa, automação de marketing e gestão de stock com IA. Qual lhe interessa mais?",
+    chat_a_audit:"Ótimo — o diagnóstico IA gratuito demora cerca de 24h. Vá à nossa página de contacto e fale-nos do seu negócio; identificamos as automações com maior impacto para si.",
+    chat_a_languages:"Posso ajudar em português e inglês. A DMC IA também atende clientes em francês em Portugal, França, Bélgica, Suíça e Luxemburgo.",
+    chat_a_hours:"Agentes de IA como eu trabalham 24/7 — sem esperas, sem horário comercial. Para uma resposta humana, a nossa equipa responde dentro de 24 horas.",
+    chat_a_human:"A encaminhar para a equipa DMC IA — utilize o formulário de contacto e responderemos dentro de 24 horas com o contexto completo desta conversa.",
+    chat_a_greeting:"👋 Olá! Como posso ajudar — preços, serviços, ou marcar um diagnóstico IA gratuito?",
+    chat_a_thanks:"De nada! Mais alguma coisa em que possa ajudar?",
+    chat_a_fallback:"Registei a sua mensagem e estou a encaminhá-la para um membro da equipa DMC IA, que entrará em contacto em breve. Entretanto, quer saber sobre preços, serviços, ou marcar um diagnóstico IA gratuito?",
 
     /* HOME */
     home_tag:"Serviços e Soluções de IA",
