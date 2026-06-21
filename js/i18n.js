@@ -22,6 +22,9 @@ const translations = {
     chat_a_greeting:"👋 Hello! How can I help — pricing, services, or booking a free AI audit?",
     chat_a_thanks:"You're welcome! Anything else I can help with?",
     chat_a_fallback:"I've noted your message and I'm escalating it to a member of the DMC IA team, who will follow up shortly. In the meantime, would you like to know about our pricing, services, or book a free AI audit?",
+    chat_ask_email:"Message noted! So our team can reach you, what's your email address?",
+    chat_invalid_email:"Hmm, that doesn't look like a valid email. Could you try again?",
+    chat_email_thanks:"Perfect! We'll be in touch shortly. Is there anything else I can help you with?",
 
     /* HOME */
     home_tag:"AI Services & Solutions",
@@ -1005,6 +1008,9 @@ const translations = {
     chat_a_greeting:"👋 Olá! Como posso ajudar — preços, serviços, ou marcar um diagnóstico IA gratuito?",
     chat_a_thanks:"De nada! Mais alguma coisa em que possa ajudar?",
     chat_a_fallback:"Registei a sua mensagem e estou a encaminhá-la para um membro da equipa DMC IA, que entrará em contacto em breve. Entretanto, quer saber sobre preços, serviços, ou marcar um diagnóstico IA gratuito?",
+    chat_ask_email:"Mensagem registada! Para que a nossa equipa possa entrar em contacto consigo, qual é o seu endereço de email?",
+    chat_invalid_email:"Hmm, esse email não parece válido. Pode tentar novamente?",
+    chat_email_thanks:"Perfeito! Entraremos em contacto brevemente. Posso ajudá-lo com mais alguma coisa?",
 
     /* HOME */
     home_tag:"Serviços e Soluções de IA",

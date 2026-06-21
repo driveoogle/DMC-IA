@@ -231,8 +231,48 @@ function initChatWidget() {
     });
   }
 
+  let captureState = null; // null | { step: 'email', userMessage: string }
+
+  function isValidEmail(str) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
+  }
+
+  function submitLead(userMessage, email) {
+    fetch('https://formspree.io/f/mgojwygz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ message: userMessage, email: email, _subject: 'Novo lead via chat MIDAS' }),
+    }).catch(() => {}); // silencieux — l'utilisateur a déjà eu la confirmation
+  }
+
   function respond(userText) {
     const t = currentT();
+
+    // Étape 2 : on attend l'email
+    if (captureState && captureState.step === 'email') {
+      if (!isValidEmail(userText)) {
+        const typing = addMessage('ai', '…');
+        typing.classList.add('chat-msg-typing');
+        setTimeout(() => {
+          typing.classList.remove('chat-msg-typing');
+          typing.textContent = t.chat_invalid_email || "Hmm, esse email não parece válido. Pode tentar novamente?";
+          list.scrollTop = list.scrollHeight;
+        }, 600);
+        return;
+      }
+      // Email valide → envoi + confirmation
+      submitLead(captureState.userMessage, userText);
+      captureState = null;
+      const typing = addMessage('ai', '…');
+      typing.classList.add('chat-msg-typing');
+      setTimeout(() => {
+        typing.classList.remove('chat-msg-typing');
+        typing.textContent = t.chat_email_thanks || "Perfeito! Entraremos em contacto brevemente. Entretanto, posso ajudá-lo com mais alguma coisa?";
+        list.scrollTop = list.scrollHeight;
+      }, 700);
+      return;
+    }
+
     const intent = matchChatIntent(userText);
     const typing = addMessage('ai', '…');
     typing.classList.add('chat-msg-typing');
@@ -240,15 +280,17 @@ function initChatWidget() {
       typing.classList.remove('chat-msg-typing');
       if (intent && t[intent.answerKey]) {
         typing.textContent = t[intent.answerKey];
+        if (intent.id === 'human' || intent.id === 'audit') {
+          const link = document.createElement('a');
+          link.href = '/contact.html';
+          link.className = 'chat-msg chat-msg-ai chat-msg-link';
+          link.textContent = '→ contact.html';
+          list.appendChild(link);
+        }
       } else {
-        typing.textContent = t.chat_a_fallback || t.chat_reply || "Thanks for your message. A member of the DMC IA team will get back to you shortly.";
-      }
-      if (intent && (intent.id === 'human' || intent.id === 'audit')) {
-        const link = document.createElement('a');
-        link.href = '/contact.html';
-        link.className = 'chat-msg chat-msg-ai chat-msg-link';
-        link.textContent = '→ contact.html';
-        list.appendChild(link);
+        // Fallback → on enregistre le message et on demande l'email
+        captureState = { step: 'email', userMessage: userText };
+        typing.textContent = t.chat_ask_email || "Registei a sua mensagem! Para que a nossa equipa possa entrar em contacto consigo, qual é o seu endereço de email?";
       }
       list.scrollTop = list.scrollHeight;
     }, 700 + Math.random() * 500);
