@@ -151,10 +151,6 @@ const translations = {
     cat_5_desc:"Proactively monitors outstanding payments and manages the entire follow-up sequence — from gentle reminders to escalation — while maintaining a professional tone with your clients.",
     cat_5_f1:"Automated reminder sequences", cat_5_f2:"Escalation management", cat_5_f3:"Payment dispute handling", cat_5_f4:"Recovery reporting",
 
-    cat_6_title:"Scheduling & Appointments Agent",
-    cat_6_desc:"Manages your team's schedule and client appointments end-to-end — handling booking requests, availability checks, confirmations, and rescheduling without any back-and-forth.",
-    cat_6_f1:"Smart availability management", cat_6_f2:"Automated booking & confirmation", cat_6_f3:"Rescheduling & cancellations", cat_6_f4:"Calendar sync across tools",
-
     cat_7_title:"HR Recruitment Assistant",
     cat_7_desc:"Accelerates your hiring process from job posting to interview scheduling. Screens applications, ranks candidates against your criteria, and keeps every applicant informed at each stage.",
     cat_7_f1:"Job posting & distribution", cat_7_f2:"Application screening & scoring", cat_7_f3:"Interview scheduling", cat_7_f4:"Candidate communication",
@@ -1136,10 +1132,6 @@ const translations = {
     cat_5_title:"Agente de Seguimento de Pagamentos",
     cat_5_desc:"Monitoriza proativamente os pagamentos em atraso e gere toda a sequência de seguimento — de lembretes gentis à escalada — mantendo sempre um tom profissional com os seus clientes.",
     cat_5_f1:"Sequências automáticas de lembretes", cat_5_f2:"Gestão de escalada", cat_5_f3:"Tratamento de disputas de pagamento", cat_5_f4:"Relatórios de recuperação",
-
-    cat_6_title:"Agente de Planeamento & Consultas",
-    cat_6_desc:"Gere o horário da sua equipa e as consultas dos clientes de ponta a ponta — tratando pedidos de marcação, verificações de disponibilidade, confirmações e reagendamentos sem troca de emails.",
-    cat_6_f1:"Gestão inteligente de disponibilidade", cat_6_f2:"Marcação e confirmação automática", cat_6_f3:"Reagendamentos e cancelamentos", cat_6_f4:"Sincronização de calendário",
 
     cat_7_title:"Assistente de Recrutamento RH",
     cat_7_desc:"Acelera o processo de contratação desde a publicação da vaga até ao agendamento de entrevistas. Filtra candidaturas, classifica candidatos segundo os seus critérios e mantém todos informados em cada etapa.",
