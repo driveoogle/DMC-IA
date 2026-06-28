@@ -1,20 +1,18 @@
 <?php
 /**
  * DMC IA — Contact form handler
- * Receives POST, validates, and sends email to contact@dmc-ia.com
+ * Receives POST, validates, sends email and creates lead in dmc-ia-crm (HubSpot)
  */
 
 header('Content-Type: application/json');
 header('X-Content-Type-Options: nosniff');
 
-// Only accept POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'error' => 'Method not allowed']);
     exit;
 }
 
-// ── Sanitise inputs ──────────────────────────────────────────────────────────
 function clean(string $val): string {
     return htmlspecialchars(strip_tags(trim($val)), ENT_QUOTES, 'UTF-8');
 }
@@ -24,9 +22,8 @@ $email   = clean($_POST['email']   ?? '');
 $company = clean($_POST['company'] ?? '');
 $subject = clean($_POST['subject'] ?? '');
 $message = clean($_POST['message'] ?? '');
-$lang    = in_array($_POST['lang'] ?? 'en', ['en', 'pt']) ? $_POST['lang'] : 'en';
+$lang    = in_array($_POST['lang'] ?? 'fr', ['en', 'pt', 'fr']) ? $_POST['lang'] : 'fr';
 
-// ── Validate required fields ─────────────────────────────────────────────────
 if (empty($name) || empty($email) || empty($message)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'error' => 'Missing required fields']);
@@ -39,7 +36,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// ── Rate limiting (basic: one submission per IP per minute) ──────────────────
 $ip       = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $lockFile = sys_get_temp_dir() . '/dmcia_' . md5($ip) . '.lock';
 if (file_exists($lockFile) && (time() - filemtime($lockFile)) < 60) {
@@ -49,7 +45,7 @@ if (file_exists($lockFile) && (time() - filemtime($lockFile)) < 60) {
 }
 touch($lockFile);
 
-// ── Build email ──────────────────────────────────────────────────────────────
+// ── Envoyer l'email ──────────────────────────────────────────────────────────
 $to      = 'contact@dmc-ia.com';
 $subjectLine = $subject
     ? '[DMC IA Contact] ' . $subject
@@ -79,9 +75,31 @@ $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-// ── Send ─────────────────────────────────────────────────────────────────────
 $sent = mail($to, $subjectLine, $body, $headers);
 
+// ── Créer le lead dans dmc-ia-crm (HubSpot) — non-bloquant ──────────────────
+$crmPayload = json_encode([
+    'name'    => $name,
+    'email'   => $email,
+    'company' => $company,
+    'subject' => $subject,
+    'message' => $message,
+    'lang'    => $lang,
+]);
+
+$ch = curl_init('https://dmc-ia-crm-ten.vercel.app/api/contacts');
+curl_setopt_array($ch, [
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $crmPayload,
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json', 'Content-Length: ' . strlen($crmPayload)],
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT        => 5,
+    CURLOPT_SSL_VERIFYPEER => true,
+]);
+curl_exec($ch);
+curl_close($ch);
+
+// ── Réponse ──────────────────────────────────────────────────────────────────
 if ($sent) {
     echo json_encode(['success' => true]);
 } else {
