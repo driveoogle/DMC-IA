@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){var t=localStorage.getItem("theme");if(t==="light")document.documentElement.classList.add("light");})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Automation for SMEs | Save Time & Scale | DMC IA</title>
@@ -511,8 +512,8 @@ main{flex:1;display:flex;flex-direction:column;}
 
 </main>
 <div id="footer-placeholder"></div>
-<script src="js/i18n.js" defer></script>
-<script src="js/layout.js" defer></script>
+<script src="js/i18n.js?v=3" defer></script>
+<script src="js/layout.js?v=4" defer></script>
 <script>
 (function(){
   /* Respect prefers-reduced-motion */
@@ -532,7 +533,11 @@ main{flex:1;display:flex;flex-direction:column;}
   /* DMC IA palette */
   var C_LINE = [0,229,160];
   var C_NEAR = [0,200,255];
-  var BG     = [12,12,16];
+  var BG_DARK  = [12,12,16];
+  var BG_LIGHT = [255,255,255];
+  function currentBg(){
+    return document.documentElement.classList.contains('light') ? BG_LIGHT : BG_DARK;
+  }
 
   /* Taille logique du canvas (CSS px) */
   var W = 0, H = 0;
@@ -609,7 +614,8 @@ main{flex:1;display:flex;flex-direction:column;}
     raf=requestAnimationFrame(animate);
     ctx.save();
     ctx.scale(dpr,dpr);
-    ctx.fillStyle='rgba('+BG[0]+','+BG[1]+','+BG[2]+',0.88)';
+    var bg=currentBg();
+    ctx.fillStyle='rgba('+bg[0]+','+bg[1]+','+bg[2]+',0.88)';
     ctx.fillRect(0,0,W,H);
     for(var i=0;i<particles.length;i++) particles[i].update();
     connect();
