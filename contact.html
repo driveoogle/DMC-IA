@@ -127,17 +127,11 @@ main{flex:1;display:flex;flex-direction:column;}
     if(!email.includes('@')){eEl.textContent=currentLang==='pt'?'Por favor insira um email válido.':'Please enter a valid email address.';eEl.className='form-msg error';return;}
     btn.disabled=true;btn.textContent=t.contact_sending;
     const payload = {name,email,company,subject,message,lang:currentLang};
-    // Send to Make.com (fire-and-forget)
-    fetch('https://hook.eu1.make.com/m351x0vw28yliieuvbq8y3sysk28dxe9', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)
-    }).catch(()=>{});
     // Send to CRM API → HubSpot (fire-and-forget)
     fetch('https://dmc-ia-crm-ten.vercel.app/api/contacts', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body:JSON.stringify(payload)
     }).catch(()=>{});
-    // Send email notification via EmailJS
     emailjs.send('service_hs3zfkx','template_p2o5bss',{name,email,company,subject,message})
     .then(()=>{sEl.textContent=t.contact_success;sEl.className='form-msg success';['f-name','f-email','f-company','f-subject','f-msg'].forEach(id=>{document.getElementById(id).value='';});})
     .catch(()=>{eEl.textContent=t.contact_error;eEl.className='form-msg error';})
