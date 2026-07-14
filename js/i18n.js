@@ -163,6 +163,10 @@ const translations = {
     cat_9_desc:"Manages the full purchasing cycle with your suppliers — from generating purchase orders to tracking delivery and reconciling receipts. Reduces delays and keeps costs under control.",
     cat_9_f1:"Purchase order generation", cat_9_f2:"Supplier communication", cat_9_f3:"Delivery tracking", cat_9_f4:"Cost & spend analysis",
 
+    cat_10_title:"AI Booking & Accommodation Management Agent",
+    cat_10_desc:"Manages bookings, guest support and cleaning team coordination — all autonomously, 24/7, in multiple languages.",
+    cat_10_f1:"Receives & confirms bookings autonomously", cat_10_f2:"Responds via WhatsApp, Instagram & email", cat_10_f3:"Automatically contacts cleaning & maintenance team", cat_10_f4:"Support in PT, ES, EN, FR",
+
     /* FORMATION */
     nav_formation:"Training",
     form_tag:"Training & Upskilling",
@@ -1144,6 +1148,10 @@ const translations = {
     cat_9_title:"Agente de Compras a Fornecedores",
     cat_9_desc:"Gere o ciclo completo de compras com os seus fornecedores — desde a geração de ordens de compra até ao acompanhamento de entrega e reconciliação de recibos. Reduz atrasos e mantém os custos controlados.",
     cat_9_f1:"Geração de ordens de compra", cat_9_f2:"Comunicação com fornecedores", cat_9_f3:"Acompanhamento de entrega", cat_9_f4:"Análise de custos e despesas",
+
+    cat_10_title:"Agente IA de Booking & Gestão de Alojamento",
+    cat_10_desc:"Gere reservas, suporte a hóspedes e coordenação da equipa de limpeza — tudo de forma autónoma, 24h/7d, em múltiplas línguas.",
+    cat_10_f1:"Recebe e confirma reservas de forma autónoma", cat_10_f2:"Responde via WhatsApp, Instagram e email", cat_10_f3:"Contacta equipa de limpeza e manutenção automaticamente", cat_10_f4:"Suporte em PT, ES, EN, FR",
 
     /* FORMATION */
     nav_formation:"Formação",
