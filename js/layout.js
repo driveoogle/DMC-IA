@@ -31,6 +31,7 @@ function renderNav(activePage) {
     <a class="nav-link ${activePage==='services'?'active':''}" href="/services.html" data-i18n="nav_services">Services</a>
     <a class="nav-link ${activePage==='catalogue'?'active':''}" href="/catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
     <a class="nav-link ${activePage==='formation'?'active':''}" href="/formation.html" data-i18n="nav_formation">Training</a>
+    <a class="nav-link nav-link-midas ${activePage==='midas'?'active':''}" href="/midas-ia/" data-i18n="nav_midas">MIDAS IA</a>
     <a class="nav-link ${activePage==='contact'?'active':''}" href="/contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="nav-right">
@@ -48,6 +49,7 @@ function renderNav(activePage) {
     <a class="nav-mobile-link ${activePage==='services'?'active':''}" href="/services.html" data-i18n="nav_services">Services</a>
     <a class="nav-mobile-link ${activePage==='catalogue'?'active':''}" href="/catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
     <a class="nav-mobile-link ${activePage==='formation'?'active':''}" href="/formation.html" data-i18n="nav_formation">Training</a>
+    <a class="nav-mobile-link ${activePage==='midas'?'active':''}" href="/midas-ia/" data-i18n="nav_midas">MIDAS IA</a>
     <a class="nav-mobile-link ${activePage==='contact'?'active':''}" href="/contact.html" data-i18n="nav_contact">Contact</a>
     <a class="btn btn-accent" href="/contact.html" data-i18n="nav_cta">Request a Quote</a>
   </div>
@@ -86,6 +88,7 @@ function renderFooter() {
     <a class="footer-link" href="/services.html" data-i18n="nav_services">Services</a>
     <a class="footer-link" href="/catalogue.html" data-i18n="nav_catalogue">Catalogue</a>
     <a class="footer-link" href="/formation.html" data-i18n="nav_formation">Training</a>
+    <a class="footer-link" href="/midas-ia/" data-i18n="nav_midas">MIDAS IA</a>
     <a class="footer-link" href="/contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="footer-copy">
