@@ -1,7 +1,7 @@
 /* ── DMC IA — i18n ── */
 const translations = {
   en: {
-    nav_home:"Home", nav_services:"Services", nav_catalogue:"Catalogue", nav_contact:"Contact", nav_cta:"Request a Quote",
+    nav_home:"Home", nav_services:"Services", nav_catalogue:"Catalogue", nav_formation:"Training", nav_midas:"MIDAS IA", nav_contact:"Contact", nav_cta:"Request a Quote",
     footer_copy:"© 2026 DMC IA. All rights reserved.", footer_privacy:"Privacy Policy", footer_terms:"Terms of Use",
 
     /* CHAT WIDGET */
@@ -1010,7 +1010,7 @@ const translations = {
   },
 
   pt: {
-    nav_home:"Início", nav_services:"Serviços", nav_catalogue:"Catálogo", nav_contact:"Contacto", nav_cta:"Pede o teu orçamento",
+    nav_home:"Início", nav_services:"Serviços", nav_catalogue:"Catálogo", nav_formation:"Formação", nav_midas:"MIDAS IA", nav_contact:"Contacto", nav_cta:"Pede o teu orçamento",
     footer_copy:"© 2026 DMC IA. Todos os direitos reservados.", footer_privacy:"Política de Privacidade", footer_terms:"Termos de Utilização",
 
     /* CHAT WIDGET */
