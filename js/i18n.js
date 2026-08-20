@@ -168,6 +168,7 @@ const translations = {
     cat_10_f1:"Receives & confirms bookings autonomously", cat_10_f2:"Responds via WhatsApp, Instagram & email", cat_10_f3:"Automatically contacts cleaning & maintenance team", cat_10_f4:"Support in PT, ES, EN, FR",
 
     /* MIDAS IA PAGE */
+    midas_tagline:"Intelligence. Local. Autonomous.",
     midas_badge:"Proprietary LLM · Developed by DMC IA",
     midas_byline:"A large language model by",
     midas_lead:"MIDAS IA is a proprietary large language model developed by DMC IA, designed to operate locally within the client's environment. Built on the Hermes Agent architecture, MIDAS orchestrates autonomous AI agents that automate daily business tasks — from administrative processes to complex operational workflows — with no dependency on external cloud infrastructure.",
@@ -1176,6 +1177,7 @@ const translations = {
     cat_10_f1:"Recebe e confirma reservas de forma autónoma", cat_10_f2:"Responde via WhatsApp, Instagram e email", cat_10_f3:"Contacta equipa de limpeza e manutenção automaticamente", cat_10_f4:"Suporte em PT, ES, EN, FR",
 
     /* MIDAS IA PAGE */
+    midas_tagline:"Inteligência. Local. Autónoma.",
     midas_badge:"LLM Proprietário · Desenvolvido pela DMC IA",
     midas_byline:"Um large language model criado por",
     midas_lead:"MIDAS IA é um large language model proprietário desenvolvido pela DMC IA, concebido para operar localmente no ambiente do cliente. Construído sobre a arquitetura Hermes Agent, o MIDAS orquestra agentes IA autónomos que automatizam as tarefas diárias da empresa — desde processos administrativos a fluxos operacionais complexos — sem dependência de infraestrutura cloud externa.",
