@@ -105,7 +105,7 @@ main{flex:1;display:flex;flex-direction:column;}
   </div>
 </main>
 <div id="footer-placeholder"></div>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/i18n.js?v=5"></script>
 <script src="js/layout.js?v=5"></script>
 <script>
@@ -126,12 +126,8 @@ main{flex:1;display:flex;flex-direction:column;}
     if(!name||!email||!message){eEl.textContent=currentLang==='pt'?'Por favor preencha os campos obrigatórios.':'Please fill in all required fields.';eEl.className='form-msg error';return;}
     if(!email.includes('@')){eEl.textContent=currentLang==='pt'?'Por favor insira um email válido.':'Please enter a valid email address.';eEl.className='form-msg error';return;}
     btn.disabled=true;btn.textContent=t.contact_sending;
-    const payload = {name,email,company,subject,message,lang:currentLang};
-    // Send to CRM API → HubSpot (fire-and-forget)
-    fetch('https://dmc-ia-crm-ten.vercel.app/api/contacts', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)
-    }).catch(()=>{});
+    // The CRM API is authenticated and cannot be called from this public page —
+    // leads reach HubSpot server-side via php/contact.php.
     emailjs.send('service_hs3zfkx','template_p2o5bss',{name,email,company,subject,message})
     .then(()=>{sEl.textContent=t.contact_success;sEl.className='form-msg success';['f-name','f-email','f-company','f-subject','f-msg'].forEach(id=>{document.getElementById(id).value='';});})
     .catch(()=>{eEl.textContent=t.contact_error;eEl.className='form-msg error';})
