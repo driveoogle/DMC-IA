@@ -68,6 +68,7 @@ export default async function handler(req, res) {
 
   const email = clean(body.email, 254);
   const name = clean(body.name, 200);
+  const phone = clean(body.phone, 40);
   const company = clean(body.company, 200);
   const subject = clean(body.subject, 200);
   const message = clean(body.message, 5000);
@@ -82,6 +83,7 @@ export default async function handler(req, res) {
     email,
     firstname,
     lastname: rest.join(' '),
+    phone,
     company,
     subject__c: subject,
     message__c: message,
