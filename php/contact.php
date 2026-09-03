@@ -102,30 +102,27 @@ $crmPayload = json_encode([
     'lang'    => $lang,
 ]);
 
-// The CRM endpoint is authenticated; without a token configured we simply skip
-// the forward rather than sending personal data to an unauthenticated URL.
-$crmToken = getenv('CRM_API_TOKEN') ?: '';
-$crmUrl   = getenv('CRM_LEADS_URL') ?: 'https://dmc-ia-crm-ten.vercel.app/api/leads';
+// Forward the lead to the CRM. POST /api/contacts is the CRM's public,
+// write-only lead endpoint (it creates/updates a HubSpot contact); it needs
+// no credential. Override with CRM_LEADS_URL if the endpoint ever moves.
+$crmUrl = getenv('CRM_LEADS_URL') ?: 'https://dmc-ia-crm-ten.vercel.app/api/contacts';
 
-if ($crmToken !== '') {
-    $ch = curl_init($crmUrl);
-    curl_setopt_array($ch, [
-        CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => $crmPayload,
-        CURLOPT_HTTPHEADER     => [
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($crmPayload),
-            'Authorization: Bearer ' . $crmToken,
-        ],
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 5,
-        CURLOPT_SSL_VERIFYPEER => true,
-        CURLOPT_SSL_VERIFYHOST => 2,
-        CURLOPT_FOLLOWLOCATION => false,
-    ]);
-    curl_exec($ch);
-    curl_close($ch);
-}
+$ch = curl_init($crmUrl);
+curl_setopt_array($ch, [
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $crmPayload,
+    CURLOPT_HTTPHEADER     => [
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($crmPayload),
+    ],
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT        => 5,
+    CURLOPT_SSL_VERIFYPEER => true,
+    CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_FOLLOWLOCATION => false,
+]);
+curl_exec($ch);
+curl_close($ch);
 
 // ── Réponse ──────────────────────────────────────────────────────────────────
 if ($sent) {
