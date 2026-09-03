@@ -93,6 +93,51 @@ export function guard(req, res, { methods }) {
   return true;
 }
 
+/**
+ * Guard for a PUBLIC, write-only endpoint (the website contact form).
+ *
+ * Unlike `guard`, this requires no shared secret — the public form has no
+ * credential to present — but it still restricts the browser origin, enforces
+ * the method, and sets security headers. It is only safe for endpoints that
+ * WRITE (create a lead) and never return stored data, so a caller can never
+ * read the CRM through it. The HubSpot token stays server-side.
+ *
+ * Origins come from CRM_FORM_ORIGINS (comma-separated), falling back to
+ * CRM_ALLOWED_ORIGINS.
+ */
+export function publicFormGuard(req, res, { methods }) {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  res.setHeader('Cache-Control', 'no-store');
+
+  const origin = req.headers.origin;
+  const allowed = (process.env.CRM_FORM_ORIGINS || process.env.CRM_ALLOWED_ORIGINS || '')
+    .split(',')
+    .map(o => o.trim())
+    .filter(Boolean);
+
+  res.setHeader('Vary', 'Origin');
+  if (origin && allowed.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', [...methods, 'OPTIONS'].join(', '));
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Max-Age', '600');
+    res.status(204).end();
+    return false;
+  }
+
+  if (!methods.includes(req.method)) {
+    res.setHeader('Allow', [...methods, 'OPTIONS'].join(', '));
+    res.status(405).json({ error: 'Method not allowed' });
+    return false;
+  }
+
+  return true;
+}
+
 export function hubspotToken(res) {
   const token = process.env.HUBSPOT_TOKEN;
   if (!token) {
