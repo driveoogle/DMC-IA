@@ -81,6 +81,7 @@ main{flex:1;display:flex;flex-direction:column;}
         <div class="form-field"><label for="f-company" data-i18n="contact_f_company">Company (optional)</label><input type="text" id="f-company" name="company" autocomplete="organization"></div>
         <div class="form-field"><label for="f-subject" data-i18n="contact_f_subject">Subject</label><input type="text" id="f-subject" name="subject"></div>
         <div class="form-field full"><label for="f-msg" data-i18n="contact_f_msg">Message</label><textarea id="f-msg" name="message" required data-i18n-placeholder="contact_f_msg" placeholder="Tell us about your project…"></textarea></div>
+        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
       </div>
       <div class="form-submit">
         <button class="btn-submit" id="submit-btn" type="button" onclick="submitContact()" data-i18n="contact_f_btn">Send message</button>
@@ -120,14 +121,20 @@ main{flex:1;display:flex;flex-direction:column;}
   function submitContact() {
     const name=document.getElementById('f-name').value.trim(), email=document.getElementById('f-email').value.trim(),
           company=document.getElementById('f-company').value.trim(), subject=document.getElementById('f-subject').value.trim(),
-          message=document.getElementById('f-msg').value.trim(), t=translations[currentLang];
+          message=document.getElementById('f-msg').value.trim(), website=document.getElementById('f-website').value,
+          t=translations[currentLang];
     const sEl=document.getElementById('form-success'), eEl=document.getElementById('form-error'), btn=document.getElementById('submit-btn');
     sEl.className='form-msg'; eEl.className='form-msg';
     if(!name||!email||!message){eEl.textContent=currentLang==='pt'?'Por favor preencha os campos obrigatórios.':'Please fill in all required fields.';eEl.className='form-msg error';return;}
     if(!email.includes('@')){eEl.textContent=currentLang==='pt'?'Por favor insira um email válido.':'Please enter a valid email address.';eEl.className='form-msg error';return;}
     btn.disabled=true;btn.textContent=t.contact_sending;
-    // The CRM API is authenticated and cannot be called from this public page —
-    // leads reach HubSpot server-side via php/contact.php.
+    // Register the lead in the CRM (HubSpot) via the write-only public endpoint.
+    // The HubSpot token stays server-side on Vercel; this call never returns CRM data.
+    // Fire-and-forget: a CRM hiccup must not block the user's confirmation.
+    fetch('https://dmc-ia-crm-ten.vercel.app/api/leads', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,email,company,subject,message,lang:currentLang,website})
+    }).catch(()=>{});
     emailjs.send('service_hs3zfkx','template_p2o5bss',{name,email,company,subject,message})
     .then(()=>{sEl.textContent=t.contact_success;sEl.className='form-msg success';['f-name','f-email','f-company','f-subject','f-msg'].forEach(id=>{document.getElementById(id).value='';});})
     .catch(()=>{eEl.textContent=t.contact_error;eEl.className='form-msg error';})
