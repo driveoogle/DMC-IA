@@ -162,6 +162,9 @@ const translations = {
     cat_9_title:"Supplier Purchasing Agent",
     cat_9_desc:"Manages the full purchasing cycle with your suppliers — from generating purchase orders to tracking delivery and reconciling receipts. Reduces delays and keeps costs under control.",
     cat_9_f1:"Purchase order generation", cat_9_f2:"Supplier communication", cat_9_f3:"Delivery tracking", cat_9_f4:"Cost & spend analysis",
+    cat_11_title:"Event & Ticketing Platform",
+    cat_11_desc:"A complete website for festivals and events — line-up, online ticket sales, official merchandise shop and an admin dashboard to follow every order in real time.",
+    cat_11_f1:"Named tickets with phased pricing", cat_11_f2:"Secure card payment & PDF tickets", cat_11_f3:"Merch shop with cart & spend-based discounts", cat_11_f4:"Order admin, invoices & per-line VAT",
 
     cat_10_title:"AI Booking & Accommodation Management Agent",
     cat_10_desc:"Manages bookings, guest support and cleaning team coordination — all autonomously, 24/7, in multiple languages.",
@@ -1171,6 +1174,9 @@ const translations = {
     cat_9_title:"Agente de Compras a Fornecedores",
     cat_9_desc:"Gere o ciclo completo de compras com os seus fornecedores — desde a geração de ordens de compra até ao acompanhamento de entrega e reconciliação de recibos. Reduz atrasos e mantém os custos controlados.",
     cat_9_f1:"Geração de ordens de compra", cat_9_f2:"Comunicação com fornecedores", cat_9_f3:"Acompanhamento de entrega", cat_9_f4:"Análise de custos e despesas",
+    cat_11_title:"Plataforma de Eventos & Bilheteira",
+    cat_11_desc:"Um site completo para festivais e eventos — line-up, venda de bilhetes online, loja de merchandising oficial e painel de administração para acompanhar cada encomenda em tempo real.",
+    cat_11_f1:"Bilhetes nominativos com preços por fases", cat_11_f2:"Pagamento seguro por cartão e bilhetes em PDF", cat_11_f3:"Loja com carrinho e descontos por valor de compra", cat_11_f4:"Gestão de encomendas, faturas e IVA por linha",
 
     cat_10_title:"Agente IA de Booking & Gestão de Alojamento",
     cat_10_desc:"Gere reservas, suporte a hóspedes e coordenação da equipa de limpeza — tudo de forma autónoma, 24h/7d, em múltiplas línguas.",
