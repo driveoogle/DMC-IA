@@ -1,9 +1,10 @@
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  if (req.method === 'OPTIONS') return res.status(200).end();
+import { guard, hubspotToken } from './_security.js';
 
-  const token = process.env.HUBSPOT_TOKEN;
-  if (!token) return res.status(500).json({ error: 'HUBSPOT_TOKEN not configured' });
+export default async function handler(req, res) {
+  if (!guard(req, res, { methods: ['GET'] })) return;
+
+  const token = hubspotToken(res);
+  if (!token) return;
 
   try {
     const fields = 'email,firstname,lastname,company,phone,hs_lead_status,subject__c,message__c,createdate';
@@ -12,7 +13,12 @@ export default async function handler(req, res) {
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
     });
     const data = await r.json();
-    if (!r.ok) return res.status(r.status).json(data);
+    if (!r.ok) {
+      // Never forward the upstream body: HubSpot errors can echo the request,
+      // including the private-app token.
+      console.error('HubSpot contacts fetch failed', r.status);
+      return res.status(502).json({ error: 'Upstream error' });
+    }
 
     const contacts = (data.results || []).map(c => ({
       id: c.id,
@@ -25,6 +31,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ contacts, total: contacts.length });
   } catch (e) {
-    res.status(500).json({ error: e.message });
+    console.error('contacts handler error', e);
+    res.status(500).json({ error: 'Internal error' });
   }
 }
