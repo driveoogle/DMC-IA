@@ -18,6 +18,8 @@ main{flex:1;display:flex;flex-direction:column;}
 .doc-wrap{padding:6rem 4rem 4rem;max-width:1100px;width:100%;margin:0 auto;}
 .doc-wrap h1{font-size:clamp(2rem,4vw,3rem);font-weight:300;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem;}
 .doc-wrap .sub{color:var(--text-dim);font-weight:300;max-width:640px;margin-bottom:2rem;}
+.doc-wrap h2{font-size:1.4rem;font-weight:400;margin:3rem 0 1rem;}
+.doc-wrap h1+.sub+h2{margin-top:1rem;}
 .doc-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2rem;}
 .doc-viewer{width:100%;aspect-ratio:16/9;min-height:420px;border:1px solid var(--border);border-radius:12px;background:var(--bg3);}
 .doc-fallback{padding:2rem;color:var(--text-dim);}
@@ -31,14 +33,23 @@ main{flex:1;display:flex;flex-direction:column;}
 <div id="nav-placeholder"></div>
 <main>
 <section class="doc-wrap">
-  <h1>Vender por subscrição: 8 ideias concretas por setor</h1>
-  <p class="sub">Formação para empreendedores: a ideia, a implementação e fórmulas prontas a propor.</p>
+  <h1>Formação: vender por subscrição</h1>
+  <p class="sub">Dois documentos para empreendedores: a apresentação com 8 ideias por setor e o guia completo de implementação.</p>
+  <h2>1. Apresentação: 8 ideias concretas por setor</h2>
   <div class="doc-actions">
     <a class="btn btn-accent" href="formacao-subscricoes-dmc-ia.pdf" download="formacao-subscricoes-dmc-ia.pdf">Descarregar o PDF</a>
     <a class="btn btn-outline" href="formacao-subscricoes-dmc-ia.pdf" target="_blank" rel="noopener noreferrer">Abrir num novo separador</a>
   </div>
-  <object class="doc-viewer" data="formacao-subscricoes-dmc-ia.pdf#view=FitH" type="application/pdf" aria-label="Formação: vender por subscrição">
+  <object class="doc-viewer" data="formacao-subscricoes-dmc-ia.pdf#view=FitH" type="application/pdf" aria-label="Apresentação: vender por subscrição">
     <p class="doc-fallback">O seu navegador não consegue mostrar o PDF. <a href="formacao-subscricoes-dmc-ia.pdf" download>Descarregue-o aqui</a>.</p>
+  </object>
+  <h2>2. Guia: implementar um sistema de subscrição paga</h2>
+  <div class="doc-actions">
+    <a class="btn btn-accent" href="formacao-subscricoes.pdf" download="formacao-subscricoes.pdf">Descarregar o PDF</a>
+    <a class="btn btn-outline" href="formacao-subscricoes.pdf" target="_blank" rel="noopener noreferrer">Abrir num novo separador</a>
+  </div>
+  <object class="doc-viewer" data="formacao-subscricoes.pdf#view=FitH" type="application/pdf" aria-label="Guia: implementar um sistema de subscrição">
+    <p class="doc-fallback">O seu navegador não consegue mostrar o PDF. <a href="formacao-subscricoes.pdf" download>Descarregue-o aqui</a>.</p>
   </object>
 </section>
 </main>
