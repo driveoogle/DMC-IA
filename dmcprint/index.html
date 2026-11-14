@@ -65,7 +65,13 @@ function startPlayer(hls, token) {
   s.onload = function () {
     if (window.Hls && Hls.isSupported()) {
       var h = new Hls({
-        lowLatencyMode: true,
+        // Priorite a la fluidite : on garde ~3 segments d'avance (≈3-4 s de retard)
+        lowLatencyMode: false,
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 8,
+        maxLiveSyncPlaybackRate: 1.1,
+        maxBufferLength: 20,
+        backBufferLength: 10,
         xhrSetup: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
       });
       h.on(Hls.Events.MANIFEST_PARSED, function () { v.play().catch(function () {}); });
