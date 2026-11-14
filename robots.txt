@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /php/
+Disallow: /live-x7k2q9.html
 Disallow: /data/
 Disallow: /admin/
 Disallow: /*.tmp
