@@ -48,8 +48,8 @@ document.getElementById('f').addEventListener('submit', function (e) {
   }).then(function (r) { return r.json(); }).then(function (d) {
     if (!d.ok) { err.textContent = 'Identifiant ou mot de passe incorrect.'; return; }
     document.getElementById('box').innerHTML =
-      '<div class="player"><iframe allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen src="https://www.youtube-nocookie.com/embed/' +
-      encodeURIComponent(d.videoId) + '?autoplay=1&rel=0"></iframe></div>';
+      '<div class="player"><iframe allow="autoplay; fullscreen; picture-in-picture" allowfullscreen src="' +
+      d.src + '"></iframe></div>';
   }).catch(function () { err.textContent = 'Erreur de connexion, réessayez.'; });
 });
 </script>
