@@ -1,0 +1,7 @@
+# ~/.cloudflared/config.yml (replace TUNNEL_ID)
+tunnel: TUNNEL_ID
+credentials-file: /Users/VOTRE_NOM/.cloudflared/TUNNEL_ID.json
+ingress:
+  - hostname: live.dmc-ia.com
+    service: http://127.0.0.1:8888
+  - service: http_status:404
