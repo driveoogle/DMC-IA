@@ -47,11 +47,29 @@ document.getElementById('f').addEventListener('submit', function (e) {
     body: JSON.stringify({user: userInput.value, password: document.getElementById('pw').value})
   }).then(function (r) { return r.json(); }).then(function (d) {
     if (!d.ok) { err.textContent = 'Identifiant ou mot de passe incorrect.'; return; }
-    document.getElementById('box').innerHTML =
-      '<div class="player"><iframe allow="autoplay; fullscreen; picture-in-picture" allowfullscreen src="' +
-      d.src + '"></iframe></div>';
+    startPlayer(d.hls, d.token);
   }).catch(function () { err.textContent = 'Erreur de connexion, réessayez.'; });
 });
+
+function startPlayer(hls, token) {
+  var box = document.getElementById('box');
+  box.innerHTML = '<div class="player"><video id="v" controls autoplay playsinline muted style="position:absolute;inset:0;width:100%;height:100%"></video></div>';
+  var v = document.getElementById('v');
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js';
+  s.onload = function () {
+    if (window.Hls && Hls.isSupported()) {
+      var h = new Hls({
+        lowLatencyMode: true,
+        xhrSetup: function (xhr, url) { xhr.open('GET', url + (url.indexOf('?') < 0 ? '?' : '&') + 'jwt=' + encodeURIComponent(token), true); }
+      });
+      h.loadSource(hls); h.attachMedia(v);
+    } else {
+      v.src = hls + '?jwt=' + encodeURIComponent(token); // Safari natif
+    }
+  };
+  document.head.appendChild(s);
+}
 </script>
 </body>
 </html>

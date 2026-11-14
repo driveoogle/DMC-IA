@@ -1,0 +1,26 @@
+# Minimal MediaMTX config: OBS publishes via RTMP on localhost, viewers read HLS through the tunnel.
+logLevel: info
+
+# Every publish/read needs a valid JWT signed by the Vercel function (keys served at /api/jwks)
+authMethod: jwt
+authJWTJWKS: https://VOTRE-PROJET.vercel.app/api/jwks
+authJWTClaimKey: mediamtx_permissions
+
+api: no
+metrics: no
+pprof: no
+playback: no
+rtsp: no
+webrtc: no
+srt: no
+
+rtmp: yes
+rtmpAddress: 127.0.0.1:1935      # local only: not reachable from the tunnel
+
+hls: yes
+hlsAddress: 127.0.0.1:8888       # the tunnel points here
+hlsAlwaysRemux: yes
+hlsAllowOrigins: ['https://dmc-ia.com']
+
+paths:
+  live:
