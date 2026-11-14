@@ -3,7 +3,7 @@ logLevel: info
 
 # Every publish/read needs a valid JWT signed by the Vercel function (keys served at /api/jwks)
 authMethod: jwt
-authJWTJWKS: https://VOTRE-PROJET.vercel.app/api/jwks
+authJWTJWKS: https://dmc-ia-live-api.vercel.app/api/jwks
 authJWTClaimKey: mediamtx_permissions
 
 api: no
