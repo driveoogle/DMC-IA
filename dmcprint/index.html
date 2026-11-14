@@ -61,11 +61,11 @@ function startPlayer(hls, token) {
     if (window.Hls && Hls.isSupported()) {
       var h = new Hls({
         lowLatencyMode: true,
-        xhrSetup: function (xhr, url) { xhr.open('GET', url + (url.indexOf('?') < 0 ? '?' : '&') + 'jwt=' + encodeURIComponent(token), true); }
+        xhrSetup: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
       });
       h.loadSource(hls); h.attachMedia(v);
     } else {
-      v.src = hls + '?jwt=' + encodeURIComponent(token); // Safari natif
+      document.getElementById('box').insertAdjacentHTML('beforeend', '<p class="err">Navigateur non compatible. Utilisez un navigateur récent.</p>');
     }
   };
   document.head.appendChild(s);
