@@ -55,6 +55,11 @@ function startPlayer(hls, token) {
   var box = document.getElementById('box');
   box.innerHTML = '<div class="player"><video id="v" controls autoplay playsinline muted style="position:absolute;inset:0;width:100%;height:100%"></video></div>';
   var v = document.getElementById('v');
+  v.disableRemotePlayback = true;   // requis par iOS pour ManagedMediaSource
+  v.setAttribute('playsinline', '');
+  var diag = document.createElement('p');
+  diag.className = 'err';
+  box.appendChild(diag);
   var s = document.createElement('script');
   s.src = 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js';
   s.onload = function () {
@@ -63,9 +68,17 @@ function startPlayer(hls, token) {
         lowLatencyMode: true,
         xhrSetup: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
       });
+      h.on(Hls.Events.MANIFEST_PARSED, function () { v.play().catch(function () {}); });
+      h.on(Hls.Events.ERROR, function (e, d) {
+        if (d.fatal) {
+          diag.textContent = (d.response && d.response.code === 404)
+            ? 'Le live n\u2019a pas encore commenc\u00e9.'
+            : 'Lecture impossible (' + d.type + ' / ' + d.details + (d.response ? ' ' + d.response.code : '') + ').';
+        }
+      });
       h.loadSource(hls); h.attachMedia(v);
     } else {
-      document.getElementById('box').insertAdjacentHTML('beforeend', '<p class="err">Navigateur non compatible. Utilisez un navigateur récent.</p>');
+      diag.textContent = 'Navigateur non compatible (iOS 17.1 ou plus requis). Mettez \u00e0 jour ou utilisez un ordinateur.';
     }
   };
   document.head.appendChild(s);
